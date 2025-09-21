@@ -1,7 +1,7 @@
 {
-  "itemGroup.examplemod": "Example Mod Tab",
-  "block.examplemod.example_block": "Example Block",
-  "item.examplemod.example_item": "Example Item",
+  "creativetab.sunsetarmory.sunset_armory_tab": "Sunset Armory",
+  "block.sunsetarmory.john_block": "dear god",
+  "block.sunsetarmory.redblock": "IS THTA FREAKIN RED TERROR",
   "item.sunsetarmory.testitem": "Test Item",
   "item.sunsetarmory.john_item": "John Testing"
 }

@@ -7,7 +7,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-  public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SunsetArmory.MODID);
+  public static final DeferredRegister.Items ITEMS =
+          DeferredRegister.createItems(SunsetArmory.MODID);
 
   public static final DeferredItem<Item> TESTITEM = ITEMS.register("testitem",
           () -> new Item(new Item.Properties()));
