@@ -19,10 +19,11 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.JOHN.get()))
                     .title(Component.translatable("creativetab.sunsetarmory.sunset_armory_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.JOHN);
-                        output.accept(ModItems.TESTITEM);
-                        output.accept(ModBlocks.REDBLOCK);
-                        output.accept(ModBlocks.JOHN_BLOCK);
+                        output.accept(ModItems.CHAINMAIL);
+                        output.accept(ModItems.KNIGHT_HELMET);
+                        output.accept(ModItems.KNIGHT_CHESTPLATE);
+                        output.accept(ModItems.KNIGHT_LEGGINGS);
+                        output.accept(ModItems.KNIGHT_BOOTS);
                     }).build());
 
     public  static void register(IEventBus eventBus) {
