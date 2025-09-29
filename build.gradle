@@ -19,6 +19,15 @@ group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        name = "Iron's Maven - Release"
+        url = "https://code.redspace.io/releases"
+    }
+    maven {
+        name "KosmX's maven"
+        url 'https://maven.kosmx.dev/'
+    }
+
 }
 
 base {
@@ -112,6 +121,9 @@ configurations {
 }
 
 dependencies {
+    implementation "io.redspace:irons_spellbooks:${"1.21.1-3.12.3"}"
+    implementation ("dev.kosmx.player-anim:player-animation-lib-forge:${"2.0.1+1.21.1"}")
+    //please dear god future me dont forget to import other shit
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
