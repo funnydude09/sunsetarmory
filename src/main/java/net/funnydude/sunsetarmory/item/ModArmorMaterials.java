@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 public class ModArmorMaterials {
     public static final Holder<ArmorMaterial> KNIGHT_ARMOR_MATERIAL = register("knight",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-                attribute.put(ArmorItem.Type.BOOTS, 5);
+               attribute.put(ArmorItem.Type.BOOTS, 5);
                 attribute.put(ArmorItem.Type.LEGGINGS, 8);
                 attribute.put(ArmorItem.Type.CHESTPLATE, 10);
                 attribute.put(ArmorItem.Type.HELMET, 5);

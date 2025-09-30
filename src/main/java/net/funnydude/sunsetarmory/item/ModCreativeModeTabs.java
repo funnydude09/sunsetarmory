@@ -23,7 +23,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.KNIGHT_HELMET);
                         output.accept(ModItems.KNIGHT_CHESTPLATE);
                         output.accept(ModItems.KNIGHT_LEGGINGS);
-                        output.accept(ModItems.KNIGHT_BOOTS);
+                          output.accept(ModItems.KNIGHT_BOOTS);
                     }).build());
 
     public  static void register(IEventBus eventBus) {
