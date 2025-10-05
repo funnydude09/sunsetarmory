@@ -2,6 +2,7 @@ package net.funnydude.sunsetarmory;
 
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import net.funnydude.sunsetarmory.block.ModBlocks;
+import net.funnydude.sunsetarmory.entity.armor.PyriumKnightArmorModel;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.funnydude.sunsetarmory.entity.armor.NetheriteKnightArmorModel;
@@ -134,6 +135,11 @@ public class SunsetArmory {
                     ModItems.KNIGHT_CHESTPLATE.get(),
                     ModItems.KNIGHT_LEGGINGS.get(),
                     ModItems.KNIGHT_BOOTS.get());
+            AzArmorRendererRegistry.register(PyriumKnightArmorModel::new,
+                    ModItems.PYRIUM_KNIGHT_HELMET.get(),
+                    ModItems.PYRIUM_KNIGHT_CHESTPLATE.get(),
+                    ModItems.PYRIUM_KNIGHT_LEGGINGS.get(),
+                    ModItems.PYRIUM_KNIGHT_BOOTS.get());
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

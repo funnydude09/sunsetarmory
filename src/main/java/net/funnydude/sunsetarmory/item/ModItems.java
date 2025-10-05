@@ -20,6 +20,10 @@ public class ModItems {
   public static final DeferredItem<ArmorItem> KNIGHT_CHESTPLATE;
   public static final DeferredItem<ArmorItem> KNIGHT_LEGGINGS;
   public static final DeferredItem<ArmorItem> KNIGHT_BOOTS;
+    public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_HELMET;
+    public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_CHESTPLATE;
+    public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_LEGGINGS;
+    public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_BOOTS;
 
   public static Collection<DeferredHolder<Item, ? extends Item>> getArmoryItems() {
         return ITEMS.getEntries();
@@ -36,6 +40,9 @@ public class ModItems {
       KNIGHT_CHESTPLATE = ITEMS.register("netherite_knight_chestplate", () -> new ArmorItem(ModArmorMaterials.KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(37))));
       KNIGHT_LEGGINGS = ITEMS.register("netherite_knight_leggings", () -> new ArmorItem(ModArmorMaterials.KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(37))));
       KNIGHT_BOOTS = ITEMS.register("netherite_knight_boots", () -> new ArmorItem(ModArmorMaterials.KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(37))));
-
+        PYRIUM_KNIGHT_HELMET = ITEMS.register("pyrium_knight_helmet", () -> new ArmorItem(ModArmorMaterials.PYRIUM_KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(34))));
+        PYRIUM_KNIGHT_CHESTPLATE = ITEMS.register("pyrium_knight_chestplate", () -> new ArmorItem(ModArmorMaterials.PYRIUM_KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(34))));
+        PYRIUM_KNIGHT_LEGGINGS = ITEMS.register("pyrium_knight_leggings", () -> new ArmorItem(ModArmorMaterials.PYRIUM_KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(34))));
+        PYRIUM_KNIGHT_BOOTS = ITEMS.register("pyrium_knight_boots", () -> new ArmorItem(ModArmorMaterials.PYRIUM_KNIGHT_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(34))));
     }
 }

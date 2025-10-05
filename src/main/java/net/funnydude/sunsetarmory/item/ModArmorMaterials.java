@@ -1,5 +1,6 @@
 package net.funnydude.sunsetarmory.item;
 
+import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
@@ -20,12 +21,28 @@ import java.util.function.Supplier;
 public class ModArmorMaterials {
     public static final Holder<ArmorMaterial> KNIGHT_ARMOR_MATERIAL = register("knight",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
-               attribute.put(ArmorItem.Type.BOOTS, 5);
+               attribute.put(ArmorItem.Type.BOOTS, 7);
+                attribute.put(ArmorItem.Type.LEGGINGS, 11);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 13);
+                attribute.put(ArmorItem.Type.HELMET, 8);
+                attribute.put(ArmorItem.Type.BODY, 18);
+            }), 12, 4f, 0.3f, () -> ModItems.CHAINMAIL.get());
+    public static final Holder<ArmorMaterial> PYRIUM_KNIGHT_ARMOR_MATERIAL = register("pyrium_knight",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
                 attribute.put(ArmorItem.Type.LEGGINGS, 8);
                 attribute.put(ArmorItem.Type.CHESTPLATE, 10);
                 attribute.put(ArmorItem.Type.HELMET, 5);
                 attribute.put(ArmorItem.Type.BODY, 11);
-            }), 12, 3f, 0.2f, () -> ModItems.CHAINMAIL.get());
+            }), 15, 3f, 0.2f, () -> ItemRegistry.PYRIUM_INGOT.get());
+    public static final Holder<ArmorMaterial> MITHRIL_KNIGHT_ARMOR_MATERIAL = register("mithril_knight",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 4);
+                attribute.put(ArmorItem.Type.LEGGINGS, 7);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 8);
+                attribute.put(ArmorItem.Type.HELMET, 4);
+                attribute.put(ArmorItem.Type.BODY, 9);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
 
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
