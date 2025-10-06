@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": {
+      "item": "sunsetarmory:arcane_chainmail"
+    },
+    "N": {
+      "item": "minecraft:netherite_leggings"
+    }
+  },
+  "pattern": [
+    "TNT",
+    "T T",
+    "T T"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:netherite_knight_leggings"
+  }
+}

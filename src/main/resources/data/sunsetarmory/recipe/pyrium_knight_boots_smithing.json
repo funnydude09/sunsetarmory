@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "irons_spellbooks:pyrium_ingot"
+  },
+  "base": {
+    "item": "sunsetarmory:netherite_knight_boots"
+  },
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:pyrium_knight_boots"
+  },
+  "template": {
+    "item": "irons_spellbooks:timeless_slurry"
+  }
+}

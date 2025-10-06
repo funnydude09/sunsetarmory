@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "irons_spellbooks:mithril_ingot"
+  },
+  "base": {
+    "item": "sunsetarmory:netherite_knight_leggings"
+  },
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:mithril_knight_leggings"
+  },
+  "template": {
+    "item": "sunsetarmory:mithril_upgrade_template"
+  }
+}

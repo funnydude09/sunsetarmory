@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sunsetarmory:item/mithril_smithing_template"
+  }
+}

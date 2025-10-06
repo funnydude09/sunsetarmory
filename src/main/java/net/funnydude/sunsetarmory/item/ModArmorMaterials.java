@@ -26,7 +26,7 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.CHESTPLATE, 13);
                 attribute.put(ArmorItem.Type.HELMET, 8);
                 attribute.put(ArmorItem.Type.BODY, 18);
-            }), 12, 4f, 0.3f, () -> ModItems.CHAINMAIL.get());
+            }), 12, 6f, 0.3f, () -> ModItems.CHAINMAIL.get());
     public static final Holder<ArmorMaterial> PYRIUM_KNIGHT_ARMOR_MATERIAL = register("pyrium_knight",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
                 attribute.put(ArmorItem.Type.BOOTS, 5);
@@ -42,6 +42,30 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.CHESTPLATE, 8);
                 attribute.put(ArmorItem.Type.HELMET, 4);
                 attribute.put(ArmorItem.Type.BODY, 9);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
+    public static final Holder<ArmorMaterial> PALADIN_ARMOR_MATERIAL = register("paladin",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 8);
+                attribute.put(ArmorItem.Type.LEGGINGS, 13);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 15);
+                attribute.put(ArmorItem.Type.HELMET, 9);
+                attribute.put(ArmorItem.Type.BODY, 21);
+            }), 12, 6f, 0.3f, () -> ModItems.CHAINMAIL.get());
+    public static final Holder<ArmorMaterial> PYRIUM_PALADIN_ARMOR_MATERIAL = register("pyrium_paladin",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 7);
+                attribute.put(ArmorItem.Type.LEGGINGS, 10);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 12);
+                attribute.put(ArmorItem.Type.HELMET, 8);
+                attribute.put(ArmorItem.Type.BODY, 15);
+            }), 15, 3f, 0.2f, () -> ItemRegistry.PYRIUM_INGOT.get());
+    public static final Holder<ArmorMaterial> MITHRIL_PALADIN_ARMOR_MATERIAL = register("mithril_paladin",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
+                attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 11);
             }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
 
 

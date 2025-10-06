@@ -23,7 +23,6 @@ import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -46,11 +45,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 
-public class NetheriteKnightArmorItem extends ImbuableChestplateArmorItem {
-    public NetheriteKnightArmorItem(ArmorItem.Type slot, Item.Properties settings) {
-        super(ModArmorMaterials.KNIGHT_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 50, AttributeModifier.Operation.ADD_VALUE),
-                new AttributeContainer(AttributeRegistry.SPELL_RESIST, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+public class MithrilKnightArmorItem extends ImbuableChestplateArmorItem {
+    public MithrilKnightArmorItem(Type slot, Properties settings) {
+        super(ModArmorMaterials.MITHRIL_KNIGHT_ARMOR_MATERIAL, slot, settings,
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 150, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.MANA_REGEN, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     @Override

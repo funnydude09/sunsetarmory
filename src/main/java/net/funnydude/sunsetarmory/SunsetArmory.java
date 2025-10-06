@@ -2,10 +2,9 @@ package net.funnydude.sunsetarmory;
 
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import net.funnydude.sunsetarmory.block.ModBlocks;
-import net.funnydude.sunsetarmory.entity.armor.PyriumKnightArmorModel;
+import net.funnydude.sunsetarmory.entity.armor.*;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
-import net.funnydude.sunsetarmory.entity.armor.NetheriteKnightArmorModel;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -140,6 +139,27 @@ public class SunsetArmory {
                     ModItems.PYRIUM_KNIGHT_CHESTPLATE.get(),
                     ModItems.PYRIUM_KNIGHT_LEGGINGS.get(),
                     ModItems.PYRIUM_KNIGHT_BOOTS.get());
+            AzArmorRendererRegistry.register(MithrilKnightArmorModel::new,
+                    ModItems.MITHRIL_KNIGHT_HELMET.get(),
+                    ModItems.MITHRIL_KNIGHT_CHESTPLATE.get(),
+                    ModItems.MITHRIL_KNIGHT_LEGGINGS.get(),
+                    ModItems.MITHRIL_KNIGHT_BOOTS.get());
+
+            AzArmorRendererRegistry.register(NetheritePaladinArmorModel::new,
+                    ModItems.PALADIN_HELMET.get(),
+                    ModItems.PALADIN_CHESTPLATE.get(),
+                    ModItems.PALADIN_LEGGINGS.get(),
+                    ModItems.PALADIN_BOOTS.get());
+            AzArmorRendererRegistry.register(PyriumPaladinArmorModel::new,
+                    ModItems.PYRIUM_PALADIN_HELMET.get(),
+                    ModItems.PYRIUM_PALADIN_CHESTPLATE.get(),
+                    ModItems.PYRIUM_PALADIN_LEGGINGS.get(),
+                    ModItems.PYRIUM_PALADIN_BOOTS.get());
+            AzArmorRendererRegistry.register(MithrilPaladinArmorModel::new,
+                    ModItems.MITHRIL_PALADIN_HELMET.get(),
+                    ModItems.MITHRIL_PALADIN_CHESTPLATE.get(),
+                    ModItems.MITHRIL_PALADIN_LEGGINGS.get(),
+                    ModItems.MITHRIL_PALADIN_BOOTS.get());
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

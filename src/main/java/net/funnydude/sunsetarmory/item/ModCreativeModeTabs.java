@@ -20,10 +20,23 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.sunsetarmory.sunset_armory_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.CHAINMAIL);
+                        output.accept(ModItems.MITHRIL_UPGRADE_TEMPLATE);
                         output.accept(ModItems.KNIGHT_HELMET);
                         output.accept(ModItems.KNIGHT_CHESTPLATE);
                         output.accept(ModItems.KNIGHT_LEGGINGS);
-                          output.accept(ModItems.KNIGHT_BOOTS);
+                        output.accept(ModItems.KNIGHT_BOOTS);
+                        output.accept(ModItems.PYRIUM_KNIGHT_HELMET);
+                        output.accept(ModItems.PYRIUM_KNIGHT_CHESTPLATE);
+                        output.accept(ModItems.PYRIUM_KNIGHT_LEGGINGS);
+                        output.accept(ModItems.PYRIUM_KNIGHT_BOOTS);
+                        output.accept(ModItems.MITHRIL_KNIGHT_HELMET);
+                        output.accept(ModItems.MITHRIL_KNIGHT_CHESTPLATE);
+                        output.accept(ModItems.MITHRIL_KNIGHT_LEGGINGS);
+                        output.accept(ModItems.MITHRIL_KNIGHT_BOOTS);
+                        output.accept(ModItems.PALADIN_HELMET);
+                        output.accept(ModItems.PALADIN_CHESTPLATE);
+                        output.accept(ModItems.PALADIN_LEGGINGS);
+                        output.accept(ModItems.PALADIN_BOOTS);
                     }).build());
 
     public  static void register(IEventBus eventBus) {
