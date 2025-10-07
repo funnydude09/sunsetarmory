@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:netherite_knight_helmet",
+    "sunsetarmory:mithril_knight_helmet",
+    "sunsetarmory:pyrium_knight_helmet",
+    "sunsetarmory:netherite_paladin_helmet",
+    "sunsetarmory:mithril_paladin_helmet",
+    "sunsetarmory:pyrium_paladin_helmet",
+    "sunsetarmory:netherite_sunset_helmet"
+  ]
+}

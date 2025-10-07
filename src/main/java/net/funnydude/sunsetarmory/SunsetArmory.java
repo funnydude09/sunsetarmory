@@ -160,6 +160,12 @@ public class SunsetArmory {
                     ModItems.MITHRIL_PALADIN_CHESTPLATE.get(),
                     ModItems.MITHRIL_PALADIN_LEGGINGS.get(),
                     ModItems.MITHRIL_PALADIN_BOOTS.get());
+
+            AzArmorRendererRegistry.register(NetheriteSunsetArmorModel::new,
+                    ModItems.SUNSET_BOOTS.get(),
+                    ModItems.SUNSET_CHESTPLATE.get(),
+                    ModItems.SUNSET_LEGGINGS.get(),
+                    ModItems.SUNSET_HELMET.get());
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

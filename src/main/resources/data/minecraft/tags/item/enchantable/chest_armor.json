@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:netherite_knight_chestplate",
+    "sunsetarmory:mithril_knight_chestplate",
+    "sunsetarmory:pyrium_knight_chestplate",
+    "sunsetarmory:netherite_paladin_chestplate",
+    "sunsetarmory:mithril_paladin_chestplate",
+    "sunsetarmory:pyrium_paladin_chestplate",
+    "sunsetarmory:netherite_sunset_chestplate"
+  ]
+}

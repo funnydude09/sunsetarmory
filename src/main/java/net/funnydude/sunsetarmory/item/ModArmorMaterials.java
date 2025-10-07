@@ -27,6 +27,14 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.HELMET, 8);
                 attribute.put(ArmorItem.Type.BODY, 18);
             }), 12, 6f, 0.3f, () -> ModItems.CHAINMAIL.get());
+    public static final Holder<ArmorMaterial> SUNSET_ARMOR_MATERIAL = register("knight",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 8);
+                attribute.put(ArmorItem.Type.LEGGINGS, 12);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 14);
+                attribute.put(ArmorItem.Type.HELMET, 9);
+                attribute.put(ArmorItem.Type.BODY, 18);
+            }), 19, 4f, 0.4f, () -> ModItems.CHAINMAIL.get());
     public static final Holder<ArmorMaterial> PYRIUM_KNIGHT_ARMOR_MATERIAL = register("pyrium_knight",
             Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
                 attribute.put(ArmorItem.Type.BOOTS, 5);

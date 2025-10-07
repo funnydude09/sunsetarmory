@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:netherite_knight_boots",
+    "sunsetarmory:mithril_knight_boots",
+    "sunsetarmory:pyrium_knight_boots",
+    "sunsetarmory:netherite_paladin_boots",
+    "sunsetarmory:mithril_paladin_boots",
+    "sunsetarmory:pyrium_paladin_boots",
+    "sunsetarmory:netherite_sunset_boots"
+  ]
+}

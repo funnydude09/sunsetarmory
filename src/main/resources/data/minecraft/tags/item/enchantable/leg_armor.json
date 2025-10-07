@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:netherite_knight_leggings",
+    "sunsetarmory:mithril_knight_leggings",
+    "sunsetarmory:pyrium_knight_leggings",
+    "sunsetarmory:netherite_paladin_leggings",
+    "sunsetarmory:mithril_paladin_leggings",
+    "sunsetarmory:pyrium_paladin_leggings",
+    "sunsetarmory:netherite_sunset_leggings"
+  ]
+}

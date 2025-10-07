@@ -37,6 +37,18 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PALADIN_CHESTPLATE);
                         output.accept(ModItems.PALADIN_LEGGINGS);
                         output.accept(ModItems.PALADIN_BOOTS);
+                        output.accept(ModItems.PYRIUM_PALADIN_HELMET);
+                        output.accept(ModItems.PYRIUM_PALADIN_CHESTPLATE);
+                        output.accept(ModItems.PYRIUM_PALADIN_LEGGINGS);
+                        output.accept(ModItems.PYRIUM_PALADIN_BOOTS);
+                        output.accept(ModItems.MITHRIL_PALADIN_HELMET);
+                        output.accept(ModItems.MITHRIL_PALADIN_CHESTPLATE);
+                        output.accept(ModItems.MITHRIL_PALADIN_LEGGINGS);
+                        output.accept(ModItems.MITHRIL_PALADIN_BOOTS);
+                        output.accept(ModItems.SUNSET_BOOTS);
+                        output.accept(ModItems.SUNSET_CHESTPLATE);
+                        output.accept(ModItems.SUNSET_LEGGINGS);
+                        output.accept(ModItems.SUNSET_HELMET);
                     }).build());
 
     public  static void register(IEventBus eventBus) {
