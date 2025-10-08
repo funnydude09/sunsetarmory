@@ -166,6 +166,18 @@ public class SunsetArmory {
                     ModItems.SUNSET_CHESTPLATE.get(),
                     ModItems.SUNSET_LEGGINGS.get(),
                     ModItems.SUNSET_HELMET.get());
+
+            AzArmorRendererRegistry.register(PyriumSunsetArmorModel::new,
+                    ModItems.PYRIUM_SUNSET_BOOTS.get(),
+                    ModItems.PYRIUM_SUNSET_CHESTPLATE.get(),
+                    ModItems.PYRIUM_SUNSET_LEGGINGS.get(),
+                    ModItems.PYRIUM_SUNSET_HELMET.get());
+
+            AzArmorRendererRegistry.register(MithrilSunsetArmorModel::new,
+                    ModItems.MITHRIL_SUNSET_BOOTS.get(),
+                    ModItems.MITHRIL_SUNSET_CHESTPLATE.get(),
+                    ModItems.MITHRIL_SUNSET_LEGGINGS.get(),
+                    ModItems.MITHRIL_SUNSET_HELMET.get());
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
