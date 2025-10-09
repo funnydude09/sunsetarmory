@@ -48,8 +48,7 @@ import java.util.function.Consumer;
 public class NetheritePaladinArmorItem extends ImbuableChestplateArmorItem {
     public NetheritePaladinArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.PALADIN_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 75, AttributeModifier.Operation.ADD_VALUE),
-                new AttributeContainer(AttributeRegistry.SPELL_RESIST, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 50, AttributeModifier.Operation.ADD_VALUE));
     }
 
     @Override

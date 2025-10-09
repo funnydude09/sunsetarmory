@@ -48,7 +48,7 @@ import java.util.function.Consumer;
 public class PyriumPaladinArmorItem extends ImbuableChestplateArmorItem {
     public PyriumPaladinArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.PYRIUM_PALADIN_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 75, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 50, AttributeModifier.Operation.ADD_VALUE),
                 new AttributeContainer(AttributeRegistry.COOLDOWN_REDUCTION, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
         new AttributeContainer(AttributeRegistry.CAST_TIME_REDUCTION, 0.075, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }

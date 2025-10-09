@@ -48,7 +48,7 @@ import java.util.function.Consumer;
 public class PyriumSunsetArmorItem extends ImbuableChestplateArmorItem {
     public PyriumSunsetArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.PYRIUM_SUNSET_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 200, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 100, AttributeModifier.Operation.ADD_VALUE),
                 new AttributeContainer(AttributeRegistry.CAST_TIME_REDUCTION, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 new AttributeContainer(AttributeRegistry.COOLDOWN_REDUCTION, 0.12, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 new AttributeContainer(AttributeRegistry.SPELL_POWER, 0.02, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));

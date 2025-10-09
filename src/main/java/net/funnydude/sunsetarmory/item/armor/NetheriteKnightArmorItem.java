@@ -49,8 +49,7 @@ import java.util.function.Consumer;
 public class NetheriteKnightArmorItem extends ImbuableChestplateArmorItem {
     public NetheriteKnightArmorItem(ArmorItem.Type slot, Item.Properties settings) {
         super(ModArmorMaterials.KNIGHT_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 50, AttributeModifier.Operation.ADD_VALUE),
-                new AttributeContainer(AttributeRegistry.SPELL_RESIST, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 25, AttributeModifier.Operation.ADD_VALUE));
     }
 
     @Override

@@ -48,8 +48,8 @@ import java.util.function.Consumer;
 public class MithrilKnightArmorItem extends ImbuableChestplateArmorItem {
     public MithrilKnightArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.MITHRIL_KNIGHT_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 150, AttributeModifier.Operation.ADD_VALUE),
-                new AttributeContainer(AttributeRegistry.MANA_REGEN, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 100, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.SPELL_POWER, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     @Override

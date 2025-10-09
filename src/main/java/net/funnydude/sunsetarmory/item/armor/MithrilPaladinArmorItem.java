@@ -48,9 +48,9 @@ import java.util.function.Consumer;
 public class MithrilPaladinArmorItem extends ImbuableChestplateArmorItem {
     public MithrilPaladinArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.MITHRIL_PALADIN_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 250, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 200, AttributeModifier.Operation.ADD_VALUE),
                 new AttributeContainer(AttributeRegistry.MANA_REGEN, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                new AttributeContainer(AttributeRegistry.SPELL_POWER, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                new AttributeContainer(AttributeRegistry.SPELL_POWER, 0.08, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
 
     @Override

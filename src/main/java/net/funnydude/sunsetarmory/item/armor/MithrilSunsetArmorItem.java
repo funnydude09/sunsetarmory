@@ -48,7 +48,7 @@ import java.util.function.Consumer;
 public class MithrilSunsetArmorItem extends ImbuableChestplateArmorItem {
     public MithrilSunsetArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.MITHRIL_SUNSET_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 400, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 300, AttributeModifier.Operation.ADD_VALUE),
                 new AttributeContainer(AttributeRegistry.MANA_REGEN, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 new AttributeContainer(AttributeRegistry.SPELL_POWER, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }

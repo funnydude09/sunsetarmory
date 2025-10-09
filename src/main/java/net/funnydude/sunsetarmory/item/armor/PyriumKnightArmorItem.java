@@ -48,7 +48,7 @@ import java.util.function.Consumer;
 public class PyriumKnightArmorItem extends ImbuableChestplateArmorItem {
     public PyriumKnightArmorItem(Type slot, Properties settings) {
         super(ModArmorMaterials.PYRIUM_KNIGHT_ARMOR_MATERIAL, slot, settings,
-                new AttributeContainer(AttributeRegistry.MAX_MANA, 50, AttributeModifier.Operation.ADD_VALUE),
+                new AttributeContainer(AttributeRegistry.MAX_MANA, 25, AttributeModifier.Operation.ADD_VALUE),
                 new AttributeContainer(AttributeRegistry.COOLDOWN_REDUCTION, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 new AttributeContainer(AttributeRegistry.CAST_TIME_REDUCTION, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }

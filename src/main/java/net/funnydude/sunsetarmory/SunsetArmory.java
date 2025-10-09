@@ -1,10 +1,18 @@
 package net.funnydude.sunsetarmory;
 
+import io.redspace.ironsspellbooks.entity.mobs.wizards.cultist.CultistEntity;
+import io.redspace.ironsspellbooks.entity.mobs.wizards.cultist.CultistRenderer;
+import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import net.funnydude.sunsetarmory.block.ModBlocks;
+import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.entity.armor.*;
+import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
+import net.funnydude.sunsetarmory.entity.wizards.knight.KnightRenderer;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -82,6 +90,7 @@ public class SunsetArmory {
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
 
 
         // Register the item to a creative tab
@@ -115,6 +124,9 @@ public class SunsetArmory {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
+
+
+   //
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = SunsetArmory.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
