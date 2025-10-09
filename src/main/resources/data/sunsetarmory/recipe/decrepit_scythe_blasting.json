@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 5,
+  "ingredient":
+    {
+      "item": "irons_spellbooks:decrepit_scythe"
+    },
+  "result": {
+    "count": 4,
+    "id": "sunsetarmory:keeper_scrap"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1,
+  "ingredient":
+    {
+      "item": "irons_spellbooks:keeper_flamberge"
+    },
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:keeper_scrap"
+  }
+}

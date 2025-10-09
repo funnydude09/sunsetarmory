@@ -67,15 +67,29 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PYRIUM_SUNSET_BOOTS);
                         output.accept(ModItems.MITHRIL_SUNSET_BOOTS);
 
-                        output.accept(ModItems.CHAINMAIL);
-                        output.accept(ModItems.MITHRIL_UPGRADE_TEMPLATE);
+                        output.accept(ModItems.NETHERITE_LONGSWORD);
+                        output.accept(ModItems.PYRIUM_LONGSWORD);
+                        output.accept(ModItems.MITHRIL_LONGSWORD);
+
+                        output.accept(ModItems.NETHERITE_GREATSWORD);
+                        output.accept(ModItems.PYRIUM_GREATSWORD);
+                        output.accept(ModItems.MITHRIL_GREATSWORD);
+
+                        output.accept(ModItems.NETHERITE_SPEAR);
+                        output.accept(ModItems.PYRIUM_SPEAR);
+                        output.accept(ModItems.MITHRIL_SPEAR);
 
                         output.accept(ModItems.ARCANE_FLAMBERGE);
                         output.accept(ModItems.ARCANE_REAPER);
 
-                        output.accept(ModItems.NETHERITE_LONGSWORD);
-                        output.accept(ModItems.PYRIUM_LONGSWORD);
-                        output.accept(ModItems.MITHRIL_LONGSWORD);
+                        output.accept(ModItems.CHAINMAIL);
+                        output.accept(ModItems.DECREPIT_SCRAP);
+                        output.accept(ModItems.PYRIUM_SCRAP);
+                        output.accept(ModItems.MITHRIL_UPGRADE_TEMPLATE);
+                        output.accept(ModBlocks.PYRIUM_BLOCK);
+
+
+
                     }).build());
 
     public  static void register(IEventBus eventBus) {

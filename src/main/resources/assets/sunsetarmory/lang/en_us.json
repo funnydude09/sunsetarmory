@@ -43,9 +43,18 @@
   "item.sunsetarmory.arcane_chainmail": "Arcane Chainmail",
   "item.sunsetarmory.mithril_upgrade_template": "Mithril Smithing Template",
   "item.sunsetarmory.mithril_upgrade_template.description": "Can be applied to some netherite gear",
+  "item.sunsetarmory.keeper_scrap": "Decrepit Scrap",
+  "item.sunsetarmory.pyrium_scrap": "Pyrium Scrap",
+  "block.sunsetarmory.pyrium_block": "Block of Pyrium",
   "item.sunsetarmory.netherite_longsword": "Netherite Longsword",
   "item.sunsetarmory.pyrium_longsword": "Pyrium Longsword",
   "item.sunsetarmory.mithril_longsword": "Mithril Longsword",
+  "item.sunsetarmory.netherite_spear": "Netherite Spear",
+  "item.sunsetarmory.pyrium_spear": "Pyrium Spear",
+  "item.sunsetarmory.mithril_spear": "Mithril Spear",
+  "item.sunsetarmory.netherite_greatsword": "Netherite Greatsword",
+  "item.sunsetarmory.pyrium_greatsword": "Pyrium Greatsword",
+  "item.sunsetarmory.mithril_greatsword": "Mithril Greatsword",
   "item.sunsetarmory.arcane_flamberge": "Arcane Flamberge",
   "item.sunsetarmory.arcane_reaper": "Arcane Reaper"
 }

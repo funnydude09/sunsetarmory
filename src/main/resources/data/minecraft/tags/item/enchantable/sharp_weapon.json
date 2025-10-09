@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:arcane_flamberge",
+    "sunsetarmory:arcane_reaper",
+    "sunsetarmory:netherite_longsword",
+    "sunsetarmory:pyrium_longsword",
+    "sunsetarmory:mithril_longsword",
+    "sunsetarmory:netherite_spear",
+    "sunsetarmory:pyrium_spear",
+    "sunsetarmory:mithril_spear",
+    "sunsetarmory:netherite_greatsword",
+    "sunsetarmory:pyrium_greatsword",
+    "sunsetarmory:mithril_greatsword"
+  ]
+}

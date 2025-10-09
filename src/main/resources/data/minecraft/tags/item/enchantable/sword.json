@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:arcane_flamberge",
+    "sunsetarmory:arcane_reaper",
+    "sunsetarmory:netherite_longsword",
+    "sunsetarmory:pyrium_longsword",
+    "sunsetarmory:mithril_longsword"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "irons_spellbooks:divine_soulshard"
+    },
+    "D": {
+      "item": "sunsetarmory:keeper_scrap"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DSD",
+    "DDD"
+  ],
+  "result": {
+    "count": 8,
+    "id": "sunsetarmory:pyrium_scrap"
+  }
+}

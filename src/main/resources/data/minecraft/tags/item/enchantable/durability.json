@@ -28,6 +28,26 @@
     "sunsetarmory:netherite_sunset_chestplate",
     "sunsetarmory:netherite_sunset_leggings",
     "sunsetarmory:netherite_sunset_helmet",
-    "sunsetarmory:netherite_sunset_boots"
+    "sunsetarmory:netherite_sunset_boots",
+    "sunsetarmory:mithril_sunset_leggings",
+    "sunsetarmory:pyrium_sunset_leggings",
+    "sunsetarmory:pyrium_sunset_helmet",
+    "sunsetarmory:mithril_sunset_helmet",
+    "sunsetarmory:pyrium_sunset_chestplate",
+    "sunsetarmory:mithril_sunset_chestplate",
+    "sunsetarmory:pyrium_sunset_boots",
+    "sunsetarmory:mithril_sunset_boots",
+    "sunsetarmory:arcane_flamberge",
+    "sunsetarmory:arcane_reaper",
+    "sunsetarmory:netherite_longsword",
+    "sunsetarmory:pyrium_longsword",
+    "sunsetarmory:mithril_longsword",
+    "sunsetarmory:netherite_greatsword",
+    "sunsetarmory:pyrium_greatsword",
+    "sunsetarmory:mithril_greatsword",
+    "sunsetarmory:netherite_spear",
+    "sunsetarmory:pyrium_spear",
+    "sunsetarmory:mithril_spear"
+
   ]
 }

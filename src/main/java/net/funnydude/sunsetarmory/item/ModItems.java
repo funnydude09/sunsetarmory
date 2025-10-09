@@ -10,6 +10,7 @@ import io.redspace.ironsspellbooks.render.CinderousRarity;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.item.armor.*;
+import net.funnydude.sunsetarmory.item.weapons.SunsetNonSword;
 import net.funnydude.sunsetarmory.item.weapons.SunsetWeapons;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -27,6 +28,9 @@ public class ModItems {
   public static final DeferredItem<Item> JOHN;
   public static final DeferredItem<Item> MITHRIL_UPGRADE_TEMPLATE;
   public static final DeferredItem<Item> CHAINMAIL;
+    public static final DeferredItem<Item> DECREPIT_SCRAP;
+    public static final DeferredItem<Item> PYRIUM_SCRAP;
+
   public static final DeferredItem<ArmorItem> KNIGHT_HELMET;
   public static final DeferredItem<ArmorItem> KNIGHT_CHESTPLATE;
   public static final DeferredItem<ArmorItem> KNIGHT_LEGGINGS;
@@ -71,6 +75,14 @@ public class ModItems {
     public static final DeferredItem<ExtendedSwordItem> PYRIUM_LONGSWORD;
     public static final DeferredItem<ExtendedSwordItem> MITHRIL_LONGSWORD;
 
+    public static final DeferredItem<SunsetNonSword> NETHERITE_SPEAR;
+    public static final DeferredItem<SunsetNonSword> PYRIUM_SPEAR;
+    public static final DeferredItem<SunsetNonSword> MITHRIL_SPEAR;
+
+    public static final DeferredItem<SunsetNonSword> NETHERITE_GREATSWORD;
+    public static final DeferredItem<SunsetNonSword> PYRIUM_GREATSWORD;
+    public static final DeferredItem<SunsetNonSword> MITHRIL_GREATSWORD;
+
   public static Collection<DeferredHolder<Item, ? extends Item>> getArmoryItems() {
         return ITEMS.getEntries();
     }
@@ -82,16 +94,24 @@ public class ModItems {
       TESTITEM = ITEMS.register("testitem", () -> new Item(new Item.Properties()));
       JOHN = ITEMS.register("john_item", () -> new Item(new Item.Properties()));
 
-      CHAINMAIL = ITEMS.register("arcane_chainmail", () -> new Item(new Item.Properties()));
+      CHAINMAIL = ITEMS.register("arcane_chainmail", () -> new Item(new Item.Properties().fireResistant()));
+      DECREPIT_SCRAP = ITEMS.register("keeper_scrap", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+        PYRIUM_SCRAP = ITEMS.register("pyrium_scrap", () -> new Item(new Item.Properties().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant()));
       MITHRIL_UPGRADE_TEMPLATE= ITEMS.register("mithril_upgrade_template", () -> new SimpleDescriptiveItem(new Item.Properties().rarity(Rarity.RARE)));
-
       ARCANE_FLAMBERGE = ITEMS.register("arcane_flamberge", () -> new ExtendedSwordItem(SunsetWeapons.ARCANE_FLAMBERGE, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.ARCANE_FLAMBERGE))));
         NETHERITE_LONGSWORD = ITEMS.register("netherite_longsword", () -> new ExtendedSwordItem(SunsetWeapons.LONGSWORD, ItemPropertiesHelper.equipment().fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.LONGSWORD))));
-        PYRIUM_LONGSWORD = ITEMS.register("pyrium_longsword", () -> new ExtendedSwordItem(SunsetWeapons.LONGSWORD, ItemPropertiesHelper.equipment().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.LONGSWORD))));
-        MITHRIL_LONGSWORD = ITEMS.register("mithril_longsword", () -> new ExtendedSwordItem(SunsetWeapons.LONGSWORD, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.LONGSWORD))));
+        PYRIUM_LONGSWORD = ITEMS.register("pyrium_longsword", () -> new ExtendedSwordItem(SunsetWeapons.PYRIUM_LONGSWORD, ItemPropertiesHelper.equipment().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.PYRIUM_LONGSWORD))));
+        MITHRIL_LONGSWORD = ITEMS.register("mithril_longsword", () -> new ExtendedSwordItem(SunsetWeapons.MITHRIL_LONGSWORD, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.MITHRIL_LONGSWORD))));
         ARCANE_REAPER = ITEMS.register("arcane_reaper", () -> new MagicSwordItem(SunsetWeapons.ARCANE_REAPER, ItemPropertiesHelper.equipment().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.ARCANE_REAPER)).rarity(Rarity.RARE).fireResistant(), SpellDataRegistryHolder.of(new SpellDataRegistryHolder(SpellRegistry.SHOCKWAVE_SPELL, 10))));
+        NETHERITE_SPEAR = ITEMS.register("netherite_spear", () -> new SunsetNonSword(SunsetWeapons.SPEAR, ItemPropertiesHelper.equipment().fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.SPEAR))));
+        PYRIUM_SPEAR = ITEMS.register("pyrium_spear", () -> new SunsetNonSword(SunsetWeapons.PYRIUM_SPEAR, ItemPropertiesHelper.equipment().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.PYRIUM_SPEAR))));
+        MITHRIL_SPEAR = ITEMS.register("mithril_spear", () -> new SunsetNonSword(SunsetWeapons.MITHRIL_SPEAR, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.MITHRIL_SPEAR))));
+        NETHERITE_GREATSWORD = ITEMS.register("netherite_greatsword", () -> new SunsetNonSword(SunsetWeapons.GREATSWORD, ItemPropertiesHelper.equipment().fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.GREATSWORD))));
+        PYRIUM_GREATSWORD = ITEMS.register("pyrium_greatsword", () -> new SunsetNonSword(SunsetWeapons.PYRIUM_GREATSWORD, ItemPropertiesHelper.equipment().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.PYRIUM_GREATSWORD))));
+        MITHRIL_GREATSWORD = ITEMS.register("mithril_greatsword", () -> new SunsetNonSword(SunsetWeapons.MITHRIL_GREATSWORD, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.MITHRIL_GREATSWORD))));
 
-      KNIGHT_HELMET = ITEMS.register("netherite_knight_helmet", () -> new NetheriteKnightArmorItem(ArmorItem.Type.HELMET, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+
+        KNIGHT_HELMET = ITEMS.register("netherite_knight_helmet", () -> new NetheriteKnightArmorItem(ArmorItem.Type.HELMET, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
       KNIGHT_CHESTPLATE = ITEMS.register("netherite_knight_chestplate", () -> new NetheriteKnightArmorItem(ArmorItem.Type.CHESTPLATE, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(37))));
       KNIGHT_LEGGINGS = ITEMS.register("netherite_knight_leggings", () -> new NetheriteKnightArmorItem(ArmorItem.Type.LEGGINGS, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(37))));
       KNIGHT_BOOTS = ITEMS.register("netherite_knight_boots", () -> new NetheriteKnightArmorItem(ArmorItem.Type.BOOTS, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(37))));

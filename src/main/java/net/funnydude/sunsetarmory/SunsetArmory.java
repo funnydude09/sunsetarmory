@@ -106,15 +106,7 @@ public class SunsetArmory {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.TESTITEM);
-            event.accept(ModItems.JOHN);
-        }
 
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(ModBlocks.JOHN_BLOCK);
-            event.accept(ModBlocks.REDBLOCK);
-        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover me thods to call
