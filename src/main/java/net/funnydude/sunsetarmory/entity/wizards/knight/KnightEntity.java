@@ -124,10 +124,10 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.KNIGHT_HELMET.get()));
-        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.KNIGHT_CHESTPLATE.get()));
-       this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.KNIGHT_LEGGINGS.get()));
-        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.KNIGHT_BOOTS.get()));
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NPC_KNIGHT_HELMET.get()));
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.NPC_KNIGHT_CHESTPLATE.get()));
+       this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_KNIGHT_LEGGINGS.get()));
+        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.NPC_KNIGHT_BOOTS.get()));
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_LONGSWORD.get()));
         this.setDropChance(EquipmentSlot.HEAD, 0);
         this.setDropChance(EquipmentSlot.CHEST, 0);

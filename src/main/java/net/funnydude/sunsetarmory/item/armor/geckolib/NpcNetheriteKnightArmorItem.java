@@ -3,7 +3,7 @@ package net.funnydude.sunsetarmory.item.armor.geckolib;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.entity.armor.GenericCustomArmorRenderer;
 import io.redspace.ironsspellbooks.item.weapons.AttributeContainer;
-import net.funnydude.sunsetarmory.entity.armor.geckolib.NpcNetheriteKnightArmorModel;
+import net.funnydude.sunsetarmory.entity.armor.NpcNetheriteKnightArmorModel;
 import net.funnydude.sunsetarmory.item.ModArmorMaterials;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.neoforged.api.distmarker.Dist;
