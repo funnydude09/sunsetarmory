@@ -19,17 +19,9 @@ public class ModBlocks {
   public static final DeferredRegister.Blocks   BLOCKS  =
           DeferredRegister.createBlocks(SunsetArmory.MODID);
 
-    public static final DeferredBlock<Block> JOHN_BLOCK = registerBlock("john_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f).requiresCorrectToolForDrops().sound(SoundType.ANVIL)));
-
     public static final DeferredBlock<Block> PYRIUM_BLOCK = registerBlock("pyrium_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(3f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
-
-    public static final DeferredBlock<Block> REDBLOCK = registerBlock("redblock",
-            () -> new DropExperienceBlock(UniformInt.of(2, 4),
-                    BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.SPONGE)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

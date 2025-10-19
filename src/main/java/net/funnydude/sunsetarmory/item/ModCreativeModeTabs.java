@@ -16,7 +16,7 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SunsetArmory.MODID);
 
     public static final Supplier<CreativeModeTab> SUNSET_ARMORY_TAB = CREATIVE_MODE_TAB.register("sunset_armory_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.JOHN.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.PYRIUM_SUNSET_HELMET.get()))
                     .title(Component.translatable("creativetab.sunsetarmory.sunset_armory_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.KNIGHT_HELMET);
@@ -87,6 +87,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PYRIUM_SCRAP);
                         output.accept(ModItems.MITHRIL_UPGRADE_TEMPLATE);
                         output.accept(ModBlocks.PYRIUM_BLOCK);
+
+                        output.accept(ModItems.PYRIUM_SPELL_BOOK);
 
 
 

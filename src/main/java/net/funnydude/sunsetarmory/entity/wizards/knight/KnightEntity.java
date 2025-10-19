@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.entity.mobs.IAnimatedAttacker;
+import io.redspace.ironsspellbooks.entity.mobs.IMagicSummon;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.NeutralWizard;
 import io.redspace.ironsspellbooks.entity.mobs.goals.PatrolNearLocationGoal;
@@ -14,6 +15,7 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.GenericAnimatedWarlockAttackGoal;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
+import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -86,28 +88,32 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new SpellBarrageGoal(this, SpellRegistry.DEVOUR_SPELL.get(), 3, 6, 100, 250, 1));
+        this.goalSelector.addGoal(2, new SpellBarrageGoal(this, SpellRegistry.COUNTERSPELL_SPELL.get(), 1, 1, 100, 250, 1));
         this.goalSelector.addGoal(3, new GenericAnimatedWarlockAttackGoal<>(this, 1.25f, 50, 75)
                 .setMoveset(List.of(
-                        new AttackAnimationData(9, "simple_sword_upward_swipe", 5),
-                        new AttackAnimationData(8, "simple_sword_lunge_stab", 6),
-                        new AttackAnimationData(10, "simple_sword_stab_alternate", 8),
-                        new AttackAnimationData(10, "simple_sword_horizontal_cross_swipe", 8)
+                        new AttackAnimationData(12, "longsword_upward_swipe", 9),
+                        new AttackAnimationData(15, "longsword_single_horizontal", 13),
+                        new AttackAnimationData(13, "longsword_stab", 11),
+                        new AttackAnimationData(8, "longsword_upward_swipe", 4)
                 ))
                 .setComboChance(.4f)
                 .setMeleeAttackInverval(10, 30)
                 .setMeleeMovespeedModifier(1.5f)
                 .setSpells(
-                        List.of(SpellRegistry.FORTIFY_SPELL.get(),SpellRegistry.OAKSKIN_SPELL.get(), SpellRegistry.FLAMING_STRIKE_SPELL.get()),
+                        //attack
+                        List.of(SpellRegistry.FORTIFY_SPELL.get(),SpellRegistry.HEAL_SPELL.get(), SpellRegistry.FLAMING_STRIKE_SPELL.get()),
+                        //defence
                         List.of(SpellRegistry.FIREBALL_SPELL.get()),
+                        //movement
                         List.of(SpellRegistry.BURNING_DASH_SPELL.get()),
+                        //support
                         List.of()
-                ).setDrinksPotions()
-
+                )
+                .setSpellQuality(1.0f, 1.0f)
         );
-        this.goalSelector.addGoal(4, new PatrolNearLocationGoal(this, 30, .75f));
+        this.goalSelector.addGoal(4, new PatrolNearLocationGoal(this, 0, 1f));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(10, new WizardRecoverGoal(this));
+       // this.goalSelector.addGoal(10, new WizardRecoverGoal(this));
         //this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
         //this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -132,6 +138,8 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         this.setDropChance(EquipmentSlot.HEAD, 0);
         this.setDropChance(EquipmentSlot.CHEST, 0);
         this.setDropChance(EquipmentSlot.MAINHAND, 0);
+        this.setDropChance(EquipmentSlot.FEET, 0);
+        this.setDropChance(EquipmentSlot.LEGS, 0);
     }
 
     public static AttributeSupplier.Builder prepareAttributes() {
@@ -146,7 +154,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
 
     @Override
     public boolean shouldSheathSword() {
-        return true;
+        return false;
     }
 
     RawAnimation animationToPlay = null;
@@ -173,6 +181,22 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     }
 
     @Override
+    public boolean isAlliedTo(Entity entityIn) {
+        if (entityIn instanceof IMagicSummon summon && summon.getSummoner() == this)
+        {
+            return true;
+        }
+        else if (entityIn.getType().is(SunsetTags.SUNSET_ORDER))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(meleeController);
         super.registerControllers(controllerRegistrar);
@@ -190,7 +214,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
 
     @Override
     public boolean isHostileTowards(LivingEntity pTarget) {
-        return super.isHostileTowards(pTarget) || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) < 1.15;
+        return super.isHostileTowards(pTarget) || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8;
     }
 
     @Override

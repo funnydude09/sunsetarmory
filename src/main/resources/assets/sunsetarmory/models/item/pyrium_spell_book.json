@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "textures": {
+      "book": "sunsetarmory:item/spell_book_models/pyrium_spellbook",
+      "particle": "sunsetarmory:item/spell_book_models/pyrium_spellbook"
+    },
+    "parent": "irons_spellbooks:item/template_spell_book_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "sunsetarmory:item/pyrium_spellbook_gui"
+      }
+    },
+    "head": {
+      "textures": {
+        "book": "sunsetarmory:item/spell_book_models/pyrium_spellbook",
+        "particle": "sunsetarmory:item/spell_book_models/pyrium_spellbook"
+      },
+      "parent": "irons_spellbooks:item/template_spell_book_model_open"
+    }
+  }
+}

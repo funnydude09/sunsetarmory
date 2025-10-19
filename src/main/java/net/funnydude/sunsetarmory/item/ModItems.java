@@ -2,9 +2,12 @@ package net.funnydude.sunsetarmory.item;
 
 import io.redspace.ironsspellbooks.api.item.weapons.ExtendedSwordItem;
 import io.redspace.ironsspellbooks.api.item.weapons.MagicSwordItem;
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.item.SimpleDescriptiveItem;
+import io.redspace.ironsspellbooks.item.SpellBook;
+import io.redspace.ironsspellbooks.item.weapons.AttributeContainer;
 import io.redspace.ironsspellbooks.render.CinderousRarity;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.funnydude.sunsetarmory.SunsetArmory;
@@ -12,6 +15,7 @@ import net.funnydude.sunsetarmory.item.armor.*;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheriteKnightArmorItem;
 import net.funnydude.sunsetarmory.item.weapons.SunsetNonSword;
 import net.funnydude.sunsetarmory.item.weapons.SunsetWeapons;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -23,9 +27,6 @@ import java.util.Collection;
 public class ModItems {
   public static final DeferredRegister.Items ITEMS =
           DeferredRegister.createItems(SunsetArmory.MODID);;
-
-  public static final DeferredItem<Item> TESTITEM;
-  public static final DeferredItem<Item> JOHN;
   public static final DeferredItem<Item> MITHRIL_UPGRADE_TEMPLATE;
   public static final DeferredItem<Item> CHAINMAIL;
     public static final DeferredItem<Item> DECREPIT_SCRAP;
@@ -87,7 +88,9 @@ public class ModItems {
     public static final DeferredItem<SunsetNonSword> PYRIUM_GREATSWORD;
     public static final DeferredItem<SunsetNonSword> MITHRIL_GREATSWORD;
 
-  public static Collection<DeferredHolder<Item, ? extends Item>> getArmoryItems() {
+    public static final DeferredItem<Item> PYRIUM_SPELL_BOOK;
+
+    public static Collection<DeferredHolder<Item, ? extends Item>> getArmoryItems() {
         return ITEMS.getEntries();
     }
 
@@ -95,8 +98,9 @@ public class ModItems {
       ITEMS.register(eventBus);
   }
     static {
-      TESTITEM = ITEMS.register("testitem", () -> new Item(new Item.Properties()));
-      JOHN = ITEMS.register("john_item", () -> new Item(new Item.Properties()));
+        PYRIUM_SPELL_BOOK = ITEMS.register("pyrium_spell_book", () -> new SpellBook(13)
+                .withSpellbookAttributes(new AttributeContainer(AttributeRegistry.MAX_MANA, 220, AttributeModifier.Operation.ADD_VALUE)));
+
 
       CHAINMAIL = ITEMS.register("arcane_chainmail", () -> new Item(new Item.Properties().fireResistant()));
       DECREPIT_SCRAP = ITEMS.register("keeper_scrap", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
