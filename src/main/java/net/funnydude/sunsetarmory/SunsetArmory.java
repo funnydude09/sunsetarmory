@@ -5,14 +5,21 @@ import io.redspace.ironsspellbooks.entity.mobs.wizards.cultist.CultistRenderer;
 import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
 import net.funnydude.sunsetarmory.block.ModBlocks;
+import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.entity.armor.*;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightRenderer;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
+import net.funnydude.sunsetarmory.potion.ModPotions;
+import net.funnydude.sunsetarmory.spell.ModSpells;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -91,8 +98,9 @@ public class SunsetArmory {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
-
-
+        ModPotions.register(modEventBus);
+        ModSpells.register(modEventBus);
+        ModEffects.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -187,4 +195,8 @@ public class SunsetArmory {
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
     }
+    public static ResourceLocation id(@NotNull String path) {
+        return ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, path);
+    }
+
 }
