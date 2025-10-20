@@ -109,7 +109,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
                         //support
                         List.of()
                 )
-                .setSpellQuality(1.0f, 1.0f)
+                .setSpellQuality(0.5f, 1.0f)
         );
         this.goalSelector.addGoal(4, new PatrolNearLocationGoal(this, 0, 1f));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));

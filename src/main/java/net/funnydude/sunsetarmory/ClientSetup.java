@@ -17,6 +17,7 @@ public class ClientSetup {
     @SubscribeEvent
     public static void rendererRegister(EntityRenderersEvent.RegisterRenderers event) {
        event.registerEntityRenderer(ModEntities.KNIGHT.get(), KnightRenderer::new);
+        event.registerEntityRenderer(ModEntities.PALADIN.get(), KnightRenderer::new);
      }
 
      static void onClientSetup(FMLClientSetupEvent event) {

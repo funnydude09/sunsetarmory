@@ -56,5 +56,7 @@
   "item.sunsetarmory.pyrium_greatsword": "Pyrium Greatsword",
   "item.sunsetarmory.mithril_greatsword": "Mithril Greatsword",
   "item.sunsetarmory.arcane_flamberge": "Arcane Flamberge",
-  "item.sunsetarmory.arcane_reaper": "Arcane Reaper"
+  "item.sunsetarmory.arcane_reaper": "Arcane Reaper",
+  "entity.sunsetarmory.knight": "Knight of the Sunset",
+  "entity.sunsetarmory.paladin": "Paladin of the Sunset"
 }

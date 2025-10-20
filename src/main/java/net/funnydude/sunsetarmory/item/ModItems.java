@@ -13,6 +13,7 @@ import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.item.armor.*;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheriteKnightArmorItem;
+import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheritePaladinArmorItem;
 import net.funnydude.sunsetarmory.item.weapons.SunsetNonSword;
 import net.funnydude.sunsetarmory.item.weapons.SunsetWeapons;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -40,6 +41,11 @@ public class ModItems {
     public static final DeferredItem<ArmorItem> NPC_KNIGHT_CHESTPLATE;
     public static final DeferredItem<ArmorItem> NPC_KNIGHT_LEGGINGS;
     public static final DeferredItem<ArmorItem> NPC_KNIGHT_BOOTS;
+    public static final DeferredItem<ArmorItem> NPC_PALADIN_HELMET;
+    public static final DeferredItem<ArmorItem> NPC_PALADIN_CHESTPLATE;
+    public static final DeferredItem<ArmorItem> NPC_PALADIN_LEGGINGS;
+    public static final DeferredItem<ArmorItem> NPC_PALADIN_BOOTS;
+
     public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_HELMET;
     public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_CHESTPLATE;
     public static final DeferredItem<ArmorItem> PYRIUM_KNIGHT_LEGGINGS;
@@ -129,11 +135,15 @@ public class ModItems {
         NPC_KNIGHT_LEGGINGS = ITEMS.register("npc_netherite_knight_leggings", () -> new NpcNetheriteKnightArmorItem(ArmorItem.Type.LEGGINGS, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(37))));
         NPC_KNIGHT_BOOTS = ITEMS.register("npc_netherite_knight_boots", () -> new NpcNetheriteKnightArmorItem(ArmorItem.Type.BOOTS, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(37))));
 
+        NPC_PALADIN_HELMET = ITEMS.register("npc_netherite_paladin_helmet", () -> new NpcNetheritePaladinArmorItem(ArmorItem.Type.HELMET, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(37))));
+        NPC_PALADIN_CHESTPLATE = ITEMS.register("npc_netherite_paladin_chestplate", () -> new NpcNetheritePaladinArmorItem(ArmorItem.Type.CHESTPLATE, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(37))));
+        NPC_PALADIN_LEGGINGS = ITEMS.register("npc_netherite_paladin_leggings", () -> new NpcNetheritePaladinArmorItem(ArmorItem.Type.LEGGINGS, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(37))));
+        NPC_PALADIN_BOOTS = ITEMS.register("npc_netherite_paladin_boots", () -> new NpcNetheritePaladinArmorItem(ArmorItem.Type.BOOTS, ItemPropertiesHelper.equipment(1).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(37))));
 
         PYRIUM_KNIGHT_HELMET = ITEMS.register("pyrium_knight_helmet", () -> new PyriumKnightArmorItem(ArmorItem.Type.HELMET, ItemPropertiesHelper.equipment(1).rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().durability(ArmorItem.Type.HELMET.getDurability(34))));
       PYRIUM_KNIGHT_CHESTPLATE = ITEMS.register("pyrium_knight_chestplate", () -> new PyriumKnightArmorItem(ArmorItem.Type.CHESTPLATE,ItemPropertiesHelper.equipment(1).rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().durability(ArmorItem.Type.CHESTPLATE.getDurability(34))));
       PYRIUM_KNIGHT_LEGGINGS = ITEMS.register("pyrium_knight_leggings", () -> new PyriumKnightArmorItem(ArmorItem.Type.LEGGINGS,ItemPropertiesHelper.equipment(1).rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().durability(ArmorItem.Type.LEGGINGS.getDurability(34))));
-      PYRIUM_KNIGHT_BOOTS = ITEMS.register("pyrium_knight_boots", () -> new PyriumKnightArmorItem(ArmorItem.Type.LEGGINGS,ItemPropertiesHelper.equipment(1).rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(34))));
+      PYRIUM_KNIGHT_BOOTS = ITEMS.register("pyrium_knight_boots", () -> new PyriumKnightArmorItem(ArmorItem.Type.BOOTS,ItemPropertiesHelper.equipment(1).rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().durability(ArmorItem.Type.BOOTS.getDurability(34))));
 
       MITHRIL_KNIGHT_HELMET = ITEMS.register("mithril_knight_helmet", () -> new MithrilKnightArmorItem(ArmorItem.Type.HELMET, ItemPropertiesHelper.equipment(1).rarity(Rarity.RARE).durability(ArmorItem.Type.HELMET.getDurability(28))));
       MITHRIL_KNIGHT_CHESTPLATE = ITEMS.register("mithril_knight_chestplate", () -> new MithrilKnightArmorItem(ArmorItem.Type.CHESTPLATE, ItemPropertiesHelper.equipment(1).rarity(Rarity.RARE).durability(ArmorItem.Type.CHESTPLATE.getDurability(28))));

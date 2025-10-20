@@ -11,5 +11,6 @@ public class CommonSetup {
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
          event.put(ModEntities.KNIGHT.get(), KnightEntity.prepareAttributes().build());
+        event.put(ModEntities.PALADIN.get(), KnightEntity.prepareAttributes().build());
      }
 }
