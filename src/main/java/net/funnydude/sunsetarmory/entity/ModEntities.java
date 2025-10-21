@@ -2,16 +2,22 @@ package net.funnydude.sunsetarmory.entity;
 
 import io.redspace.ironsspellbooks.entity.mobs.*;
 import io.redspace.ironsspellbooks.entity.spells.*;
+import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.entity.spell.DivineShieldEntity;
+import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityType.Builder;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 
 public class ModEntities {
@@ -29,6 +35,21 @@ public class ModEntities {
         KNIGHT = ENTITIES.register("knight", () -> Builder.of(KnightEntity::new, MobCategory.MISC).sized(.6f, 1.8f).clientTrackingRange(64).build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
         PALADIN = ENTITIES.register("paladin", () -> Builder.of(PaladinEntity::new, MobCategory.MISC).sized(.6f, 1.8f).clientTrackingRange(64).build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "paladin").toString()));
     }
+
+    public static final Supplier<EntityType<Entity>> DIVINE_SHEILD_ENTITY =
+            ENTITIES.register("divine_shield", () -> EntityType.Builder.of(DivineShieldEntity::new, MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<KineticSlash>> KINETIC_SLASH =
+            ENTITIES.register("kinetic_slash", () -> EntityType.Builder.<KineticSlash>of(KineticSlash::new, MobCategory.MISC)
+                    .sized(5.0F, 1.0F)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "kinetic_slash_entity").toString()));
+
+
+
 
 }
 
