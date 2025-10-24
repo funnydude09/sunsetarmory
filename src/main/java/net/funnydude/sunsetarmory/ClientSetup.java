@@ -19,11 +19,10 @@ public class ClientSetup {
     @SubscribeEvent
     public static void rendererRegister(EntityRenderersEvent.RegisterRenderers event) {
        event.registerEntityRenderer(ModEntities.KNIGHT.get(), KnightRenderer::new);
-       event.registerEntityRenderer((EntityType) ModEntities.KINETIC_SLASH.get(), KineticSlashRenderer::new);
-        event.registerEntityRenderer(ModEntities.PALADIN.get(), KnightRenderer::new);
+       event.registerEntityRenderer(ModEntities.PALADIN.get(), KnightRenderer::new);
+       event.registerEntityRenderer(ModEntities.KINETIC_SLASH.get(), KineticSlashRenderer::new);
      }
 
      static void onClientSetup(FMLClientSetupEvent event) {
-
     }
 }

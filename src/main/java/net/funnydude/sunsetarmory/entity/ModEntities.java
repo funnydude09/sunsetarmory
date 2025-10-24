@@ -24,7 +24,6 @@ public class ModEntities {
     private static final DeferredRegister<EntityType<?>> ENTITIES;
 
     public static final DeferredHolder<EntityType<?>, EntityType<KnightEntity>> KNIGHT;
-    public static final DeferredHolder<EntityType<?>, EntityType<PaladinEntity>> PALADIN;
 
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);
@@ -33,7 +32,6 @@ public class ModEntities {
     static {
         ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, "sunsetarmory");
         KNIGHT = ENTITIES.register("knight", () -> Builder.of(KnightEntity::new, MobCategory.MISC).sized(.6f, 1.8f).clientTrackingRange(64).build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
-        PALADIN = ENTITIES.register("paladin", () -> Builder.of(PaladinEntity::new, MobCategory.MISC).sized(.6f, 1.8f).clientTrackingRange(64).build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "paladin").toString()));
     }
 
     public static final Supplier<EntityType<Entity>> DIVINE_SHEILD_ENTITY =
@@ -48,9 +46,13 @@ public class ModEntities {
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "kinetic_slash_entity").toString()));
 
-
-
-
+    public static final DeferredHolder<EntityType<?>, EntityType<PaladinEntity>> PALADIN =
+            ENTITIES.register("paladin",()-> EntityType.Builder.of(PaladinEntity::new,MobCategory.MISC)
+                    .sized(.6f, 1.8f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "paladin").toString()));
 }
+
+
 
 

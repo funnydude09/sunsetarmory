@@ -4,16 +4,10 @@ import mod.azure.azurelib.rewrite.render.armor.AzArmorRenderer;
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererConfig;
 import net.minecraft.resources.ResourceLocation;
 
-public class PyriumSunsetArmorModel extends AzArmorRenderer {
-    private static final ResourceLocation GEO = ResourceLocation.fromNamespaceAndPath(
-            "sunsetarmory",
-            "geo/armors/sunset_armor.geo.json"
-    );
+public class PyriumSunsetArmorModel extends AbstractArmorModel {
+    private static final ResourceLocation GEO = get("geo/armors/sunset_armor.geo.json");
 
-    private static final ResourceLocation TEX = ResourceLocation.fromNamespaceAndPath(
-            "sunsetarmory",
-            "textures/models/armor/pyrium_sunset_armor.png"
-    );
+    private static final ResourceLocation TEX = get("textures/models/armor/pyrium_sunset_armor.png");
 
     public PyriumSunsetArmorModel() {
         super(AzArmorRendererConfig.builder(GEO, TEX).build());

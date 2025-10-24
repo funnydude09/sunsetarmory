@@ -2,12 +2,10 @@ package net.funnydude.sunsetarmory.spell.kinetic;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
-import io.redspace.ironsspellbooks.entity.spells.blood_slash.BloodSlashProjectile;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
 import net.funnydude.sunsetarmory.spell.ModSchools;
@@ -19,19 +17,19 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.List;
 
-@AutoSpellConfig
-public class KineticSlashSpell extends AbstractSpell {
+
+public class KineticVerticalSlashSpell extends AbstractSpell {
     public final String getSpellName= "kinetic_slash";
-    private final ResourceLocation spellId = SunsetArmory.id("kinetic_slash");
+    private final ResourceLocation spellId = SunsetArmory.id("kinetic_vertical_slash");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
-            .setSchoolResource(net.funnydude.sunsetarmory.spell.ModSchools.KINETIC_RESOURCE)
+            .setSchoolResource(ModSchools.KINETIC_RESOURCE)
             .setMaxLevel(3)
             .setCooldownSeconds(90)
             .build();
 
-    public KineticSlashSpell() {
+    public KineticVerticalSlashSpell() {
         this.manaCostPerLevel = 50;
         this.baseSpellPower = 5;
         this.spellPowerPerLevel = 10;
@@ -51,11 +49,11 @@ public class KineticSlashSpell extends AbstractSpell {
         if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId())) {
             playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 80, castSource, null), playerMagicData);
         }
-        KineticSlash kineticSlash = new KineticSlash(level,entity);
-        kineticSlash.setPos(entity.position().add(0.0F, entity.getEyeHeight() - kineticSlash.getBoundingBox().getYsize() * 0.5F, (double)0.0F));
-        kineticSlash.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0.0F, kineticSlash.getSpeed(), 1.0F);
-        kineticSlash.setDamage(this.getDamage(spellLevel, entity));
-        level.addFreshEntity(kineticSlash);
+        KineticSlash kineticVerticalSlash = new KineticSlash(level,entity);
+        kineticVerticalSlash.setPos(entity.position().add(0.0F, entity.getEyeHeight() - kineticVerticalSlash.getBoundingBox().getYsize() * 0.5F, (double)0.0F));
+        kineticVerticalSlash.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0.0F, kineticVerticalSlash.getSpeed(), 1.0F);
+        kineticVerticalSlash.setDamage(this.getDamage(spellLevel, entity));
+        level.addFreshEntity(kineticVerticalSlash);
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
@@ -72,6 +70,27 @@ public class KineticSlashSpell extends AbstractSpell {
         return weaponDamage;
     }
 
+    private String getDamageText(int spellLevel, LivingEntity caster) {
+        if (caster != null) {
+            float weaponDamage = Utils.getWeaponDamage(caster);
+            String plus = "";
+            if (weaponDamage > 0.0F) {
+                plus = String.format(" (+%s)", Utils.stringTruncation((double)weaponDamage, 1));
+            }
+
+            String damage = Utils.stringTruncation((double)this.getDamage(spellLevel, caster), 1);
+            return damage + plus;
+        } else {
+            float var10000 = this.getSpellPower(spellLevel, caster);
+            return "" + var10000;
+        }
+    }
+
+    @Override
+    public ResourceLocation getSpellResource() {
+        return spellId;
+    }
+
     @Override
     public DefaultConfig getDefaultConfig() {
         return defaultConfig;
@@ -86,8 +105,4 @@ public class KineticSlashSpell extends AbstractSpell {
         return SpellAnimations.SELF_CAST_ANIMATION;
     }
 
-    @Override
-    public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("kinetic_slash");
-    }
 }

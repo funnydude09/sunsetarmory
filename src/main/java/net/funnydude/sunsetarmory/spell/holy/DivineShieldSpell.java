@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.entity.spells.shield.ShieldEntity;
 import io.redspace.ironsspellbooks.player.ClientInputEvents;
@@ -47,7 +48,7 @@ public class DivineShieldSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.COMMON)
             .setSchoolResource(SchoolRegistry.HOLY_RESOURCE)
-            .setMaxLevel(10)
+            .setMaxLevel(3)
             .setCooldownSeconds(10)
             .build();
 
@@ -103,5 +104,9 @@ public class DivineShieldSpell extends AbstractSpell {
 
     private float getShieldHP(int spellLevel, LivingEntity caster) {
         return 30 * getSpellPower(spellLevel, caster);
+    }
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return SpellAnimations.SELF_CAST_ANIMATION;
     }
 }

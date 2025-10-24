@@ -243,7 +243,7 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
      * - After 10 seconds, he will launch it, which is powerful enough to nearly kill most anything
      * - However, if 10% of his max health is dealt as damage during this phase, the ability is interrupted and blows up the boss instead
      */
-   /*
+    /*
      * Spectral Dagger
      * client synced timer
      */

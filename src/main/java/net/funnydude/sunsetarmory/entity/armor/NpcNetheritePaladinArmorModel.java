@@ -24,4 +24,5 @@ public class NpcNetheritePaladinArmorModel extends DefaultedItemGeoModel<NpcNeth
     public ResourceLocation getAnimationResource(NpcNetheritePaladinArmorItem animatable) {
         return ResourceLocation.fromNamespaceAndPath(IronsSpellbooks.MODID, "animations/wizard_armor_animation.json");
     }
+
 }

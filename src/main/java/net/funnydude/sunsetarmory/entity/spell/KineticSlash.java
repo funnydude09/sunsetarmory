@@ -45,7 +45,7 @@ public class KineticSlash extends AbstractMagicProjectile implements AntiMagicSu
 
     public KineticSlash(EntityType<KineticSlash> kineticSlashEntityType, Level level) {
         super(kineticSlashEntityType, level);
-        this.lifetimeInTicks = 300;
+        this.lifetimeInTicks = 60;
         this.entities = new ArrayList();
         this.setNoGravity(true);
     }
@@ -54,6 +54,7 @@ public class KineticSlash extends AbstractMagicProjectile implements AntiMagicSu
         this(kineticSlashEntityType, level);
         this.setOwner(shooter);
         this.setYRot(shooter.getYRot());
+        this.setXRot(shooter.getXRot());
         this.setXRot(shooter.getXRot());
     }
 
@@ -86,32 +87,12 @@ public class KineticSlash extends AbstractMagicProjectile implements AntiMagicSu
                 this.damageEntity(entity);
             }
         }
-
-        Vec3 deltaMovement = this.getDeltaMovement();
-        double distance = deltaMovement.horizontalDistance();
-        double x = deltaMovement.x;
-        double y = deltaMovement.y;
-        double z = deltaMovement.z;
-        this.setYRot((float)(Mth.atan2(x, z) * (180D / Math.PI)));
-        this.setXRot((float)(Mth.atan2(y, distance) * (180D / Math.PI)));
-        this.setXRot(lerpRotation(this.xRotO, this.getXRot()));
-        this.setYRot(lerpRotation(this.yRotO, this.getYRot()));
+        this.setXRot(this.getXRot());
+        this.setYRot(this.getYRot());
         super.tick();
     }
 
     public void trailParticles() {
-        for(int i = 0; i < 3; ++i) {
-            double speed = (double)0.05F;
-            double dx = Math.random() * (double)2.0F * speed - speed;
-            double dy = Math.random() * (double)2.0F * speed - speed;
-            double dz = Math.random() * (double)2.0F * speed - speed;
-            double radius = (double)4.0F;
-            Vec3 leftAdjust = this.position().add((new Vec3(Math.sin(Math.toRadians((double)(this.getYRot() + 90.0F))), (double)0.0F, Math.cos(Math.toRadians((double)(this.getYRot() + 90.0F))))).scale(radius));
-            Vec3 rightAdjust = this.position().add((new Vec3(Math.sin(Math.toRadians((double)(this.getYRot() - 90.0F))), (double)0.0F, Math.cos(Math.toRadians((double)(this.getYRot() - 90.0F))))).scale(radius));
-            //this.level().addParticle(DTEParticleHelper.ESOTERIC_SPARKS, leftAdjust.x, leftAdjust.y, leftAdjust.z, dx, dy, dz);
-            //this.level().addParticle(DTEParticleHelper.ESOTERIC_SPARKS, rightAdjust.x, rightAdjust.y, rightAdjust.z, dx, dy, dz);
-        }
-
     }
 
     public void impactParticles(double x, double y, double z) {
@@ -127,17 +108,15 @@ public class KineticSlash extends AbstractMagicProjectile implements AntiMagicSu
 
     private void damageEntity(Entity entity) {
         if (!this.entities.contains(entity)) {
-            DamageSources.applyDamage(entity, this.damage, ((AbstractSpell) ModSpells.KINETIC_SLASH_SPELL.get()).getDamageSource(this, this.getOwner()));
+            DamageSources.applyDamage(entity, this.damage, (ModSpells.KINETIC_SLASH_SPELL.get()).getDamageSource(this, this.getOwner()));
             if (entity instanceof LivingEntity) {
                 LivingEntity livingTarget = (LivingEntity)entity;
-                livingTarget.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 60, 0));
                 if (livingTarget instanceof Player) {
                     Player player = (Player)livingTarget;
                     player.disableShield();
                 }
-
-                if (DamageSources.applyDamage(livingTarget, this.damage, ((AbstractSpell) ModSpells.KINETIC_SLASH_SPELL.get()).getDamageSource(this, this.getOwner()))) {
-                    EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), livingTarget, ((AbstractSpell) ModSpells.KINETIC_SLASH_SPELL.get()).getDamageSource(this, this.getOwner()));
+                if (DamageSources.applyDamage(livingTarget, this.damage, (ModSpells.KINETIC_SLASH_SPELL.get()).getDamageSource(this, this.getOwner()))) {
+                    EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), livingTarget, (ModSpells.KINETIC_SLASH_SPELL.get()).getDamageSource(this, this.getOwner()));
                 }
             }
 

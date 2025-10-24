@@ -13,6 +13,7 @@ import net.funnydude.sunsetarmory.entity.wizards.knight.KnightRenderer;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.funnydude.sunsetarmory.potion.ModPotions;
+import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.funnydude.sunsetarmory.spell.ModSpells;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -101,6 +102,7 @@ public class SunsetArmory {
         ModPotions.register(modEventBus);
         ModSpells.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModSchools.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 

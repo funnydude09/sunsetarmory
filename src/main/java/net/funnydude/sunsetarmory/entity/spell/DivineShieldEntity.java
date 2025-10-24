@@ -3,26 +3,37 @@ package net.funnydude.sunsetarmory.entity.spell;
 import io.redspace.ironsspellbooks.api.events.CounterSpellEvent;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
+import io.redspace.ironsspellbooks.damage.SpellDamageSource;
+import io.redspace.ironsspellbooks.datagen.DamageTypeTagGenerator;
 import io.redspace.ironsspellbooks.entity.mobs.AntiMagicSusceptible;
 import io.redspace.ironsspellbooks.entity.spells.AbstractShieldEntity;
 import io.redspace.ironsspellbooks.entity.spells.ShieldPart;
+import io.redspace.ironsspellbooks.entity.spells.blood_needle.BloodNeedle;
+import io.redspace.ironsspellbooks.entity.spells.blood_slash.BloodSlashProjectile;
 import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
+import io.redspace.ironsspellbooks.spells.blood.BloodNeedlesSpell;
 import io.redspace.ironsspellbooks.spells.ender.CounterspellSpell;
 import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
+import org.apache.logging.log4j.core.net.Rfc1349TrafficClass;
 
 import javax.annotation.Nullable;
+
+import static io.redspace.ironsspellbooks.datagen.DamageTypeTagGenerator.BLOOD_MAGIC;
+import static io.redspace.ironsspellbooks.datagen.DamageTypeTagGenerator.ELDRITCH_MAGIC;
+
 
 public class DivineShieldEntity extends AbstractShieldEntity {
     protected ShieldPart[] subEntities;
@@ -67,12 +78,20 @@ public class DivineShieldEntity extends AbstractShieldEntity {
         if (!this.isInvulnerableTo(source)) {
             this.setHealth(this.getHealth() - amount);
             if (!level().isClientSide && location != null) {
+                if(source.typeHolder().equals(DamageTypes.GENERIC)){
+                    this.destroy();
+                }
                 MagicManager.spawnParticles(level(), ParticleTypes.ELECTRIC_SPARK, location.x, location.y, location.z, 30, .1, .1, .1, .5, false);
                 level().playSound(null, location.x, location.y, location.z, SoundRegistry.FORCE_IMPACT.get(), SoundSource.NEUTRAL, .8f, 1f);
             }
+            if(source.typeHolder().equals(DamageTypes.GENERIC)){
+                this.destroy();
+            }
+        }
+        if(source.typeHolder().equals(DamageTypes.GENERIC)){
+            this.destroy();
         }
     }
-
     public void setRotation(float x, float y) {
         this.setXRot(x);
         this.xRotO = x;
