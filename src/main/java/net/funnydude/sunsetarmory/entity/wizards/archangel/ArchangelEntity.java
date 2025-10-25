@@ -1,10 +1,10 @@
-package net.funnydude.sunsetarmory.entity.wizards.paladin;
+package net.funnydude.sunsetarmory.entity.wizards.archangel;
 
 import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.api.network.IClientEventEntity;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
-import io.redspace.ironsspellbooks.api.util.*;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.config.ServerConfigs;
 import io.redspace.ironsspellbooks.entity.mobs.IAnimatedAttacker;
@@ -16,13 +16,17 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.PatrolNearLocationGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.SpellBarrageGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackKeyframe;
+import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.FireBossEntity;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
-import io.redspace.ironsspellbooks.entity.spells.FireEruptionAoe;
+import io.redspace.ironsspellbooks.network.EntityEventPacket;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
+import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.item.ModItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -30,12 +34,16 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -57,15 +65,21 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
+import net.neoforged.neoforge.network.PacketDistributor;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
-public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAttacker, IEntityWithComplexSpawn, IClientEventEntity {
+public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAttacker, IEntityWithComplexSpawn, IClientEventEntity {
 
     @Override
     public void handleClientEvent(byte eventId) {
@@ -88,8 +102,8 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         this.yRotO = y;
     }
 
-    private static final EntityDataAccessor<Boolean> DATA_SOUL_MODE = SynchedEntityData.defineId(PaladinEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> DATA_IS_DESPAWNING = SynchedEntityData.defineId(PaladinEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_SOUL_MODE = SynchedEntityData.defineId(ArchangelEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_IS_DESPAWNING = SynchedEntityData.defineId(ArchangelEntity.class, EntityDataSerializers.BOOLEAN);
     private static final AttributeModifier SOUL_SPEED_MODIFIER = new AttributeModifier(IronsSpellbooks.id("soul_mode"), 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     private static final AttributeModifier SOUL_SCALE_MODIFIER = new AttributeModifier(IronsSpellbooks.id("soul_mode"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     private static final AttributeModifier MANA_MODIFIER = new AttributeModifier(IronsSpellbooks.id("mana"), 10000, AttributeModifier.Operation.ADD_VALUE);
@@ -114,12 +128,25 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
      */
     public float isAnimatingDampener;
 
-    public PaladinEntity(EntityType<? extends AbstractSpellCastingMob> pEntityType, Level pLevel) {
+    private ExtendedServerBossEvent bossEvent;
+
+    public ArchangelEntity(EntityType<? extends AbstractSpellCastingMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         xpReward = 25;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
+        createBossEvent();
     }
+
+    public void startSeenByPlayer(ServerPlayer pPlayer) {
+        super.startSeenByPlayer(pPlayer);
+        this.bossEvent.addPlayer(pPlayer);
+        }
+
+    public void stopSeenByPlayer(ServerPlayer pPlayer) {
+        super.stopSeenByPlayer(pPlayer);
+        this.bossEvent.removePlayer(pPlayer);
+       }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
@@ -144,55 +171,55 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
     }
 
     protected MoveControl createMoveControl() {
-        return new PaladinMoveControl(this);
+        return new ArchangelMoveControl(this);
     }
 
-    PaladinAttackGoal attackGoal;
+    ArchangelAttackGoal attackGoal;
 
     @Override
-    public PaladinMoveControl getMoveControl() {
-        return (PaladinMoveControl) super.getMoveControl();
+    public ArchangelMoveControl getMoveControl() {
+        return (ArchangelMoveControl) super.getMoveControl();
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.attackGoal = (PaladinAttackGoal) new PaladinAttackGoal(this, 1.5f, 50, 75)
+        this.attackGoal = (ArchangelAttackGoal) new ArchangelAttackGoal(this, 1.5f, 50, 75)
                 .setMoveset(List.of(
                         AttackAnimationData.builder("scythe_dagger_double_horizontal")
                                 .length(60)
                                 .attacks(
-                                        new PaladinAttackKeyframe(15, new Vec3(0, 0, .25), new PaladinAttackKeyframe.SwingData(false, true)),
-                                        new PaladinAttackKeyframe(36, new Vec3(0, 0, .75), new PaladinAttackKeyframe.SwingData(false, false)),
+                                        new ArchangelAttackKeyframe(15, new Vec3(0, 0, .25), new ArchangelAttackKeyframe.SwingData(false, true)),
+                                        new ArchangelAttackKeyframe(36, new Vec3(0, 0, .75), new ArchangelAttackKeyframe.SwingData(false, false)),
                                         new AttackKeyframe(42, new Vec3(0, 0, 0))
                                 ).build(),
                         AttackAnimationData.builder("scythe_backpedal")
                                 .length(40)
                                 .rangeMultiplier(2f)
                                 .attacks(
-                                        new PaladinAttackKeyframe(20, new Vec3(0, .3, -2), new PaladinAttackKeyframe.SwingData(false, true))
+                                        new ArchangelAttackKeyframe(20, new Vec3(0, .3, -2), new ArchangelAttackKeyframe.SwingData(false, true))
                                 ).build(),
                         AttackAnimationData.builder("scythe_sideslash_downslash_sideslash")
                                 .length(62)
                                 .rangeMultiplier(2f)
                                 .attacks(
-                                        new PaladinAttackKeyframe(18, new Vec3(0, 0, .45), new PaladinAttackKeyframe.SwingData(false, true)),
-                                        new PaladinAttackKeyframe(30, new Vec3(0, 0, .45), new PaladinAttackKeyframe.SwingData(false, false)),
-                                        new PaladinAttackKeyframe(50, new Vec3(0, 0.1, 1.25), new Vec3(0, .3, 0.8), new PaladinAttackKeyframe.SwingData(false, false))
+                                        new ArchangelAttackKeyframe(18, new Vec3(0, 0, .45), new ArchangelAttackKeyframe.SwingData(false, true)),
+                                        new ArchangelAttackKeyframe(30, new Vec3(0, 0, .45), new ArchangelAttackKeyframe.SwingData(false, false)),
+                                        new ArchangelAttackKeyframe(50, new Vec3(0, 0.1, 1.25), new Vec3(0, .3, 0.8), new ArchangelAttackKeyframe.SwingData(false, false))
                                 ).build(),
                         AttackAnimationData.builder("scythe_downslash_sideslash")
                                 .length(60)
                                 .attacks(
-                                        new PaladinAttackKeyframe(22, new Vec3(0, 0, .5f), new Vec3(0, -.2, 0), new PaladinAttackKeyframe.SwingData(true, true)),
-                                        new PaladinAttackKeyframe(40, new Vec3(0, .1, 0.8), new PaladinAttackKeyframe.SwingData(false, false))
+                                        new ArchangelAttackKeyframe(22, new Vec3(0, 0, .5f), new Vec3(0, -.2, 0), new ArchangelAttackKeyframe.SwingData(true, true)),
+                                        new ArchangelAttackKeyframe(40, new Vec3(0, .1, 0.8), new ArchangelAttackKeyframe.SwingData(false, false))
                                 ).build(),
                         AttackAnimationData.builder("scythe_horizontal_slash_spin")
                                 .length(45)
                                 .area(0.25f)
                                 .rangeMultiplier(3f)
                                 .attacks(
-                                        new PaladinAttackKeyframe(14, new Vec3(0, 0.1, 1.25), new Vec3(0, .1, 0.8), new PaladinAttackKeyframe.SwingData(false, true)),
-                                        new PaladinAttackKeyframe(30, new Vec3(0, 0.1, 1.85), new Vec3(0, .3, 0.8), new PaladinAttackKeyframe.SwingData(false, false))
+                                        new ArchangelAttackKeyframe(14, new Vec3(0, 0.1, 1.25), new Vec3(0, .1, 0.8), new ArchangelAttackKeyframe.SwingData(false, true)),
+                                        new ArchangelAttackKeyframe(30, new Vec3(0, 0.1, 1.85), new Vec3(0, .3, 0.8), new ArchangelAttackKeyframe.SwingData(false, false))
                                 ).build()
 
                 ))
@@ -309,11 +336,7 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NPC_PALADIN_HELMET.get()));
-        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.NPC_PALADIN_CHESTPLATE.get()));
-        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_PALADIN_LEGGINGS.get()));
-        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.NPC_PALADIN_BOOTS.get()));
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_SPEAR.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_GREATSWORD.get()));
         this.setDropChance(EquipmentSlot.HEAD, 0);
         this.setDropChance(EquipmentSlot.CHEST, 0);
         this.setDropChance(EquipmentSlot.MAINHAND, 0);
@@ -326,6 +349,7 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         super.tick();
         float maxHealth = this.getMaxHealth();
         float currentHealth = this.getHealth();
+       this.bossEvent.setProgress(currentHealth / maxHealth);
         if (daggerTime > 0) {
             daggerTime--;
         }
@@ -436,21 +460,20 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
 
     public static AttributeSupplier.Builder prepareAttributes() {
         return LivingEntity.createLivingAttributes()
-                .add(Attributes.ATTACK_DAMAGE, 14.0)
-                .add(AttributeRegistry.SPELL_POWER, 1.25)
-                .add(Attributes.ARMOR, 45)
-                .add(AttributeRegistry.SPELL_RESIST, 1.5)
-                .add(AttributeRegistry.BLOOD_MAGIC_RESIST, 1.5)
-                .add(AttributeRegistry.ELDRITCH_MAGIC_RESIST, 1.5)
-                .add(Attributes.MAX_HEALTH, 20)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.8)
-                .add(Attributes.ATTACK_KNOCKBACK, .6)
-                .add(Attributes.FOLLOW_RANGE, 150.0)
-                .add(Attributes.SCALE, 1.25)
-                .add(Attributes.GRAVITY, 1)
+                .add(Attributes.ATTACK_DAMAGE, 15.0)
+                .add(AttributeRegistry.SPELL_POWER, 1.0)
+                .add(Attributes.ARMOR, 50)
+                .add(Attributes.ARMOR_TOUGHNESS, 30)
+                .add(AttributeRegistry.SPELL_RESIST, 2.5)
+                .add(Attributes.MAX_HEALTH, 200)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1)
+                .add(Attributes.ATTACK_KNOCKBACK, .9)
+                .add(Attributes.FOLLOW_RANGE, 300.0)
+                .add(Attributes.SCALE, 4.5)
+                .add(Attributes.GRAVITY, 1.5)
                 .add(Attributes.ENTITY_INTERACTION_RANGE, 4)
-                .add(Attributes.STEP_HEIGHT, 1)
-                .add(Attributes.MOVEMENT_SPEED, .21);
+                .add(Attributes.STEP_HEIGHT, 2)
+                .add(Attributes.MOVEMENT_SPEED, .16);
     }
 
     @Override
@@ -471,7 +494,69 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
     }
 
     RawAnimation animationToPlay = null;
-    private final AnimationController<PaladinEntity> meleeController = new AnimationController<>(this, "melee_animations", 0, this::predicate);
+    private final AnimationController<ArchangelEntity> meleeController = new AnimationController<>(this, "melee_animations", 0, this::predicate);
+
+    @Override
+    public void die(DamageSource pDamageSource) {
+        super.die(pDamageSource);
+        if (this.isDeadOrDying() && !this.level().isClientSide) {
+            this.castComplete();
+            this.attackGoal.stop();
+            this.serverTriggerAnimation("fire_boss_death");
+            this.playSound(SoundRegistry.FIRE_BOSS_DEATH.get(), 5, 1);
+            Vec3 vec3 = this.getBoundingBox().getCenter();
+            MagicManager.spawnParticles(level(), ParticleRegistry.EMBEROUS_ASH_PARTICLE.get(), vec3.x, vec3.y, vec3.z, 25, 0.2, 0.2, 0.2, 0.12, false);
+        }
+    }
+
+    @Override
+    protected void dropAllDeathLoot(ServerLevel pLevel, DamageSource pDamageSource) {
+        // prevent drops from appearing before death animation, just store them
+        this.dropEquipment();
+        this.dropExperience(pDamageSource.getEntity());
+        boolean playerDeath = this.lastHurtByPlayerTime > 0;
+        this.dropCustomDeathLoot(pLevel, pDamageSource, playerDeath);
+        ResourceKey<LootTable> resourcekey = this.getLootTable();
+        LootTable mainLoot = this.level().getServer().reloadableRegistries().getLootTable(resourcekey);
+        LootTable lootPerPlayer = this.level().getServer().reloadableRegistries().getLootTable(ResourceKey.create(resourcekey.registryKey(), resourcekey.location().withSuffix("_per_player")));
+        LootParams.Builder lootparams$builder = new LootParams.Builder(pLevel)
+                .withParameter(LootContextParams.THIS_ENTITY, this)
+                .withParameter(LootContextParams.ORIGIN, this.position())
+                .withParameter(LootContextParams.DAMAGE_SOURCE, pDamageSource)
+                .withOptionalParameter(LootContextParams.ATTACKING_ENTITY, pDamageSource.getEntity())
+                .withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, pDamageSource.getDirectEntity());
+        if (playerDeath && this.lastHurtByPlayer != null) {
+            lootparams$builder = lootparams$builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, this.lastHurtByPlayer)
+                    .withLuck(this.lastHurtByPlayer.getLuck());
+        }
+
+        LootParams lootparams = lootparams$builder.create(LootContextParamSets.ENTITY);
+        ObjectArrayList<ItemStack> objectarraylist = new ObjectArrayList<>();
+        mainLoot.getRandomItems(lootparams, this.getLootTableSeed(), objectarraylist::add);
+        for (int i = 0; i < playerScale; i++) {
+            lootPerPlayer.getRandomItems(lootparams, this.getLootTableSeed(), objectarraylist::add);
+        }
+        this.deathLoot = new SimpleContainer(objectarraylist.size());
+        objectarraylist.forEach(deathLoot::addItem);
+    }
+
+    @Override
+    protected void tickDeath() {
+        this.deathTime++;
+        if (!level().isClientSide) {
+            float scale = getScale();
+            Vec3 vec3 = this.position();
+            if (this.deathTime >= 160 && !this.level().isClientSide() && !this.isRemoved()) {
+                if (this.deathLoot != null) {
+                    deathLoot.getItems().forEach(this::spawnAtLocation);
+                }
+                this.remove(Entity.RemovalReason.KILLED);
+                MagicManager.spawnParticles(level(), ParticleRegistry.EMBEROUS_ASH_PARTICLE.get(), vec3.x, vec3.y + 1, vec3.z, 50, 0.3, 0.3, 0.3, 0.2 * scale, true);
+                this.playSound(SoundRegistry.FIRE_BOSS_ACCENT.get(), 4, .9f);
+            }
+        }
+    }
+
 
     @Override
     public void playAnimation(String animationId) {
@@ -485,7 +570,7 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         return !stopHeadAnimation;
     }
 
-    private PlayState predicate(AnimationState<PaladinEntity> animationEvent) {
+    private PlayState predicate(AnimationState<ArchangelEntity> animationEvent) {
         var controller = animationEvent.getController();
 
         if (this.animationToPlay != null) {
@@ -563,6 +648,15 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);
     }
 
+    public String string_name() {
+        String[] name = new String[3];
+        name[0] = "Josh";
+        name[1] = "John";
+        name[2] = "gg";
+        int rng = new Random().nextInt(name.length);
+        return name[rng];
+    }
+
     @Override
     protected PathNavigation createNavigation(Level pLevel) {
         return new NotIdioticNavigation(this, pLevel);
@@ -570,5 +664,17 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
 
     public boolean spectralDaggerActive() {
         return false;
+    }
+
+    public void load(CompoundTag pCompound) {
+        super.load(pCompound);
+        if (!level().isClientSide) {
+            // re-sync uuid if we are loading from file rather than creating new entity (uuid is loaded in super.load)
+            createBossEvent();
+        }
+    }
+
+    protected void createBossEvent() {
+        this.bossEvent = (ExtendedServerBossEvent) (new ExtendedServerBossEvent(this.getUUID(), this.getDisplayName().copy().withStyle(ChatFormatting.RED), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(false);
     }
 }

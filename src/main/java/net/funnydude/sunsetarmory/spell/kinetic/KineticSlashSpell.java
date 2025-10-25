@@ -83,7 +83,7 @@ public class KineticSlashSpell extends AbstractSpell {
     }
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.SELF_CAST_ANIMATION;
+        return SpellAnimations.SLASH_ANIMATION;
     }
 
     @Override

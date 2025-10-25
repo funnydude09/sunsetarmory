@@ -16,6 +16,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -35,24 +36,24 @@ public class ArmorLockSpell extends AbstractSpell {
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
                 Component.translatable("ui.irons_spellbooks.damage_reduction", Utils.stringTruncation(getPercentDamage(spellLevel, caster), 0)),
-                Component.translatable("attribute.modifier.take.1", Utils.stringTruncation(1, 0), Component.translatable("attribute.name.generic.movement_speed")).withStyle(ChatFormatting.BLACK),
-                Component.translatable("ui.irons_spellbooks.effect_length", Utils.timeFromTicks(getSpellPower(spellLevel, caster) * 20, 1))
+                Component.translatable("attribute.modifier.take.1", Utils.stringTruncation(100, 0), Component.translatable("attribute.name.generic.movement_speed")).withStyle(ChatFormatting.GRAY),
+                Component.translatable("ui.irons_spellbooks.effect_length", Utils.timeFromTicks(getSpellPower(spellLevel, caster), 1))
         );
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
-            .setMinRarity(SpellRarity.LEGENDARY)
+            .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.EVOCATION_RESOURCE)
-            .setMaxLevel(1)
-            .setCooldownSeconds(90)
+            .setMaxLevel(5)
+            .setCooldownSeconds(15)
             .build();
 
     public ArmorLockSpell() {
         this.manaCostPerLevel = 5;
-        this.baseSpellPower = 20;
-        this.spellPowerPerLevel = 3;
+        this.baseSpellPower = 100;
+        this.spellPowerPerLevel = 100;
         this.castTime = 0;
-        this.baseManaCost = 15;
+        this.baseManaCost = 50;
     }
 
     @Override
@@ -77,12 +78,12 @@ public class ArmorLockSpell extends AbstractSpell {
 
     @Override
     public Optional<SoundEvent> getCastFinishSound() {
-        return   Optional.of(SoundRegistry.HEARTSTOP_CAST.get());
+        return   Optional.of(SoundEvents.IRON_GOLEM_REPAIR);
     }
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity) * 20), spellLevel - 1, false, false, true));
+        entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity) * 20), spellLevel, false, false, true));
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
@@ -92,7 +93,7 @@ public class ArmorLockSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.SELF_CAST_ANIMATION;
+        return SpellAnimations.ANIMATION_INSTANT_CAST;
     }
 
 }

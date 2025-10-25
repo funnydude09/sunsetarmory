@@ -27,7 +27,7 @@ public class ModSchools {
     public static final Supplier<SchoolType> KINETIC = registerSchool(new SchoolType(
             KINETIC_RESOURCE,
             SunsetTags.KINETIC_FOCUS,
-            Component.translatable("school.sunsetarmory.kinetic").withStyle(ChatFormatting.GOLD),
+            Component.translatable("school.sunsetarmory.kinetic").withStyle(ChatFormatting.WHITE),
             ModAttributes.KINETIC_MAGIC_POWER,
             ModAttributes.KINETIC_MAGIC_RESIST,
             SoundRegistry.FIRE_CAST,

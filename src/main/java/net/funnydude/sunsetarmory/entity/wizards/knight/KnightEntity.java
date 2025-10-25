@@ -147,7 +147,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
                 .add(Attributes.ATTACK_DAMAGE, 8.0)
                 .add(Attributes.ATTACK_KNOCKBACK, 0.0)
                 .add(Attributes.MAX_HEALTH, 20.0)
-                .add(Attributes.FOLLOW_RANGE, 24.0)
+                .add(Attributes.FOLLOW_RANGE, 150.0)
                 .add(Attributes.ENTITY_INTERACTION_RANGE, 4)
                 .add(Attributes.MOVEMENT_SPEED, .25);
     }

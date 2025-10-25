@@ -1,6 +1,7 @@
 package net.funnydude.sunsetarmory;
 
 import net.funnydude.sunsetarmory.entity.ModEntities;
+import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,5 +14,6 @@ public class CommonSetup {
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
          event.put(ModEntities.KNIGHT.get(), KnightEntity.prepareAttributes().build());
          event.put(ModEntities.PALADIN.get(), PaladinEntity.prepareAttributes().build());
+        event.put(ModEntities.ARCHANGEL.get(), ArchangelEntity.prepareAttributes().build());
      }
 }

@@ -36,7 +36,20 @@ public class ModEffects {
     public static final DeferredHolder<MobEffect, MobEffect> ARMOR_LOCK_EFFECT = MOB_EFFECTS.register("armor_lock",
             () -> new ArmorLockEffect(MobEffectCategory.BENEFICIAL, 0x808080)
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(AttributeRegistry.SPELL_RESIST, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), 1f,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(AttributeRegistry.MANA_REGEN, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
 
     public static final Holder<MobEffect> AMBROSIA_EFFECT = MOB_EFFECTS.register("ambrosia",
             () -> new AmbrosiaEffect(MobEffectCategory.BENEFICIAL,0xFFB6C1)

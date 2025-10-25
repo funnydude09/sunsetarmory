@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.entity.spells.*;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.DivineShieldEntity;
 import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
+import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
 import net.minecraft.core.registries.Registries;
@@ -51,6 +52,11 @@ public class ModEntities {
                     .sized(.6f, 1.8f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "paladin").toString()));
+    public static final DeferredHolder<EntityType<?>, EntityType<ArchangelEntity>> ARCHANGEL =
+            ENTITIES.register("archangel",()-> EntityType.Builder.of(ArchangelEntity::new,MobCategory.MISC)
+                    .sized(.6f, 1.8f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "archangel").toString()));
 }
 
 
