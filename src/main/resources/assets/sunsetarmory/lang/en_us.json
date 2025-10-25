@@ -65,7 +65,7 @@
   "spell.sunsetarmory.kinetic_slash": "Kinetic Slash",
   "spell.sunsetarmory.kinetic_slash_vertical": "Vertical Kinetic Slash",
   "spell.sunsetarmory.divine_shield": "Divine Shield",
-  "spell.sunsetarmory.armor_lock": "Armor Lock",
+  "spell.sunsetarmory.armor_lock_spell": "Armor Lock",
   "spell.sunsetarmory.armor_lock.message": "Cannot cast spells while immobile",
   "effect.sunsetarmory.ambrosia_potion": "Ambrosia",
   "effect.sunsetarmory.rage_potion": "Rage"

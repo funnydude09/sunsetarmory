@@ -30,12 +30,12 @@ import java.util.Optional;
 @AutoSpellConfig
 
 public class ArmorLockSpell extends AbstractSpell {
-    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "armor_lock");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "armor_lock_spell");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.irons_spellbooks.damage_reduction", Utils.stringTruncation(getPercentDamage(spellLevel, caster), 0)),
+                Component.translatable("ui.irons_spellbooks.damage_reduction", Utils.stringTruncation(100, 0)),
                 Component.translatable("attribute.modifier.take.1", Utils.stringTruncation(100, 0), Component.translatable("attribute.name.generic.movement_speed")).withStyle(ChatFormatting.GRAY),
                 Component.translatable("ui.irons_spellbooks.effect_length", Utils.timeFromTicks(getSpellPower(spellLevel, caster), 1))
         );
@@ -83,13 +83,10 @@ public class ArmorLockSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity) * 20), spellLevel, false, false, true));
+        entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity)), spellLevel, false, false, true));
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    private float getPercentDamage(int spellLevel, LivingEntity entity) {
-        return ArmorLockEffect.getReductionAmount(spellLevel) * 100;
-    }
 
     @Override
     public AnimationHolder getCastStartAnimation() {

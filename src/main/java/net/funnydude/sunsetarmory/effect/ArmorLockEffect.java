@@ -15,7 +15,7 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import java.util.Set;
 @EventBusSubscriber
 public class ArmorLockEffect extends CustomDescriptionMobEffect {
-    public static final float REDUCTION_PER_LEVEL = .05f;
+    public static final float REDUCTION_PER_LEVEL = 0f;
     public static final float BASE_REDUCTION = 1f;
 
     protected ArmorLockEffect(MobEffectCategory pCategory, int pColor) {
