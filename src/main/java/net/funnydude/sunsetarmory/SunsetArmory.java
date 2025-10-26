@@ -45,6 +45,9 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SunsetArmory.MODID)
 public class SunsetArmory {
@@ -200,5 +203,4 @@ public class SunsetArmory {
     public static ResourceLocation id(@NotNull String path) {
         return ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, path);
     }
-
 }

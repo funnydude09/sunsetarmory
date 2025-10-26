@@ -1,40 +1,25 @@
 package net.funnydude.sunsetarmory.entity.spell;
 
-import io.redspace.ironsspellbooks.api.events.CounterSpellEvent;
-import io.redspace.ironsspellbooks.api.util.Utils;
+
+import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
-import io.redspace.ironsspellbooks.damage.SpellDamageSource;
-import io.redspace.ironsspellbooks.datagen.DamageTypeTagGenerator;
-import io.redspace.ironsspellbooks.entity.mobs.AntiMagicSusceptible;
 import io.redspace.ironsspellbooks.entity.spells.AbstractShieldEntity;
 import io.redspace.ironsspellbooks.entity.spells.ShieldPart;
-import io.redspace.ironsspellbooks.entity.spells.blood_needle.BloodNeedle;
-import io.redspace.ironsspellbooks.entity.spells.blood_slash.BloodSlashProjectile;
 import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
-import io.redspace.ironsspellbooks.spells.blood.BloodNeedlesSpell;
-import io.redspace.ironsspellbooks.spells.ender.CounterspellSpell;
-import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
-import org.apache.logging.log4j.core.net.Rfc1349TrafficClass;
 
 import javax.annotation.Nullable;
 
-import static io.redspace.ironsspellbooks.datagen.DamageTypeTagGenerator.BLOOD_MAGIC;
-import static io.redspace.ironsspellbooks.datagen.DamageTypeTagGenerator.ELDRITCH_MAGIC;
-
-
+@AutoSpellConfig
 public class DivineShieldEntity extends AbstractShieldEntity {
     protected ShieldPart[] subEntities;
     protected final Vec3[] subPositions;
@@ -43,10 +28,6 @@ public class DivineShieldEntity extends AbstractShieldEntity {
     protected int height;
     protected int age;
 
-    public static float getHealth(float x,float health){
-        x = (float) (health);
-        return x;
-    }
     public DivineShieldEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         width = 5;
@@ -98,9 +79,6 @@ public class DivineShieldEntity extends AbstractShieldEntity {
         this.setYRot(y);
         this.yRotO = y;
     }
-
-
-
 
     @Override
     public void tick() {

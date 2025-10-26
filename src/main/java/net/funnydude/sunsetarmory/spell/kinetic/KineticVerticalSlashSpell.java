@@ -20,7 +20,6 @@ import java.util.List;
 
 public class KineticVerticalSlashSpell extends AbstractSpell {
     public final String getSpellName= "kinetic_slash";
-    private final ResourceLocation spellId = SunsetArmory.id("kinetic_vertical_slash");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
@@ -88,7 +87,7 @@ public class KineticVerticalSlashSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return spellId;
+        return SunsetArmory.id("kinetic_vertical_slash");
     }
 
     @Override

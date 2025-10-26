@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -59,6 +60,7 @@ public class ModEffects {
                             AttributeModifier.Operation.ADD_VALUE)
                     .addAttributeModifier(Attributes.LUCK, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"ambrosia"), 10f,
                             AttributeModifier.Operation.ADD_VALUE));
+
 
 
 
