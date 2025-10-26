@@ -26,6 +26,7 @@ import io.redspace.ironsspellbooks.util.ParticleHelper;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.item.ModItems;
+import net.funnydude.sunsetarmory.spell.ModSpells;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -228,15 +229,15 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
                 .setMeleeBias(0.4f, 0.7f)
                 .setSpells(
                         //offence
-                        List.of(SpellRegistry.SUNBEAM_SPELL.get(), SpellRegistry.FIRE_ARROW_SPELL.get(), SpellRegistry.ROOT_SPELL.get()),
+                        List.of(SpellRegistry.STOMP_SPELL.get(),SpellRegistry.STOMP_SPELL.get(),SpellRegistry.STOMP_SPELL.get(), SpellRegistry.FIRE_ARROW_SPELL.get(), SpellRegistry.MAGIC_ARROW_SPELL.get(),SpellRegistry.POISON_ARROW_SPELL.get(),SpellRegistry.RAISE_HELL_SPELL.get()),
                         //defence
-                        List.of(SpellRegistry.EVASION_SPELL.get(),SpellRegistry.ABYSSAL_SHROUD_SPELL.get(),SpellRegistry.HEAL_SPELL.get()),
+                        List.of(SpellRegistry.OAKSKIN_SPELL.get(),SpellRegistry.SUMMON_SWORDS.get()),
                         //movement
-                        List.of(SpellRegistry.TELEPORT_SPELL.get(),SpellRegistry.ASCENSION_SPELL.get()),
+                        List.of(SpellRegistry.TELEPORT_SPELL.get()),
                         //support
-                        List.of(SpellRegistry.COUNTERSPELL_SPELL.get(),SpellRegistry.CLEANSE_SPELL.get())
+                        List.of(SpellRegistry.COUNTERSPELL_SPELL.get())
                 )
-                .setSpellQuality(1.0f, 1.0f);
+                .setSpellQuality(1.25f, 1.25f);
 
         this.goalSelector.addGoal(2, new SpellBarrageGoal(this, SpellRegistry.COUNTERSPELL_SPELL.get(), 1, 1, 80, 240, 3));
         this.goalSelector.addGoal(3, attackGoal);
