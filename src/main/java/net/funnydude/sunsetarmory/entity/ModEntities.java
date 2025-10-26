@@ -52,11 +52,13 @@ public class ModEntities {
                     .sized(.6f, 1.8f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "paladin").toString()));
+
     public static final DeferredHolder<EntityType<?>, EntityType<ArchangelEntity>> ARCHANGEL =
             ENTITIES.register("archangel",()-> EntityType.Builder.of(ArchangelEntity::new,MobCategory.MISC)
                     .sized(.6f, 1.8f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "archangel").toString()));
+
 }
 
 

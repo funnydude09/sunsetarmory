@@ -37,7 +37,6 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
             float before = event.getAmount();
             float multiplier = 1 - getReductionAmount(lvl);
             event.setAmount(event.getAmount() * multiplier);
-            //IronsSpellbooks.LOGGER.debug("OakskinEffect.reduceDamage: {}->{}", before, event.getAmount());
         }
     }
 
@@ -54,7 +53,6 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
-
 
     @Override
     public int getSortOrder(MobEffectInstance effectInstance) {

@@ -2,27 +2,25 @@ package net.funnydude.sunsetarmory.spell.kinetic;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
-import io.redspace.ironsspellbooks.entity.spells.blood_slash.BloodSlashProjectile;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
-import net.funnydude.sunsetarmory.spell.ModSchools;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.List;
 
 @AutoSpellConfig
 public class KineticSlashSpell extends AbstractSpell {
-    public final String getSpellName= "kinetic_slash";
-    private final ResourceLocation spellId = SunsetArmory.id("kinetic_slash");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
@@ -42,8 +40,8 @@ public class KineticSlashSpell extends AbstractSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.irons_spellbooks.damage", Utils.stringTruncation(getDamage(spellLevel, caster), 2)),
-                Component.translatable("ui.irons_spellbooks.blast_count", (int) (getRecastCount(spellLevel, caster)))
+                Component.translatable("ui.irons_spellbooks.damage", getDamageText(spellLevel, caster)),
+                Component.translatable("ui.irons_spellbooks.blast_count", (int)(getRecastCount(spellLevel, caster)))
         );
     }
     @Override
@@ -60,16 +58,33 @@ public class KineticSlashSpell extends AbstractSpell {
     }
 
     private float getDamage(int spellLevel, LivingEntity caster) {
-        return (float)((double)this.getSpellPower(spellLevel, caster) * 0.77 + (double)this.getWeaponDamage(caster));
+        return (float)(this.getSpellPower(spellLevel, caster) * 0.77 + this.getAdditionalDamage(caster));
     }
     @Override
     public int getRecastCount(int spellLevel, @Nullable LivingEntity entity) {
         return 2 + spellLevel;
     }
 
-    private float getWeaponDamage(LivingEntity caster) {
+    private float getAdditionalDamage(LivingEntity caster) {
         float weaponDamage = Utils.getWeaponDamage(caster);
+        var weaponItem = caster.getWeaponItem();
+        if (!weaponItem.isEmpty() && weaponItem.has(DataComponents.ENCHANTMENTS)) {
+            weaponDamage += Utils.processEnchantment(caster.level(), Enchantments.SWEEPING_EDGE, EnchantmentEffectComponents.DAMAGE, weaponItem.get(DataComponents.ENCHANTMENTS));
+        }
         return weaponDamage;
+    }
+
+    private String getDamageText(int spellLevel, LivingEntity entity) {
+        if (entity != null) {
+            float weaponDamage = getAdditionalDamage(entity);
+            String plus = "";
+            if (weaponDamage > 0) {
+                plus = String.format(" (+%s)", Utils.stringTruncation(weaponDamage, 1));
+            }
+            String damage = Utils.stringTruncation(getDamage(spellLevel, entity), 1);
+            return damage + plus;
+        }
+        return "" + getSpellPower(spellLevel, entity);
     }
 
     @Override
