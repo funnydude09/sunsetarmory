@@ -17,6 +17,7 @@ import net.minecraft.world.entity.animal.Cow;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.w3c.dom.Attr;
 
 public class ModEffects {
     public static final DeferredRegister<MobEffect>MOB_EFFECTS =
@@ -26,42 +27,59 @@ public class ModEffects {
         MOB_EFFECTS.register(eventBus);
     }
 
-    public static final Holder<MobEffect> RAGE_EFFECT = MOB_EFFECTS.register("rage",
+    public static final Holder<MobEffect> RAGE_EFFECT = MOB_EFFECTS.register("rage_effect",
             () -> new RageEffect(MobEffectCategory.BENEFICIAL,0xf44336)
-                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "rage") , 0.25f,
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "rage_effect") , 0.25f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "rage") , 0.5f,
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "rage_effect") , 0.5f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.ARMOR, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"rage"), -0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    .addAttributeModifier(Attributes.ARMOR, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"rage_effect"), -0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
-    public static final DeferredHolder<MobEffect, MobEffect> ARMOR_LOCK_EFFECT = MOB_EFFECTS.register("armor_lock",
+    public static final DeferredHolder<MobEffect, MobEffect> ARMOR_LOCK_EFFECT = MOB_EFFECTS.register("armor_lock_effect",
             () -> new ArmorLockEffect(MobEffectCategory.BENEFICIAL, 0x808080)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.JUMP_STRENGTH, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(AttributeRegistry.SPELL_RESIST, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), 1f,
+                    .addAttributeModifier(AttributeRegistry.SPELL_RESIST, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), 1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(AttributeRegistry.MANA_REGEN, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                    .addAttributeModifier(AttributeRegistry.MANA_REGEN, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock"), -1f,
+                    .addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
-    public static final Holder<MobEffect> AMBROSIA_EFFECT = MOB_EFFECTS.register("ambrosia",
+    public static final Holder<MobEffect> AMBROSIA_EFFECT = MOB_EFFECTS.register("ambrosia_effect",
             () -> new AmbrosiaEffect(MobEffectCategory.BENEFICIAL,0xFFB6C1)
-                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "ambrosia") , 6f,
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "ambrosia_effect") , 6f,
                             AttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(Attributes.JUMP_STRENGTH, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "ambrosia") , 0.4f,
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "ambrosia_effect") , 0.4f,
                             AttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(Attributes.LUCK, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"ambrosia"), 10f,
+                    .addAttributeModifier(Attributes.LUCK, ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"ambrosia_effect"), 10f,
                             AttributeModifier.Operation.ADD_VALUE));
 
+    public static final Holder<MobEffect> SOUL_BOUND_EFFECT = MOB_EFFECTS.register("soul_bound_effect",
+            () -> new SoulBoundEffect(MobEffectCategory.BENEFICIAL,0xFFB6C1)
+                    .addAttributeModifier(AttributeRegistry.FIRE_SPELL_POWER,SunsetArmory.id("soul_bound_effect"),0.1,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.ARMOR,SunsetArmory.id("soul_bound_effect"),-1,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
+    public static final Holder<MobEffect> CINDEROUS_CHARGE_UP = MOB_EFFECTS.register("cinderous_charge_up_effect",
+            () -> new AmbrosiaEffect(MobEffectCategory.BENEFICIAL,0xFFB6C1)
+                    .addAttributeModifier(Attributes.GRAVITY,SunsetArmory.id("cinderous_charge_up_effect"),-0.5,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH,SunsetArmory.id("cinderous_charge_up_effect"),0.5,
+                            AttributeModifier.Operation.ADD_VALUE)
+
+
+
+
+    );
 
 
 }

@@ -32,6 +32,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -649,11 +650,11 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);
     }
 
-    public String string_name() {
-        String[] name = new String[3];
-        name[0] = "Josh";
-        name[1] = "John";
-        name[2] = "gg";
+    public Component string_name() {
+        Component[] name = new Component[3];
+        name[0] = Component.literal("Josh");
+        name[1] = Component.literal("John Mastermind");
+        name[2] = Component.literal("gg");
         int rng = new Random().nextInt(name.length);
         return name[rng];
     }
@@ -676,6 +677,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     }
 
     protected void createBossEvent() {
-        this.bossEvent = (ExtendedServerBossEvent) (new ExtendedServerBossEvent(this.getUUID(), this.getDisplayName().copy().withStyle(ChatFormatting.RED), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(false);
+        this.bossEvent = (ExtendedServerBossEvent) (new ExtendedServerBossEvent(this.getUUID(), string_name().copy().withStyle(ChatFormatting.RED), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS)).setCreateWorldFog(false);
     }
 }

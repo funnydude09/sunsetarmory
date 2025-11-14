@@ -16,8 +16,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-  public static final DeferredRegister.Blocks   BLOCKS  =
-          DeferredRegister.createBlocks(SunsetArmory.MODID);
+    public static final DeferredRegister.Blocks   BLOCKS  =
+            DeferredRegister.createBlocks(SunsetArmory.MODID);
 
     public static final DeferredBlock<Block> PYRIUM_BLOCK = registerBlock("pyrium_block",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -33,9 +33,9 @@ public class ModBlocks {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-  public static void register(IEventBus eventBus)   {
-      BLOCKS.register(eventBus);
-  }
+    public static void register(IEventBus eventBus)   {
+        BLOCKS.register(eventBus);
+    }
 
 
 }

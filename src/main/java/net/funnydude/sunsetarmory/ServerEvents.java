@@ -13,7 +13,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 
+@EventBusSubscriber
 public class ServerEvents {
     @SubscribeEvent
     public static void onPlayerCastEvent(SpellPreCastEvent event) {

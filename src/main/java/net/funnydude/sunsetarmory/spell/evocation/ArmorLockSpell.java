@@ -30,7 +30,6 @@ import java.util.Optional;
 @AutoSpellConfig
 
 public class ArmorLockSpell extends AbstractSpell {
-    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "armor_lock_spell");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -68,7 +67,7 @@ public class ArmorLockSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return spellId;
+        return SunsetArmory.id("armor_lock_spell");
     }
 
     @Override
@@ -86,7 +85,6 @@ public class ArmorLockSpell extends AbstractSpell {
         entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity)), spellLevel, false, false, true));
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
-
 
     @Override
     public AnimationHolder getCastStartAnimation() {

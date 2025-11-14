@@ -3,9 +3,8 @@ package net.funnydude.sunsetarmory.entity.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
+import net.funnydude.sunsetarmory.entity.spell.KineticVerticalSlash;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -17,36 +16,36 @@ import org.joml.Matrix4f;
 
 import java.util.Random;
 
-public class KineticSlashRenderer extends EntityRenderer<KineticSlash> {
-    private static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "textures/entity/kinetic_slash");
-    public KineticSlashRenderer(EntityRendererProvider.Context context) {
+public class KineticVerticalSlashRenderer extends EntityRenderer<KineticVerticalSlash> {
+    private static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "textures/entity/kinetic_vertical_slash");
+    public KineticVerticalSlashRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
-    public void render(KineticSlash kineticSlash, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+    public void render(KineticVerticalSlash kineticVerticalSlash, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         poseStack.pushPose();
         PoseStack.Pose pose = poseStack.last();
-        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, kineticSlash.yRotO, kineticSlash.getYRot())));
-        poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, kineticSlash.xRotO, kineticSlash.getXRot())));
-        float randomZ = (float)(new Random(31L * (long)kineticSlash.getId())).nextInt(-8, 8);
+        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, kineticVerticalSlash.yRotO, kineticVerticalSlash.getYRot())));
+        poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, kineticVerticalSlash.xRotO, kineticVerticalSlash.getXRot())));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(90));
+        float randomZ = (new Random(31L * (long)kineticVerticalSlash.getId())).nextInt(-8, 8);
         poseStack.mulPose(Axis.XP.rotationDegrees(randomZ));
-        this.createSlashTexturePlace(pose, kineticSlash, bufferSource, kineticSlash.getBbWidth() * 1.5F);
+        this.createSlashTexturePlace(pose, kineticVerticalSlash, bufferSource, kineticVerticalSlash.getBbHeight() * 1.5F);
         poseStack.popPose();
-        super.render(kineticSlash, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+        super.render(kineticVerticalSlash, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 
-    private void createSlashTexturePlace(PoseStack.Pose pose, KineticSlash kineticSlash, MultiBufferSource bufferSource, float width) {
+    private void createSlashTexturePlace(PoseStack.Pose pose, KineticVerticalSlash kineticVerticalSlash, MultiBufferSource bufferSource, float height) {
         Matrix4f poseMatrix = pose.pose();
-        VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(this.getTextureLocation(kineticSlash)));
-        float halfWidth = width * 0.5F;
-        float height = kineticSlash.getBbHeight() * 0.5F;
+        VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(this.getTextureLocation(kineticVerticalSlash)));
+        float halfWidth = kineticVerticalSlash.getBbWidth() * 0.5F;
         consumer.addVertex(poseMatrix, -halfWidth, height, -halfWidth).setColor(255, 255, 255, 255).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(0.0F, 1.0F, 0.0F);
         consumer.addVertex(poseMatrix, halfWidth, height, -halfWidth).setColor(255, 255, 255, 255).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(0.0F, 1.0F, 0.0F);
         consumer.addVertex(poseMatrix, halfWidth, height, halfWidth).setColor(255, 255, 255, 255).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(0.0F, 1.0F, 0.0F);
         consumer.addVertex(poseMatrix, -halfWidth, height, halfWidth).setColor(255, 255, 255, 255).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(0.0F, 1.0F, 0.0F);
     }
 
-    public ResourceLocation getTextureLocation(KineticSlash kineticSlash) {
+    public ResourceLocation getTextureLocation(KineticVerticalSlash kineticVerticalSlash) {
         return TEXTURES;
     }
 }

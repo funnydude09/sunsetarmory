@@ -68,5 +68,6 @@
   "spell.sunsetarmory.armor_lock_spell": "Armor Lock",
   "spell.sunsetarmory.armor_lock.message": "Cannot cast spells while immobile",
   "effect.sunsetarmory.ambrosia_potion": "Ambrosia",
-  "effect.sunsetarmory.rage_potion": "Rage"
+  "effect.sunsetarmory.rage_potion": "Rage",
+  "spell.sunsetarmory.grand_fire_ball.message":"Cannot cast Grand Fireball unless below Half Health"
 }

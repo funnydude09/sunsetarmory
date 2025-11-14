@@ -121,6 +121,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
+
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData) {
         RandomSource randomsource = Utils.random;
@@ -179,6 +180,8 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         }
         return PlayState.CONTINUE;
     }
+
+
 
     @Override
     public boolean isAlliedTo(Entity entityIn) {

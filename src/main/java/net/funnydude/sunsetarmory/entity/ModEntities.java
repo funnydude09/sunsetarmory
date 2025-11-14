@@ -1,10 +1,11 @@
 package net.funnydude.sunsetarmory.entity;
 
+import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.entity.mobs.*;
 import io.redspace.ironsspellbooks.entity.spells.*;
+import io.redspace.ironsspellbooks.entity.spells.comet.Comet;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.entity.spell.DivineShieldEntity;
-import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
+import net.funnydude.sunsetarmory.entity.spell.*;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityType.Builder;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -42,10 +44,16 @@ public class ModEntities {
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<KineticSlash>> KINETIC_SLASH =
-            ENTITIES.register("kinetic_slash", () -> EntityType.Builder.<KineticSlash>of(KineticSlash::new, MobCategory.MISC)
+            ENTITIES.register("kinetic_slash_entity", () -> EntityType.Builder.<KineticSlash>of(KineticSlash::new, MobCategory.MISC)
                     .sized(5.0F, 1.0F)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "kinetic_slash_entity").toString()));
+
+    public static final DeferredHolder<EntityType<?>,EntityType<KineticVerticalSlash>> KINETIC_VERTICAL_SLASH =
+            ENTITIES.register("kinetic_vertical_slash_entity",() -> EntityType.Builder.<KineticVerticalSlash>of(KineticVerticalSlash::new, MobCategory.MISC)
+                    .sized(1.0f,9.0f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"kinetic_vertical_slash_entity").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<PaladinEntity>> PALADIN =
             ENTITIES.register("paladin",()-> EntityType.Builder.of(PaladinEntity::new,MobCategory.MISC)
@@ -59,6 +67,11 @@ public class ModEntities {
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "archangel").toString()));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<Projectile>> BLIZZARD_HAIL =
+            ENTITIES.register("blizzard_entity", () -> EntityType.Builder.<Projectile>of(BlizzardHail::new, MobCategory.MISC)
+                    .sized(.5f, .5f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "blizzard_entity").toString()));
 }
 
 

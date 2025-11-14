@@ -8,6 +8,7 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
+import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -24,7 +25,7 @@ public class KineticSlashSpell extends AbstractSpell {
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
-            .setSchoolResource(net.funnydude.sunsetarmory.spell.ModSchools.KINETIC_RESOURCE)
+            .setSchoolResource(ModSchools.KINETIC_RESOURCE)
             .setMaxLevel(3)
             .setCooldownSeconds(90)
             .build();
@@ -50,7 +51,7 @@ public class KineticSlashSpell extends AbstractSpell {
             playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 80, castSource, null), playerMagicData);
         }
         KineticSlash kineticSlash = new KineticSlash(level,entity);
-        kineticSlash.setPos(entity.position().add(0.0F, entity.getEyeHeight() - kineticSlash.getBoundingBox().getYsize() * 0.5F, (double)0.0F));
+        kineticSlash.setPos(entity.position());
         kineticSlash.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0.0F, kineticSlash.getSpeed(), 1.0F);
         kineticSlash.setDamage(this.getDamage(spellLevel, entity));
         level.addFreshEntity(kineticSlash);
@@ -103,6 +104,6 @@ public class KineticSlashSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("kinetic_slash");
+        return SunsetArmory.id("kinetic_slash_spell");
     }
 }

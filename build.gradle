@@ -36,12 +36,17 @@ repositories {
     }
     maven {
         name = "Illusive Soulworks maven"
-        url = "https://maven.theillusivec4.top/"
+        url = "https://maven.t1.21heillusivec4.top/"
     }
     maven {
         name = "AzureDoom Mods"
         url = "https://maven.azuredoom.com/mods"
     }
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
+
 }
 
 base {
@@ -135,7 +140,7 @@ configurations {
 }
 
 dependencies {
-    implementation "io.redspace:irons_spellbooks:${"1.21.1-3.12.3"}"
+    implementation "io.redspace:irons_spellbooks:${"1.21.1-3.14.5"}"
     implementation ("dev.kosmx.player-anim:player-animation-lib-forge:${"2.0.1+1.21.1"}")
     implementation "software.bernie.geckolib:geckolib-neoforge-${"1.21.1"}:${"4.8.2"}"
     implementation "mod.azure.azurelib:azurelib-neo-1.21.1:3.0.20"
@@ -167,16 +172,16 @@ dependencies {
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
+            minecraft_version      : "1.21.1",
+            minecraft_version_range: "1.21.1",
+            neo_version            : "21.1.176",
             loader_version_range   : loader_version_range,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_id                 : "sunsetarmory",
+            mod_name               : "Sunet Amory",
+            mod_license            : "MIT",
+            mod_version            : "0.0.1",
+            mod_authors            : "Funnydude09 and Itachi(norfolkzar)",
+            mod_description        : "Cool mod :D"
     ]
     inputs.properties replaceProperties
     expand replaceProperties

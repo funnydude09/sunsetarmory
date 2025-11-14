@@ -36,7 +36,7 @@ public class KineticDashSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("kinetic_dash");
+        return SunsetArmory.id("kinetic_dash_spell");
     }
 
     public KineticDashSpell() {

@@ -18,7 +18,5 @@ public class ModEvents {
         builder.addMix(Potions.TURTLE_MASTER, Items.REDSTONE_ORE, ModPotions.RAGE_POTION);
         builder.addMix(Potions.TURTLE_MASTER, Items.DEEPSLATE_REDSTONE_ORE, ModPotions.AMBROSIA_POTION);
         builder.addMix(Potions.AWKWARD, Items.WITHER_ROSE, ModPotions.WITHERING_POTION);
-
     }
-
 }

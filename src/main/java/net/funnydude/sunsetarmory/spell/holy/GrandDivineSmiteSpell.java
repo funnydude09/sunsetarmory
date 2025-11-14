@@ -5,6 +5,8 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
+import io.redspace.ironsspellbooks.api.util.CameraShakeData;
+import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
@@ -27,6 +29,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import java.util.Optional;
+import java.util.Vector;
 
 import static java.lang.Math.PI;
 
@@ -39,6 +42,11 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
             .setMaxLevel(1)
             .setCooldownSeconds(5)
             .build();
+    public static void main(String[] args) {
+        Vector a= new Vector();
+        System.out.println(a);
+    }
+
 
     public GrandDivineSmiteSpell() {
         this.manaCostPerLevel = 5;
@@ -53,52 +61,34 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
         double b = vec.y;
         double c = vec.z;
 
-        double xPrime = 0*(0*a + 1*b + 0*c)*(1d - Math.cos(PI/4))
-                + a*Math.cos(PI/4)
-                + (-0*b + 1*c)*Math.sin(PI/4);
+        double xPrime = a*Math.cos(PI/4)
+                - c*Math.sin(PI/4);
 
-
-        double zPrime = 0*(0*a + 1*b + 0*c)*(1d - Math.cos(PI/4))
-                + c*Math.cos(PI/4)
-                + (-1*a + 0*b)*Math.sin(PI/4);
+        double zPrime =  c*Math.cos(PI/4)
+                + a*Math.sin(PI/4);
 
         return new Vec3(xPrime, b, zPrime);
     }
+
 
    @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         float radius = 2.2f;
         float range = 1.7f;
-       Vec3 smiteLocation1 = Utils.raycastForBlock(level, rotateVectorCC(Utils.getPositionFromEntityLookDirection(entity,5)), rotateVectorCC(Utils.getPositionFromEntityLookDirection(entity,5)).add(rotateVectorCC(entity.getForward()).multiply(range, 0, range)), ClipContext.Fluid.NONE).getLocation();
-       Vec3 particleLocation1 = level.clip(new ClipContext(smiteLocation1, smiteLocation1.add(0, -2, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
-       MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), radius * 2),
-               particleLocation1.x, particleLocation1.y, particleLocation1.z, 1, 0, 0, 0, 0, true);
-       MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation1.x, particleLocation1.y, particleLocation1.z, 50, 0, 0, 0, 1, false);
-       var entities = level.getEntities(entity, AABB.ofSize(smiteLocation1, radius * 2, radius * 4, radius * 2));
+       Vec3 smiteLocation = Utils.raycastForBlock(level, rotateVectorCC(entity.getEyePosition()), rotateVectorCC(entity.getEyePosition().add(entity.getForward().multiply(range, 0, range))), ClipContext.Fluid.NONE).getLocation();
+       //Vec3 particleLocation = level.clip(new ClipContext(smiteLocation, smiteLocation.add(0, -2, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
+       //MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), radius * 2),
+               //particleLocation.x, particleLocation.y, particleLocation.z, 1, 0, 0, 0, 0, true);
+       //MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation.x, particleLocation.y, particleLocation.z, 50, 0, 0, 0, 1, false);
+       //CameraShakeManager.addCameraShake(new CameraShakeData(10, particleLocation, 10));
+       var entities = level.getEntities(entity, AABB.ofSize(smiteLocation, radius * 2, radius * 4, radius * 2));
        var damageSource = this.getDamageSource(entity);
        for (Entity targetEntity : entities) {
-           if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation1.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
+           if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
                if (DamageSources.applyDamage(targetEntity, getDamage(spellLevel, entity), damageSource)) {
                    EnchantmentHelper.doPostAttackEffects((ServerLevel) level, targetEntity, damageSource);
                }
            }
-
-       }
-
-        Vec3 smiteLocation2 = Utils.raycastForBlock(level, rotateVectorCC(Utils.getPositionFromEntityLookDirection(entity,5)), rotateVectorCC(Utils.getPositionFromEntityLookDirection(entity,5)).add(rotateVectorCC(entity.getForward()).multiply(range, 0, range)), ClipContext.Fluid.NONE).getLocation();
-        Vec3 particleLocation2 = level.clip(new ClipContext(smiteLocation2, smiteLocation2.add(0, -2, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
-        MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), radius * 2),
-                particleLocation2.x, particleLocation2.y, particleLocation2.z, 1, 0, 0, 0, 0, true);
-       MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation2.x, particleLocation2.y, particleLocation2.z, 50, 0, 0, 0, 1, false);
-       var entities1 = level.getEntities(entity, AABB.ofSize(smiteLocation2, radius * 2, radius * 4, radius * 2));
-       var damageSource1 = this.getDamageSource(entity);
-       for (Entity targetEntity : entities1) {
-           if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation2.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
-               if (DamageSources.applyDamage(targetEntity, getDamage(spellLevel, entity), damageSource1)) {
-                   EnchantmentHelper.doPostAttackEffects((ServerLevel) level, targetEntity, damageSource1);
-               }
-           }
-
        }
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
@@ -115,7 +105,7 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("grand_divine_smite");
+        return SunsetArmory.id("grand_divine_smite_spell");
     }
 
     @Override

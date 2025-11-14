@@ -1,35 +1,21 @@
 package net.funnydude.sunsetarmory.spell.holy;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
-import io.redspace.ironsspellbooks.entity.spells.shield.ShieldEntity;
-import io.redspace.ironsspellbooks.player.ClientInputEvents;
-import io.redspace.ironsspellbooks.player.ClientSpellCastHelper;
-import io.redspace.ironsspellbooks.spells.EntityCastData;
-import io.redspace.ironsspellbooks.util.Log;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.funnydude.sunsetarmory.entity.spell.DivineShieldEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.PacketDistributor;
-
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +23,7 @@ import java.util.Optional;
 @AutoSpellConfig
 public class DivineShieldSpell extends AbstractSpell {
 
-    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield");
+    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield_spell");
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
@@ -59,6 +45,8 @@ public class DivineShieldSpell extends AbstractSpell {
         this.baseManaCost = 35;
         this.castTime = 100;
     }
+
+    //e
 
     @Override
     public CastType getCastType() {

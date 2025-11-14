@@ -19,7 +19,7 @@ import net.neoforged.neoforge.entity.PartEntity;
 
 import javax.annotation.Nullable;
 
-@AutoSpellConfig
+
 public class DivineShieldEntity extends AbstractShieldEntity {
     protected ShieldPart[] subEntities;
     protected final Vec3[] subPositions;
