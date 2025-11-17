@@ -3,6 +3,7 @@ package net.funnydude.sunsetarmory.entity.spell;
 
 import io.redspace.ironsspellbooks.api.spells.AutoSpellConfig;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import io.redspace.ironsspellbooks.entity.spells.AbstractShieldEntity;
 import io.redspace.ironsspellbooks.entity.spells.ShieldPart;
 import io.redspace.ironsspellbooks.registries.EntityRegistry;
@@ -10,6 +11,7 @@ import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.EntityType;
@@ -43,6 +45,8 @@ public class DivineShieldEntity extends AbstractShieldEntity {
         this(EntityRegistry.SHIELD_ENTITY.get(), level);
         this.setHealth(health);
     }
+
+
     @Override
     protected void createShield() {
         for (int x = 0; x < width; x++) {

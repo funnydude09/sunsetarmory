@@ -25,6 +25,7 @@ import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.funnydude.sunsetarmory.SunsetTags;
+import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.funnydude.sunsetarmory.spell.ModSpells;
 import net.minecraft.ChatFormatting;
@@ -83,6 +84,15 @@ import java.util.Random;
 
 public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAttacker, IEntityWithComplexSpawn, IClientEventEntity {
 
+    public void giveThisArchangelSomeEquipment(){
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_GREATSWORD.get()));
+        this.setDropChance(EquipmentSlot.HEAD, 0);
+        this.setDropChance(EquipmentSlot.CHEST, 0);
+        this.setDropChance(EquipmentSlot.MAINHAND, 0);
+        this.setDropChance(EquipmentSlot.FEET, 0);
+        this.setDropChance(EquipmentSlot.LEGS, 0);
+    }
+
     @Override
     public void handleClientEvent(byte eventId) {
 
@@ -132,13 +142,19 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
     private ExtendedServerBossEvent bossEvent;
 
-    public ArchangelEntity(EntityType<? extends AbstractSpellCastingMob> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    public ArchangelEntity(EntityType<ArchangelEntity> archangelEntityEntityType, Level pLevel) {
+        super(archangelEntityEntityType, pLevel);
         xpReward = 25;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
         createBossEvent();
     }
+
+    public ArchangelEntity(Level level) {
+        this(ModEntities.ARCHANGEL.get(), level);
+        this.giveThisArchangelSomeEquipment();
+    }
+
 
     public void startSeenByPlayer(ServerPlayer pPlayer) {
         super.startSeenByPlayer(pPlayer);
@@ -650,13 +666,19 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);
     }
 
-    public Component string_name() {
+    /*public Component string_name() {
         Component[] name = new Component[3];
         name[0] = Component.literal("Josh");
         name[1] = Component.literal("John Mastermind");
         name[2] = Component.literal("gg");
         int rng = new Random().nextInt(name.length);
         return name[rng];
+    }*/
+
+    public Component string_name() {
+        Component[] name = new Component[1];
+        name[0] = Component.literal("ARCHANGEL");
+        return name[0];
     }
 
     @Override

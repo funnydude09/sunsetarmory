@@ -17,15 +17,15 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.SpellBarrageGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackKeyframe;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
-import io.redspace.ironsspellbooks.entity.spells.FireEruptionAoe;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.funnydude.sunsetarmory.SunsetTags;
+import net.funnydude.sunsetarmory.effect.ModEffects;
+import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -66,6 +66,24 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAttacker, IEntityWithComplexSpawn, IClientEventEntity {
+
+    public void giveThisPaladinSomeEquipment(){
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NPC_PALADIN_HELMET.get()));
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.NPC_PALADIN_CHESTPLATE.get()));
+        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_PALADIN_LEGGINGS.get()));
+        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.NPC_PALADIN_BOOTS.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_SPEAR.get()));
+        this.setDropChance(EquipmentSlot.HEAD, 0);
+        this.setDropChance(EquipmentSlot.CHEST, 0);
+        this.setDropChance(EquipmentSlot.MAINHAND, 0);
+        this.setDropChance(EquipmentSlot.FEET, 0);
+        this.setDropChance(EquipmentSlot.LEGS, 0);
+    }
+
+    public PaladinEntity(Level level) {
+        this(ModEntities.PALADIN.get(), level);
+        this.giveThisPaladinSomeEquipment();
+    }
 
     @Override
     public void handleClientEvent(byte eventId) {
@@ -416,7 +434,10 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
 
     @Override
     public boolean isHostileTowards(LivingEntity pTarget) {
-        return super.isHostileTowards(pTarget) || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8;
+        return super.isHostileTowards(pTarget)
+                || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
+                || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
+                || pTarget.hasEffect(ModEffects.PILLAGER_ALLY);
     }
 
     @Override

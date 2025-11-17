@@ -10,12 +10,12 @@ import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.Abstra
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.NeutralWizard;
 import io.redspace.ironsspellbooks.entity.mobs.goals.PatrolNearLocationGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.SpellBarrageGoal;
-import io.redspace.ironsspellbooks.entity.mobs.goals.WizardRecoverGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.GenericAnimatedWarlockAttackGoal;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
-import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.funnydude.sunsetarmory.SunsetTags;
+import net.funnydude.sunsetarmory.effect.ModEffects;
+import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -33,10 +33,8 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
 
@@ -50,6 +48,11 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         xpReward = 25;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
+    }
+
+    public KnightEntity(Level level) {
+        this(ModEntities.KNIGHT.get(), level);
+        this.giveThisKnightSomeEquipment();
     }
 
     protected LookControl createLookControl() {
@@ -101,13 +104,13 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
                 .setMeleeMovespeedModifier(1.5f)
                 .setSpells(
                         //attack
-                        List.of(SpellRegistry.FORTIFY_SPELL.get(),SpellRegistry.HEAL_SPELL.get(), SpellRegistry.FLAMING_STRIKE_SPELL.get()),
+                        List.of(SpellRegistry.FLAMING_STRIKE_SPELL.get()),
                         //defence
                         List.of(SpellRegistry.FIREBALL_SPELL.get()),
                         //movement
                         List.of(SpellRegistry.BURNING_DASH_SPELL.get()),
                         //support
-                        List.of()
+                        List.of(SpellRegistry.FORTIFY_SPELL.get(),SpellRegistry.HEAL_SPELL.get())
                 )
                 .setSpellQuality(0.5f, 1.0f)
         );
@@ -134,6 +137,19 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NPC_KNIGHT_HELMET.get()));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.NPC_KNIGHT_CHESTPLATE.get()));
        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_KNIGHT_LEGGINGS.get()));
+        this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.NPC_KNIGHT_BOOTS.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_LONGSWORD.get()));
+        this.setDropChance(EquipmentSlot.HEAD, 0);
+        this.setDropChance(EquipmentSlot.CHEST, 0);
+        this.setDropChance(EquipmentSlot.MAINHAND, 0);
+        this.setDropChance(EquipmentSlot.FEET, 0);
+        this.setDropChance(EquipmentSlot.LEGS, 0);
+    }
+
+    public void giveThisKnightSomeEquipment(){
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NPC_KNIGHT_HELMET.get()));
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.NPC_KNIGHT_CHESTPLATE.get()));
+        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_KNIGHT_LEGGINGS.get()));
         this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.NPC_KNIGHT_BOOTS.get()));
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_LONGSWORD.get()));
         this.setDropChance(EquipmentSlot.HEAD, 0);
@@ -217,7 +233,10 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
 
     @Override
     public boolean isHostileTowards(LivingEntity pTarget) {
-        return super.isHostileTowards(pTarget) || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8;
+        return super.isHostileTowards(pTarget)
+                || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
+                || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
+                || pTarget.hasEffect(ModEffects.PILLAGER_ALLY);
     }
 
     @Override

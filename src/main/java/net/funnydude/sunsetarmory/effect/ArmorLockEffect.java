@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.EffectCure;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 import java.util.Set;
-@EventBusSubscriber
+
 public class ArmorLockEffect extends CustomDescriptionMobEffect {
     public static final float REDUCTION_PER_LEVEL = 0f;
     public static final float BASE_REDUCTION = 1f;
@@ -40,10 +40,10 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
         }
     }
 
-
     public static float getReductionAmount(int level) {
         return BASE_REDUCTION + REDUCTION_PER_LEVEL*level;
     }
+
     @Override
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
         return super.applyEffectTick(livingEntity, amplifier);

@@ -1,7 +1,7 @@
 {
-  "replace": false,
   "values": [
     "sunsetarmory:knight",
-    "sunsetarmory:paladin"
+    "sunsetarmory:paladin",
+    "sunsetarmory:archangel"
   ]
 }

@@ -24,18 +24,21 @@ import java.util.function.Supplier;
 
 
 public class ModEntities {
-    private static final DeferredRegister<EntityType<?>> ENTITIES;
 
-    public static final DeferredHolder<EntityType<?>, EntityType<KnightEntity>> KNIGHT;
+
 
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);
     }
 
-    static {
-        ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, "sunsetarmory");
-        KNIGHT = ENTITIES.register("knight", () -> Builder.of(KnightEntity::new, MobCategory.MISC).sized(.6f, 1.8f).clientTrackingRange(64).build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
-    }
+
+    private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, "sunsetarmory");
+
+    public static final DeferredHolder<EntityType<?>, EntityType<KnightEntity>> KNIGHT
+            = ENTITIES.register("knight", () -> EntityType.Builder.<KnightEntity>of(KnightEntity::new, MobCategory.MISC)
+            .sized(.6f, 1.8f)
+            .clientTrackingRange(64)
+            .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
 
     public static final Supplier<EntityType<Entity>> DIVINE_SHEILD_ENTITY =
             ENTITIES.register("divine_shield", () -> EntityType.Builder.of(DivineShieldEntity::new, MobCategory.MISC)
@@ -56,13 +59,13 @@ public class ModEntities {
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID,"kinetic_vertical_slash_entity").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<PaladinEntity>> PALADIN =
-            ENTITIES.register("paladin",()-> EntityType.Builder.of(PaladinEntity::new,MobCategory.MISC)
+            ENTITIES.register("paladin",()-> EntityType.Builder.<PaladinEntity>of(PaladinEntity::new,MobCategory.MISC)
                     .sized(.6f, 1.8f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "paladin").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<ArchangelEntity>> ARCHANGEL =
-            ENTITIES.register("archangel",()-> EntityType.Builder.of(ArchangelEntity::new,MobCategory.MISC)
+            ENTITIES.register("archangel",()-> EntityType.Builder.<ArchangelEntity>of(ArchangelEntity::new,MobCategory.MISC)
                     .sized(.6f, 1.8f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "archangel").toString()));

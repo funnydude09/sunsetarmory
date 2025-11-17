@@ -93,6 +93,9 @@ public class ModItems {
     public static final DeferredItem<SunsetNonSword> PYRIUM_GREATSWORD;
     public static final DeferredItem<SunsetNonSword> MITHRIL_GREATSWORD;
     public static final DeferredItem<Item> SMOKE_BOMB = ITEMS.register("smoke_bomb",()-> new SmokeBomb(new Item.Properties()));
+    public static final DeferredItem<Item> SUMMON_HELP = ITEMS.register("summon_help",()-> new SummonHelp(new Item.Properties()));
+    public static final DeferredItem<Item> MAHORAGA = ITEMS.register("mahoraga",()-> new Mahoraga(new Item.Properties()));
+
 
     public static final DeferredItem<Item> PYRIUM_SPELL_BOOK;
 

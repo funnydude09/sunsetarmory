@@ -1,7 +1,10 @@
 package net.funnydude.sunsetarmory;
 
 import io.redspace.ironsspellbooks.entity.spells.comet.CometRenderer;
+import io.redspace.ironsspellbooks.item.SpellBook;
 import io.redspace.ironsspellbooks.registries.EntityRegistry;
+import io.redspace.ironsspellbooks.registries.ItemRegistry;
+import io.redspace.ironsspellbooks.render.SpellBookCurioRenderer;
 import mod.azure.azurelib.core.math.functions.classic.Mod;
 import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.entity.render.BlizzardHailRenderer;
@@ -9,11 +12,13 @@ import net.funnydude.sunsetarmory.entity.render.KineticSlashRenderer;
 import net.funnydude.sunsetarmory.entity.render.KineticVerticalSlashRenderer;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelRenderer;
 import net.funnydude.sunsetarmory.entity.render.KnightRenderer;
+import net.funnydude.sunsetarmory.item.ModItems;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @EventBusSubscriber(modid = SunsetArmory.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetup {
@@ -29,5 +34,5 @@ public class ClientSetup {
 
      static void onClientSetup(FMLClientSetupEvent event) {
 
-    }
+     }
 }
