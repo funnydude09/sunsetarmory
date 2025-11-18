@@ -1,0 +1,14 @@
+{
+  "type": "irons_spellbooks:alchemist_cauldron_empty",
+  "fluid": {
+    "amount": 250,
+    "id": "sunsetarmory:fire_mixture"
+  },
+  "input": {
+    "item": "irons_spellbooks:glass_bottle"
+  },
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:fire_mixture_vial"
+  }
+}

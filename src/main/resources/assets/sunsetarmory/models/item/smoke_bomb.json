@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "sunsetarmory:item/john_item"
+    "layer0": "sunsetarmory:item/smoke_bomb"
   }
 }

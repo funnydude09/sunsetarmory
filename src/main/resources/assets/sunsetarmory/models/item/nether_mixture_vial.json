@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "sunsetarmory:item/testitem"
+    "layer0": "sunsetarmory:item/nether_mixture_vial"
   }
 }
