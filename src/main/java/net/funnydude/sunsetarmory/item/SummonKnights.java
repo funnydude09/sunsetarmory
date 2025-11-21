@@ -36,8 +36,8 @@ public class SummonKnights extends Item {
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GOAT_HORN_PLAY, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-        if (!level.isClientSide) {
+        if (!level.isClientSide && !isDamaged(itemstack)) {
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GOAT_HORN_PLAY, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
             for(i=0; i<=2; i++) {
                 KnightEntity knightEntity = new KnightEntity(level);
                 double randRot = getRandomArbitrary(-Math.PI/2,Math.PI/2);
@@ -50,8 +50,8 @@ public class SummonKnights extends Item {
             Vec3 spawn = Utils.moveToRelativeGroundLevel(level, player.getEyePosition().add(new Vec3(5 * Mth.cos((float) randRot), 0, 5 * Mth.sin((float) randRot))), 10);
             paladinEntity.setPos(spawn);
             level.addFreshEntity(paladinEntity);
+            itemstack.hurtAndBreak(itemstack.getMaxDamage()-1,player,player.getEquipmentSlotForItem(itemstack));
         }
-        itemstack.hurtAndBreak(itemstack.getMaxDamage()-1,player,player.getEquipmentSlotForItem(itemstack));
         return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
     }
 }
