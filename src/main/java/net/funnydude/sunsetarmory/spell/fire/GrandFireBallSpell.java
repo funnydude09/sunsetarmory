@@ -13,6 +13,7 @@ import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,8 +28,18 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 @AutoSpellConfig
 public class GrandFireBallSpell extends AbstractSpell {
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.irons_spellbooks.damage",20),
+                Component.translatable("ui.irons_spellbooks.radius",100)
+        );
+    }
 
     private float hp;
 

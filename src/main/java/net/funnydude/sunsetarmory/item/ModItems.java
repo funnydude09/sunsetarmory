@@ -93,8 +93,8 @@ public class ModItems {
     public static final DeferredItem<SunsetNonSword> PYRIUM_GREATSWORD;
     public static final DeferredItem<SunsetNonSword> MITHRIL_GREATSWORD;
     public static final DeferredItem<Item> SMOKE_BOMB = ITEMS.register("smoke_bomb",()-> new SmokeBomb(new Item.Properties()));
-    public static final DeferredItem<Item> SUMMON_HELP = ITEMS.register("summon_knights",()-> new SummonHelp(new Item.Properties()));
-    public static final DeferredItem<Item> MAHORAGA = ITEMS.register("summon_archangel",()-> new Mahoraga(new Item.Properties()));
+    public static final DeferredItem<Item> SUMMON_KNIGHTS = ITEMS.register("summon_knights",()-> new SummonKnights(new Item.Properties().durability(12000)));
+    public static final DeferredItem<Item> SUMMON_ARCHANGEL = ITEMS.register("summon_archangel",()-> new SummonArchangel(new Item.Properties().durability(12000)));
     public static final DeferredItem<Item> PYRIUM_VIAL = ITEMS.register("fire_mixture_vial",()-> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NETHER_VIAL = ITEMS.register("nether_mixture_vial",()-> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ARCANE_VIAL = ITEMS.register("arcane_mixture_vial",()-> new Item(new Item.Properties()));

@@ -51,7 +51,7 @@ public class KineticSlashSpell extends AbstractSpell {
             playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 80, castSource, null), playerMagicData);
         }
         KineticSlash kineticSlash = new KineticSlash(level,entity);
-        kineticSlash.setPos(entity.position());
+        kineticSlash.setPos(entity.position().add(0,entity.getEyeHeight() - kineticSlash.getBoundingBox().getYsize() * 0.5F,0));
         kineticSlash.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0.0F, kineticSlash.getSpeed(), 1.0F);
         kineticSlash.setDamage(this.getDamage(spellLevel, entity));
         level.addFreshEntity(kineticSlash);
@@ -61,6 +61,7 @@ public class KineticSlashSpell extends AbstractSpell {
     private float getDamage(int spellLevel, LivingEntity caster) {
         return (float)(this.getSpellPower(spellLevel, caster) * 0.77 + this.getAdditionalDamage(caster));
     }
+
     @Override
     public int getRecastCount(int spellLevel, @Nullable LivingEntity entity) {
         return 2 + spellLevel;

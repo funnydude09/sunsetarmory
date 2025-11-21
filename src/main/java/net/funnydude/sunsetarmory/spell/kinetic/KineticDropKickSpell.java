@@ -2,19 +2,15 @@ package net.funnydude.sunsetarmory.spell.kinetic;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
-import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
-import io.redspace.ironsspellbooks.api.util.CameraShakeData;
-import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import io.redspace.ironsspellbooks.api.util.Utils;
-import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import io.redspace.ironsspellbooks.damage.DamageSources;
-import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -24,16 +20,19 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
 
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
-import static com.ibm.icu.impl.ValidIdentifiers.Datatype.unit;
 
 @AutoSpellConfig
 public class KineticDropKickSpell extends AbstractSpell {
+
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.irons_spellbooks.damage", getDamageText(spellLevel, caster))
+        );
+    }
 
     public KineticDropKickSpell() {
         this.baseSpellPower = 10;
@@ -42,6 +41,7 @@ public class KineticDropKickSpell extends AbstractSpell {
         this.manaCostPerLevel = 30;
         this.castTime = 0;
     }
+
     public DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)
             .setSchoolResource(ModSchools.KINETIC_RESOURCE)
@@ -53,12 +53,13 @@ public class KineticDropKickSpell extends AbstractSpell {
     public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
         return Utils.preCastTargetHelper(level, entity, playerMagicData, this, 32, .35f);
     }
+
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData castTargetingData) {
             LivingEntity target = castTargetingData.getTarget((ServerLevel) level);
             if(target !=null){
-                Vec3 subtract = target.getForward().scale(3);
+                Vec3 subtract = new Vec3(target.getForward().x, 0, target.getForward().z).scale(3);
                 Utils.handleSpellTeleport(this,entity,target.position().add(subtract));
                 entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
                 float radius = 2.2f;
@@ -71,7 +72,7 @@ public class KineticDropKickSpell extends AbstractSpell {
                 //CameraShakeManager.addCameraShake(new CameraShakeData(10, particleLocation, 10));
                 new Thread(() -> {
                     try {
-                        Thread.sleep(700);
+                        Thread.sleep(500);
                         var entities = level.getEntities(entity, AABB.ofSize(smiteLocation, radius*2,  radius*4, radius*2));
                         var damageSource = this.getDamageSource(entity);
                         for (Entity targetEntity : entities) {
@@ -90,6 +91,13 @@ public class KineticDropKickSpell extends AbstractSpell {
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
+    private String getDamageText(int spellLevel, LivingEntity caster){
+        return Utils.stringTruncation(getDamage(spellLevel, caster), 1);
+    }
+
+    private float getDamage(int spellLevel, LivingEntity caster) {
+        return (this.getSpellPower(spellLevel, caster));
+    }
 
     @Override
     public ResourceLocation getSpellResource() {

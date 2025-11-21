@@ -153,6 +153,7 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     public ArchangelEntity(Level level) {
         this(ModEntities.ARCHANGEL.get(), level);
         this.giveThisArchangelSomeEquipment();
+        RawAnimation.begin().thenPlay("fire_boss_spawn");
     }
 
 

@@ -21,6 +21,7 @@ public class SmokeBomb extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemInHand = player.getItemInHand(hand);
+        player.getCooldowns().addCooldown(this, 20*5);
         if(!level.isClientSide){
             player.addEffect(new MobEffectInstance(MobEffectRegistry.TRUE_INVISIBILITY,100));
             player.addEffect(new MobEffectInstance(MobEffectRegistry.EVASION,60));

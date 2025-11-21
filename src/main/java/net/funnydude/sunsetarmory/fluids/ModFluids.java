@@ -3,6 +3,7 @@ package net.funnydude.sunsetarmory.fluids;
 import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.fluids.NoopFluid;
 import io.redspace.ironsspellbooks.fluids.PotionFluidType;
+import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
@@ -16,8 +17,8 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import java.util.function.Supplier;
 
 public class ModFluids {
-    private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, IronsSpellbooks.MODID);
-    private static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, IronsSpellbooks.MODID);
+    private static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(Registries.FLUID, SunsetArmory.MODID);
+    private static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, SunsetArmory.MODID);
 
     public static void register(IEventBus eventBus) {
         FLUIDS.register(eventBus);

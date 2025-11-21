@@ -30,7 +30,6 @@ public class PaladinMoveControl extends MoveControl {
                 mob.setDeltaMovement(mob.getDeltaMovement().add(movement.yRot(angle).scale(f * f)));
                 float slowdownRange = (float) mob.getAttributeValue(Attributes.ENTITY_INTERACTION_RANGE) * mob.getScale() * .9f;
                 if (mob.distanceToSqr(target) < slowdownRange * slowdownRange) {
-                    //rapid deceleration
                     customMovementTimer -= 2;
                 }
             } else {
@@ -43,8 +42,6 @@ public class PaladinMoveControl extends MoveControl {
     }
     @Override
     protected float rotlerp(float pSourceAngle, float pTargetAngle, float pMaximumChange) {
-        //This fixes a bug where a mob tries to path into the block it's already standing, and spins around trying to look "forward"
-        //We nullify our rotation calculation if we are close to block we are trying to get to
         double d0 = this.wantedX - this.mob.getX();
         double d1 = this.wantedZ - this.mob.getZ();
         if (d0 * d0 + d1 * d1 < .5f) {

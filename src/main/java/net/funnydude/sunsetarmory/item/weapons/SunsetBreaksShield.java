@@ -28,10 +28,10 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 
-public class SunsetBreaksShield extends DiggerItem {
+public class SunsetBreaksShield extends TieredItem {
 
     public SunsetBreaksShield(Tier p_40521_, Item.Properties p_40524_) {
-        super(p_40521_, BlockTags.MINEABLE_WITH_AXE, p_40524_);
+        super(p_40521_, p_40524_);
     }
 
     public InteractionResult useOn(UseOnContext context) {
@@ -39,7 +39,7 @@ public class SunsetBreaksShield extends DiggerItem {
         if (playerHasShieldUseIntent(context)) {
             return InteractionResult.PASS;
         }
-                return InteractionResult.sidedSuccess(level.isClientSide);
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     private static boolean playerHasShieldUseIntent(UseOnContext context) {

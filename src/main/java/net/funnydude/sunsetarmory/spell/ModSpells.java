@@ -10,10 +10,7 @@ import net.funnydude.sunsetarmory.spell.fire.SoulBoundSpell;
 import net.funnydude.sunsetarmory.spell.holy.DivineShieldSpell;
 import net.funnydude.sunsetarmory.spell.holy.GrandDivineSmiteSpell;
 import net.funnydude.sunsetarmory.spell.ice.BlizzardSpell;
-import net.funnydude.sunsetarmory.spell.kinetic.KineticDashSpell;
-import net.funnydude.sunsetarmory.spell.kinetic.KineticDropKickSpell;
-import net.funnydude.sunsetarmory.spell.kinetic.KineticSlashSpell;
-import net.funnydude.sunsetarmory.spell.kinetic.KineticVerticalSlashSpell;
+import net.funnydude.sunsetarmory.spell.kinetic.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
@@ -33,6 +30,7 @@ public class ModSpells {
     public static final Supplier<AbstractSpell> KINETIC_VERTICAL_SLASH_SPELL = registerSpell(new KineticVerticalSlashSpell());
     public static final Supplier<AbstractSpell> KINETIC_DASH_SPELL = registerSpell(new KineticDashSpell());
     public static final Supplier<AbstractSpell> KINETIC_DROP_KICK_SPELL = registerSpell(new KineticDropKickSpell());
+ //   public static final Supplier<AbstractSpell> HALF_SWORD_STANCE_SPELL = registerSpell(new HalfSwordStanceSpell());
 
     //Fire Spells
     public static final Supplier<AbstractSpell> SOUL_BOUND_SPELL = registerSpell(new SoulBoundSpell());

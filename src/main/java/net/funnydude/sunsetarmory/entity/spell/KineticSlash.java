@@ -46,7 +46,6 @@ public class KineticSlash extends Projectile implements AntiMagicSusceptible {
         this.setOwner(shooter);
         this.setYRot(shooter.getYRot());
         this.setXRot(shooter.getXRot());
-        this.setXRot(shooter.getXRot());
     }
 
     public KineticSlash(Level level, LivingEntity shooter) {

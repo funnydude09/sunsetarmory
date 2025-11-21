@@ -9,6 +9,8 @@ import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.BlizzardHail;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -29,6 +31,14 @@ import java.util.Optional;
 @AutoSpellConfig
 public class BlizzardSpell extends AbstractSpell {
 
+    @Override
+    public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
+        return List.of(
+                Component.translatable("ui.irons_spellbooks.damage", getDamageText(spellLevel, caster)),
+                Component.translatable("ui.irons_spellbooks.duration",5+sec,2)
+        );
+    }
+    String sec = new String(" sec");
     private final DefaultConfig defaultConfig = new DefaultConfig()
            .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
            .setMinRarity(SpellRarity.EPIC)
@@ -105,6 +115,10 @@ public class BlizzardSpell extends AbstractSpell {
         return getSpellPower(spellLevel, caster) * .5f;
     }
 
+    private String getDamageText(int spellLevel, LivingEntity caster){
+        String damage = Utils.stringTruncation(getDamage(spellLevel, caster), 1);
+        return damage;
+    }
 
     @Override
     public void onCast(Level world, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {

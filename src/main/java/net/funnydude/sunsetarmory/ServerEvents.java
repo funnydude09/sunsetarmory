@@ -1,19 +1,21 @@
 package net.funnydude.sunsetarmory;
 
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
+import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
 import net.funnydude.sunsetarmory.effect.ModEffects;
-import net.funnydude.sunsetarmory.potion.ModPotions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.entity.living.*;
 
 @EventBusSubscriber
 public class ServerEvents {
@@ -31,6 +33,5 @@ public class ServerEvents {
                 }
             }
         }
-
     }
 }
