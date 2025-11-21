@@ -31,7 +31,7 @@ public class KineticDashSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.RARE)
             .setSchoolResource(ModSchools.KINETIC_RESOURCE)
             .setMaxLevel(5)
-            .setCooldownSeconds(60)
+            .setCooldownSeconds(30)
             .build();
 
     @Override
@@ -69,13 +69,13 @@ public class KineticDashSpell extends AbstractSpell {
     @Override
     public void onCast(Level world, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId())) {
-            playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 80, castSource, null), playerMagicData);
+            playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 800, castSource, null), playerMagicData);
         }
         entity.hasImpulse = true;
         float multiplier = (15 + getSpellPower(spellLevel, entity)) / 12f;
 
         Vec3 forward = entity.getLookAngle();
-        var vec = forward.multiply(2, 1, 2).normalize().scale(multiplier);
+        var vec = forward.multiply(1.5, 1, 1.5).normalize().scale(multiplier);
         playerMagicData.setAdditionalCastData(new ImpulseCastData((float) vec.x, (float) 0, (float) vec.z, true));
 
         entity.setDeltaMovement(new Vec3(
