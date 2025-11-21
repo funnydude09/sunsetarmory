@@ -101,7 +101,7 @@ public class KineticDropKickSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("kinetic_drop_kick_spell");
+        return SunsetArmory.id("kinetic_dropkick_spell");
     }
 
     @Override
