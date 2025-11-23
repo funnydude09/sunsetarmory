@@ -3,10 +3,12 @@ package net.funnydude.sunsetarmory.spell.kinetic;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.spells.*;
+import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.animations.ModAnimations;
 import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.network.chat.Component;
@@ -107,6 +109,11 @@ public class KineticDropKickSpell extends AbstractSpell {
     @Override
     public DefaultConfig getDefaultConfig() {
         return defaultConfig;
+    }
+
+    @Override
+    public AnimationHolder getCastStartAnimation() {
+        return ModAnimations.ANIMATION_DROPKICK;
     }
 
     @Override

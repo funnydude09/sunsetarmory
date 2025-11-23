@@ -8,6 +8,7 @@ import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.*;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
+import net.funnydude.sunsetarmory.entity.wizards.living_armor_stand.LivingArmorStandEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -51,6 +52,13 @@ public class ModEntities {
                     .sized(1.0F, 1.0F)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "kinetic_slash_entity").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<LivingArmorStandEntity>> LIVING_ARMOR_STAND =
+            ENTITIES.register("living_armor_stand", () -> EntityType.Builder.<LivingArmorStandEntity>of(LivingArmorStandEntity::new, MobCategory.MISC)
+                    .sized(1.0F, 1.0F)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "living_armor_stand").toString()));
+
 
     public static final DeferredHolder<EntityType<?>,EntityType<KineticVerticalSlash>> KINETIC_VERTICAL_SLASH =
             ENTITIES.register("kinetic_vertical_slash_entity",() -> EntityType.Builder.<KineticVerticalSlash>of(KineticVerticalSlash::new, MobCategory.MISC)

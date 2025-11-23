@@ -6,6 +6,7 @@ import net.funnydude.sunsetarmory.entity.render.KineticSlashRenderer;
 import net.funnydude.sunsetarmory.entity.render.KineticVerticalSlashRenderer;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelRenderer;
 import net.funnydude.sunsetarmory.entity.render.KnightRenderer;
+import net.funnydude.sunsetarmory.entity.wizards.living_armor_stand.LivingArmorStandRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -22,6 +23,7 @@ public class ClientSetup {
        event.registerEntityRenderer(ModEntities.PALADIN.get(), KnightRenderer::new);
        event.registerEntityRenderer(ModEntities.ARCHANGEL.get(), ArchangelRenderer::new);
         event.registerEntityRenderer(ModEntities.BLIZZARD_HAIL.get(), (context) -> new BlizzardHailRenderer(context, 0.75f));
+        event.registerEntityRenderer(ModEntities.LIVING_ARMOR_STAND.get(), LivingArmorStandRenderer::new);
      }
 
      static void onClientSetup(FMLClientSetupEvent event) {
