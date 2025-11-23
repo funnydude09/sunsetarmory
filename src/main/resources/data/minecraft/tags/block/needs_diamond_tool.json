@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "sunsetarmory:john_block",
-    "sunsetarmory:redblock"
+    "sunsetarmory:pyrium_block"
   ]
 }
