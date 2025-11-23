@@ -1,9 +1,8 @@
-package net.funnydude.sunsetarmory.entity.render;
+package net.funnydude.sunsetarmory.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import io.redspace.ironsspellbooks.entity.spells.AbstractMagicProjectile;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
 import net.minecraft.client.renderer.MultiBufferSource;

@@ -13,6 +13,7 @@ public class KnightModel extends AbstractSpellCastingMobModel {
     public ResourceLocation getTextureResource(AbstractSpellCastingMob object) {
         return TEXTURE;
     }
+
     @Override
     public ResourceLocation getAnimationResource(AbstractSpellCastingMob object) {
         return ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "animations/casting_animations.json");

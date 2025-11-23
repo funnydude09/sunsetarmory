@@ -2,7 +2,6 @@ package net.funnydude.sunsetarmory.fluids;
 
 import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.fluids.NoopFluid;
-import io.redspace.ironsspellbooks.fluids.PotionFluidType;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Items;
@@ -34,7 +33,7 @@ public class ModFluids {
     public static final DeferredHolder<Fluid, NoopFluid> NETHER_MIXTURE = registerNoop("nether_mixture", NETHER_MIXTURE_TYPE::value);
 
     private static DeferredHolder<Fluid, NoopFluid> registerNoop(String name, Supplier<FluidType> fluidType) {
-        DeferredHolder<Fluid, NoopFluid> holder = DeferredHolder.create(Registries.FLUID, IronsSpellbooks.id(name));
+        DeferredHolder<Fluid, NoopFluid> holder = DeferredHolder.create(Registries.FLUID, SunsetArmory.id(name));
         BaseFlowingFluid.Properties properties = new BaseFlowingFluid.Properties(fluidType, holder::value, holder::value).bucket(() -> Items.AIR);
         FLUIDS.register(name, () -> new NoopFluid(properties));
         return holder;

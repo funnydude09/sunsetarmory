@@ -83,7 +83,7 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
     public PaladinEntity(Level level) {
         this(ModEntities.PALADIN.get(), level);
         this.giveThisPaladinSomeEquipment();
-        serverTriggerAnimation("fire_boss_spawn");
+
     }
 
     @Override

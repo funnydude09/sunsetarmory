@@ -1,4 +1,4 @@
-package net.funnydude.sunsetarmory.entity.render;
+package net.funnydude.sunsetarmory.render;
 
 import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.entity.spells.fireball.FireballRenderer;

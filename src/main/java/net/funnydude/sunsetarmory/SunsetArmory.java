@@ -6,6 +6,7 @@ import net.funnydude.sunsetarmory.block.ModBlocks;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.funnydude.sunsetarmory.entity.ModEntities;
 import net.funnydude.sunsetarmory.entity.armor.*;
+import net.funnydude.sunsetarmory.fluids.ModFluids;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.funnydude.sunsetarmory.potion.ModPotions;
@@ -96,6 +97,7 @@ public class SunsetArmory {
         ModSpells.register(modEventBus);
         ModEffects.register(modEventBus);
         ModSchools.register(modEventBus);
+        ModFluids.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 

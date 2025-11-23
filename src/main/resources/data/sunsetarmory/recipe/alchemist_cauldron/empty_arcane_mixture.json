@@ -5,7 +5,7 @@
     "id": "sunsetarmory:arcane_mixture"
   },
   "input": {
-    "item": "irons_spellbooks:glass_bottle"
+    "item": "minecraft:glass_bottle"
   },
   "result": {
     "count": 1,

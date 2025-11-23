@@ -98,6 +98,7 @@ public class KineticSlashSpell extends AbstractSpell {
     public CastType getCastType() {
         return CastType.INSTANT;
     }
+
     @Override
     public AnimationHolder getCastStartAnimation() {
         return SpellAnimations.SLASH_ANIMATION;

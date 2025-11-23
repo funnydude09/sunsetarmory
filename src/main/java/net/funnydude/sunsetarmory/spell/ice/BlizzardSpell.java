@@ -38,7 +38,9 @@ public class BlizzardSpell extends AbstractSpell {
                 Component.translatable("ui.irons_spellbooks.duration",5+sec,2)
         );
     }
+
     String sec = new String(" sec");
+
     private final DefaultConfig defaultConfig = new DefaultConfig()
            .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
            .setMinRarity(SpellRarity.EPIC)

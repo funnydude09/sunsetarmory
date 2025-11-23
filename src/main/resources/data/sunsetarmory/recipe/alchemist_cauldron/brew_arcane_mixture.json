@@ -2,16 +2,10 @@
   "type": "irons_spellbooks:alchemist_cauldron_brew",
   "base_fluid": {
     "amount": 250,
-    "components": {
-      "irons_spellbooks:potion_bottle_type": "regular",
-      "minecraft:potion_contents": {
-        "potion": "minecraft:timeless_slurry"
-      }
-    },
-    "id": "irons_spellbooks:potion"
+    "id": "irons_spellbooks:timeless_slurry"
   },
   "input": {
-    "item": "minecraft:arcane_essence"
+    "item": "irons_spellbooks:arcane_essence"
   },
   "results": [
     {

@@ -22,9 +22,6 @@ import java.util.Optional;
 
 @AutoSpellConfig
 public class DivineShieldSpell extends AbstractSpell {
-
-    private final ResourceLocation spellId = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield_spell");
-
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
@@ -46,8 +43,6 @@ public class DivineShieldSpell extends AbstractSpell {
         this.castTime = 100;
     }
 
-    //e
-
     @Override
     public CastType getCastType() {
         return CastType.CONTINUOUS;
@@ -60,7 +55,7 @@ public class DivineShieldSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return spellId;
+        return SunsetArmory.id("divine_shield_spell");
     }
 
     @Override
@@ -76,12 +71,10 @@ public class DivineShieldSpell extends AbstractSpell {
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         DivineShieldEntity shield0 = new DivineShieldEntity(level, getShieldHP(spellLevel,entity));
-        shield0.setRotation(entity.getXRot(), entity.getYRot());
-        Vec3 spawn0 = Utils.raycastForEntity(level, entity, 2, true).getLocation();
-        shield0.setPos(spawn0);
         level.addFreshEntity(shield0);
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
+
     @Override
     public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
         DivineShieldEntity shield0 = new DivineShieldEntity(level, getShieldHP(spellLevel,entity));
@@ -93,6 +86,7 @@ public class DivineShieldSpell extends AbstractSpell {
     private float getShieldHP(int spellLevel, LivingEntity caster) {
         return 30 * getSpellPower(spellLevel, caster);
     }
+
     @Override
     public AnimationHolder getCastStartAnimation() {
         return SpellAnimations.SELF_CAST_ANIMATION;

@@ -31,8 +31,7 @@ public class SoulBoundSpell extends AbstractSpell {
         );
     }
 
-    String percentage = new String(" %");
-
+    String percentage = new String("%");
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.EPIC)

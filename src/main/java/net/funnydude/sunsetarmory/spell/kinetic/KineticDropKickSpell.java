@@ -67,11 +67,6 @@ public class KineticDropKickSpell extends AbstractSpell {
                 float radius = 2.2f;
                 float range = 0.5f;
                 Vec3 smiteLocation = Utils.raycastForBlock(level, entity.getEyePosition().add(entity.getForward()), entity.getEyePosition().add(entity.getForward().multiply(range, 0, range)), ClipContext.Fluid.NONE).getLocation();
-                //Vec3 particleLocation = level.clip(new ClipContext(smiteLocation, smiteLocation.add(0, -2, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
-                //MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 2),
-                        //particleLocation.x, particleLocation.y, particleLocation.z, 1, 0, 0, 0, 0, true);
-                //MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation.x, particleLocation.y, particleLocation.z, 50, 0, 0, 0, 1, false);
-                //CameraShakeManager.addCameraShake(new CameraShakeData(10, particleLocation, 10));
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
@@ -115,6 +110,7 @@ public class KineticDropKickSpell extends AbstractSpell {
     public AnimationHolder getCastStartAnimation() {
         return ModAnimations.ANIMATION_DROPKICK;
     }
+
 
     @Override
     public CastType getCastType() {
