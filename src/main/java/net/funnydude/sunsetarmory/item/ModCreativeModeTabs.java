@@ -81,14 +81,28 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.ARCANE_FLAMBERGE);
                         output.accept(ModItems.ARCANE_REAPER);
+                        output.accept(ModItems.PYRIUM_SPELL_BOOK);
+                        output.accept(ModItems.SUMMON_KNIGHTS);
+                        output.accept(ModItems.SUMMON_ARCHANGEL);
 
                         output.accept(ModItems.CHAINMAIL);
                         output.accept(ModItems.DECREPIT_SCRAP);
                         output.accept(ModItems.PYRIUM_SCRAP);
-                        output.accept(ModItems.MITHRIL_UPGRADE_TEMPLATE);
                         output.accept(ModBlocks.PYRIUM_BLOCK);
+                        output.accept(ModItems.MITHRIL_UPGRADE_TEMPLATE);
 
-                        output.accept(ModItems.PYRIUM_SPELL_BOOK);
+                        output.accept(ModItems.NETHER_VIAL);
+                        output.accept(ModItems.PYRIUM_VIAL);
+                        output.accept(ModItems.ARCANE_VIAL);
+
+                        output.accept(ModItems.UNSTABLE_KNIGHTSTEEL);
+                        output.accept(ModItems.HOLLOW_KNIGHTSTEEL);
+
+                        output.accept(ModItems.FORTIFIED_KNIGHTSTEEL);
+                        output.accept(ModItems.SCORCHED_KNIGHTSTEEL);
+                        output.accept(ModItems.POTENT_KNIGHTSTEEL);
+
+
 
 
 

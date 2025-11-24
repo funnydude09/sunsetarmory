@@ -29,6 +29,11 @@ public class ModItems {
   public static final DeferredRegister.Items ITEMS =
           DeferredRegister.createItems(SunsetArmory.MODID);;
   public static final DeferredItem<Item> MITHRIL_UPGRADE_TEMPLATE;
+    public static final DeferredItem<Item> UNSTABLE_KNIGHTSTEEL;
+    public static final DeferredItem<Item> HOLLOW_KNIGHTSTEEL;
+    public static final DeferredItem<Item> SCORCHED_KNIGHTSTEEL;
+    public static final DeferredItem<Item> FORTIFIED_KNIGHTSTEEL;
+    public static final DeferredItem<Item> POTENT_KNIGHTSTEEL;
   public static final DeferredItem<Item> CHAINMAIL;
     public static final DeferredItem<Item> DECREPIT_SCRAP;
     public static final DeferredItem<Item> PYRIUM_SCRAP;
@@ -115,7 +120,15 @@ public class ModItems {
 
 
       CHAINMAIL = ITEMS.register("arcane_chainmail", () -> new Item(new Item.Properties().fireResistant()));
-      DECREPIT_SCRAP = ITEMS.register("keeper_scrap", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+        UNSTABLE_KNIGHTSTEEL = ITEMS.register("unstable_knightsteel", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+        HOLLOW_KNIGHTSTEEL = ITEMS.register("hollow_knightsteel", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+        SCORCHED_KNIGHTSTEEL = ITEMS.register("scorched_knightsteel", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
+        FORTIFIED_KNIGHTSTEEL = ITEMS.register("fortified_knightsteel", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
+        POTENT_KNIGHTSTEEL = ITEMS.register("potent_knightsteel", () -> new Item(new Item.Properties().rarity(Rarity.RARE).fireResistant()));
+
+
+
+        DECREPIT_SCRAP = ITEMS.register("keeper_scrap", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
         PYRIUM_SCRAP = ITEMS.register("pyrium_scrap", () -> new Item(new Item.Properties().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant()));
       MITHRIL_UPGRADE_TEMPLATE= ITEMS.register("mithril_upgrade_template", () -> new SimpleDescriptiveItem(new Item.Properties().rarity(Rarity.RARE)));
       ARCANE_FLAMBERGE = ITEMS.register("arcane_flamberge", () -> new ExtendedSwordItem(SunsetWeapons.ARCANE_FLAMBERGE, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.ARCANE_FLAMBERGE))));

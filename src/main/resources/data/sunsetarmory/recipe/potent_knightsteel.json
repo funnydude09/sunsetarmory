@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": {
+      "item": "minecraft:dragon_breath"
+    },
+    "R": {
+      "item": "sunsetarmory:arcane_mixture_vial"
+    },
+    "O": {
+      "item": "sunsetarmory:hollow_knightsteel"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "ROR",
+    "RTR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:potent_knightsteel"
+  }
+}

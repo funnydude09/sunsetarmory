@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "irons_spellbooks:netherite_spell_book"
+    },
+    "C": {
+      "item": "irons_spellbooks:chained_book"
+    },
+    "I": {
+      "item": "irons_spellbooks:pyrium_ingot"
+    },
+    "E": {
+      "item": "irons_spellbooks:cinder_essence"
+    }
+  },
+  "pattern": [
+    "ECE",
+    "ISI",
+    "ECE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:pyrium_spell_book"
+  }
+}

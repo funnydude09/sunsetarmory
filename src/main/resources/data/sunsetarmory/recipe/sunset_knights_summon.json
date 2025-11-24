@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "G": {
+      "item": "minecraft:goat_horn"
+    },
+    "E": {
+      "item": "irons_spellbooks:cinder_essence"
+    },
+    "I": {
+      "item": "sunsetarmory:fortified_knightsteel"
+    }
+  },
+  "pattern": [
+    "NEN",
+    "IGI",
+    "NEN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:summon_knights"
+  }
+}

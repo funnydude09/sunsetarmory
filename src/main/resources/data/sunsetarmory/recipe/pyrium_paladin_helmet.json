@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "irons_spellbooks:pyrium_ingot"
+    },
+    "I": {
+      "item": "sunsetarmory:scorched_knightsteel"
+    },
+    "O": {
+      "item": "sunsetarmory:pyrium_knight_helmet"
+    },
+    "B": {
+      "item": "sunsetarmory:pyrium_scrap"
+    }
+  },
+  "pattern": [
+    "NIN",
+    "IOI",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:pyrium_paladin_helmet"
+  }
+}

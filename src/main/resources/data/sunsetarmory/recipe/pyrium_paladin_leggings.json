@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "sunsetarmory:arcane_chainmail"
+    },
+    "N": {
+      "item": "irons_spellbooks:pyrium_ingot"
+    },
+    "I": {
+      "item": "sunsetarmory:scorched_knightsteel"
+    },
+    "O": {
+      "item": "sunsetarmory:pyrium_knight_leggings"
+    }
+  },
+  "pattern": [
+    "NIN",
+    "COC",
+    "I I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:pyrium_paladin_leggings"
+  }
+}

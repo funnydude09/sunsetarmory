@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 1000,
+  "experience": 0,
+  "ingredient":
+    {
+      "item": "sunsetarmory:unstable_knightsteel"
+    },
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:hollow_knightsteel"
+  }
+}

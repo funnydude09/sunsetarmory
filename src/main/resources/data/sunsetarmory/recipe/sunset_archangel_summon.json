@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "sunsetarmory:scorched_knightsteel"
+    },
+    "G": {
+      "item": "sunsetarmory:summon_knights"
+    },
+    "E": {
+      "item": "sunsetarmory:fortified_knightsteel"
+    },
+    "I": {
+      "item": "irons_spellbooks:pyrium_ingot"
+    }
+  },
+  "pattern": [
+    "NEN",
+    "IGI",
+    "NEN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:summon_archangel"
+  }
+}

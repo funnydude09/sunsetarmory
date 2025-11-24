@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": {
+      "item": "sunsetarmory:keeper_scrap"
+    },
+    "R": {
+      "item": "sunsetarmory:pyrium_scrap"
+    },
+    "O": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "N": {
+      "item": "irons_spellbooks:mithril_scrap"
+    }
+  },
+  "pattern": [
+    "NRR",
+    "TOR",
+    "TTN"
+  ],
+  "result": {
+    "count": 3,
+    "id": "sunsetarmory:unstable_knightsteel"
+  }
+}

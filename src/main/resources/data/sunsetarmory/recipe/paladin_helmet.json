@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "I": {
+      "item": "sunsetarmory:fortified_knightsteel"
+    },
+    "O": {
+      "item": "sunsetarmory:netherite_knight_helmet"
+    },
+    "B": {
+      "item": "sunsetarmory:keeper_scrap"
+    }
+  },
+  "pattern": [
+    "NIN",
+    "IOI",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:netherite_paladin_helmet"
+  }
+}

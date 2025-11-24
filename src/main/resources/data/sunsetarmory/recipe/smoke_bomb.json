@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:gunpowder"
+    },
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "O": {
+      "item": "minecraft:firework_star"
+    },
+    "T": {
+      "item": "irons_spellbooks:cinder_essence"
+    },
+    "P": {
+      "item": "irons_spellbooks:greater_invisibility_elixir"
+    }
+  },
+  "pattern": [
+    "RPR",
+    "IOI",
+    "RTF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:smoke_bomb"
+  }
+}
