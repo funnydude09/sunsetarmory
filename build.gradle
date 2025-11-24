@@ -177,7 +177,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             neo_version            : "21.1.176",
             loader_version_range   : loader_version_range,
             mod_id                 : "sunsetarmory",
-            mod_name               : "Sunet Amory",
+            mod_name               : "Sunset Amory",
             mod_license            : "MIT",
             mod_version            : "0.0.1",
             mod_authors            : "Funnydude09 and Itachi(norfolkzar)",
