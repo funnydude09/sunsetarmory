@@ -64,7 +64,9 @@ public class ModEffects {
 
     public static final Holder<MobEffect> SOUL_BOUND_EFFECT = MOB_EFFECTS.register("soul_bound_effect",
             () -> new SoulBoundEffect(MobEffectCategory.BENEFICIAL,0x8B0000)
-                    .addAttributeModifier(AttributeRegistry.FIRE_SPELL_POWER,SunsetArmory.id("soul_bound_effect"),0.1,
+                    .addAttributeModifier(AttributeRegistry.FIRE_SPELL_POWER,SunsetArmory.id("soul_bound_effect"),2.2,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(AttributeRegistry.SPELL_POWER,SunsetArmory.id("soul_bound_effect"),-2,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(Attributes.ARMOR,SunsetArmory.id("soul_bound_effect"),-1,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
@@ -73,7 +75,7 @@ public class ModEffects {
             () -> new AmbrosiaEffect(MobEffectCategory.BENEFICIAL,0x8B0000)
                     .addAttributeModifier(Attributes.GRAVITY,SunsetArmory.id("cinderous_charge_up_effect"),-0.5,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.JUMP_STRENGTH,SunsetArmory.id("cinderous_charge_up_effect"),0.5,
+                    .addAttributeModifier(Attributes.SAFE_FALL_DISTANCE,SunsetArmory.id("cinderous_charge_up_effect"),5,
                             AttributeModifier.Operation.ADD_VALUE));
 
     public static final Holder<MobEffect> PILLAGER_ALLY = MOB_EFFECTS.register("pillager_ally",

@@ -30,6 +30,7 @@ public class KineticVerticalSlashSpell extends AbstractSpell {
             .setSchoolResource(ModSchools.KINETIC_RESOURCE)
             .setMaxLevel(3)
             .setCooldownSeconds(90)
+            .setAllowCrafting(false)//temporary untill this spell is fixed
             .build();
 
     public KineticVerticalSlashSpell() {
@@ -39,6 +40,11 @@ public class KineticVerticalSlashSpell extends AbstractSpell {
         this.baseManaCost = 35;
         this.castTime = 0;
     }
+
+    @Override
+    public boolean allowLooting() {
+        return false;
+    } //temporary untill this spell is fixed
 
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {

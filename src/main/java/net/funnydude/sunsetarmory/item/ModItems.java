@@ -16,6 +16,7 @@ import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheriteKnightArmorIte
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheritePaladinArmorItem;
 import net.funnydude.sunsetarmory.item.weapons.SunsetNonSword;
 import net.funnydude.sunsetarmory.item.weapons.SunsetWeapons;
+import net.funnydude.sunsetarmory.spell.ModSpells;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -135,7 +136,7 @@ public class ModItems {
         NETHERITE_LONGSWORD = ITEMS.register("netherite_longsword", () -> new ExtendedSwordItem(SunsetWeapons.LONGSWORD, ItemPropertiesHelper.equipment().fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.LONGSWORD))));
         PYRIUM_LONGSWORD = ITEMS.register("pyrium_longsword", () -> new ExtendedSwordItem(SunsetWeapons.PYRIUM_LONGSWORD, ItemPropertiesHelper.equipment().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.PYRIUM_LONGSWORD))));
         MITHRIL_LONGSWORD = ITEMS.register("mithril_longsword", () -> new ExtendedSwordItem(SunsetWeapons.MITHRIL_LONGSWORD, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.MITHRIL_LONGSWORD))));
-        ARCANE_REAPER = ITEMS.register("arcane_reaper", () -> new MagicSwordItem(SunsetWeapons.ARCANE_REAPER, ItemPropertiesHelper.equipment().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.ARCANE_REAPER)).rarity(Rarity.RARE).fireResistant(), SpellDataRegistryHolder.of(new SpellDataRegistryHolder(SpellRegistry.SHOCKWAVE_SPELL, 10))));
+        ARCANE_REAPER = ITEMS.register("arcane_reaper", () -> new MagicSwordItem(SunsetWeapons.ARCANE_REAPER, ItemPropertiesHelper.equipment().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.ARCANE_REAPER)).rarity(Rarity.RARE).fireResistant(), SpellDataRegistryHolder.of(new SpellDataRegistryHolder(ModSpells.KINETIC_SLASH_SPELL, 5))));
         NETHERITE_SPEAR = ITEMS.register("netherite_spear", () -> new SunsetNonSword(SunsetWeapons.SPEAR, ItemPropertiesHelper.equipment().fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.SPEAR))));
         PYRIUM_SPEAR = ITEMS.register("pyrium_spear", () -> new SunsetNonSword(SunsetWeapons.PYRIUM_SPEAR, ItemPropertiesHelper.equipment().rarity(CinderousRarity.CINDEROUS_RARITY_PROXY.getValue()).fireResistant().attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.PYRIUM_SPEAR))));
         MITHRIL_SPEAR = ITEMS.register("mithril_spear", () -> new SunsetNonSword(SunsetWeapons.MITHRIL_SPEAR, ItemPropertiesHelper.equipment().rarity(Rarity.RARE).attributes(ExtendedSwordItem.createAttributes(SunsetWeapons.MITHRIL_SPEAR))));

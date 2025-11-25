@@ -85,7 +85,7 @@ public class BlizzardHail extends AbstractMagicProjectile {
             for (Entity entity : entities) {
                 double distance = entity.distanceToSqr(hitResult.getLocation());
                 if (distance < explosionRadius * explosionRadius && canHitEntity(entity)) {
-                    DamageSources.applyDamage(entity, damage, ModSpells.BLIZZARD_SPELL.get().getDamageSource(this, getOwner()));
+                    //DamageSources.applyDamage(entity, damage, ModSpells.BLIZZARD_SPELL.get().getDamageSource(this, getOwner()));
                     entity.setTicksFrozen(100);
                 }
             }

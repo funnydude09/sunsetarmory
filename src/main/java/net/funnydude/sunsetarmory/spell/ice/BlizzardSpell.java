@@ -46,6 +46,7 @@ public class BlizzardSpell extends AbstractSpell {
            .setMinRarity(SpellRarity.EPIC)
            .setCooldownSeconds(60)
            .setMaxLevel(5)
+            .setAllowCrafting(false) //temporary untill this spell is fixed
            .build();
 
     public BlizzardSpell(){
@@ -55,6 +56,11 @@ public class BlizzardSpell extends AbstractSpell {
         this.castTime = 100;
         this.baseManaCost = 200;
     }
+
+    @Override
+    public boolean allowLooting() {
+        return false;
+    } //temporary untill this spell is fixed
 
     @Override
     public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {

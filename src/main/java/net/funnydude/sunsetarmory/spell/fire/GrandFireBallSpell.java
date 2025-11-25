@@ -47,14 +47,14 @@ public class GrandFireBallSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(SchoolRegistry.FIRE_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(60)
+            .setCooldownSeconds(360)
             .build();
 
     public GrandFireBallSpell() {
         this.manaCostPerLevel = 15;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
-        this.castTime = 100;
+        this.castTime = 85;
         this.baseManaCost = 250;
     }
 
@@ -123,7 +123,7 @@ public class GrandFireBallSpell extends AbstractSpell {
 
     @Override
     public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
-        entity.addEffect(new MobEffectInstance(ModEffects.CINDEROUS_CHARGE_UP,1,0,false,false,true));
+        entity.addEffect(new MobEffectInstance(ModEffects.CINDEROUS_CHARGE_UP,3,0,false,false,true));
         super.onServerCastTick(level, spellLevel, entity, playerMagicData);
     }
 

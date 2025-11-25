@@ -1,8 +1,11 @@
 package net.funnydude.sunsetarmory.item;
 
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
+import io.redspace.ironsspellbooks.registries.ParticleRegistry;
+import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -29,7 +32,10 @@ public class SmokeBomb extends Item {
             player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,100));
             itemInHand.consume(1, player);
             ((ServerLevel)level).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                    player.getX(),player.getY()+1,player.getZ(),1000,0,0,0,0.025);
+                    player.getX(),player.getY()+1,player.getZ(),1000,0,-1,0,0.025);
+            ((ServerLevel)level).sendParticles(ParticleRegistry.EMBEROUS_ASH_PARTICLE.get(),
+                    player.getX(),player.getY()+1,player.getZ(),500,0,-1,0,0.025);
+            player.playSound(SoundRegistry.BOSS_STANCE_BREAK.get(), 5, 2);
         }
         return InteractionResultHolder.sidedSuccess(itemInHand, level.isClientSide());
     }

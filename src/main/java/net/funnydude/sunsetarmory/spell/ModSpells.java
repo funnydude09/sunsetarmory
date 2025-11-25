@@ -22,12 +22,12 @@ public class ModSpells {
     public static final Supplier<AbstractSpell> ARMOR_LOCK_SPELL    = registerSpell(new ArmorLockSpell());
 
     //Holy Spells
-    public static final Supplier<AbstractSpell> DIVINE_SHIELD_SPELL = registerSpell(new DivineShieldSpell());
+   // public static final Supplier<AbstractSpell> DIVINE_SHIELD_SPELL = registerSpell(new DivineShieldSpell());
     public static final Supplier<AbstractSpell> GRAND_DIVINE_SMITE_SPELL = registerSpell(new GrandDivineSmiteSpell());
 
     //Kinetic Spells
     public static final Supplier<AbstractSpell> KINETIC_SLASH_SPELL = registerSpell(new KineticSlashSpell());
-    public static final Supplier<AbstractSpell> KINETIC_VERTICAL_SLASH_SPELL = registerSpell(new KineticVerticalSlashSpell());
+   // public static final Supplier<AbstractSpell> KINETIC_VERTICAL_SLASH_SPELL = registerSpell(new KineticVerticalSlashSpell());
     public static final Supplier<AbstractSpell> KINETIC_DASH_SPELL = registerSpell(new KineticDashSpell());
     public static final Supplier<AbstractSpell> KINETIC_DROP_KICK_SPELL = registerSpell(new KineticDropKickSpell());
  //   public static final Supplier<AbstractSpell> HALF_SWORD_STANCE_SPELL = registerSpell(new HalfSwordStanceSpell());
@@ -37,7 +37,7 @@ public class ModSpells {
     public static final Supplier<AbstractSpell> GRAND_FIRE_BALL_SPELL = registerSpell(new GrandFireBallSpell());
 
     //Ice Spells
-    public static final Supplier<AbstractSpell> BLIZZARD_SPELL = registerSpell(new BlizzardSpell());
+  //  public static final Supplier<AbstractSpell> BLIZZARD_SPELL = registerSpell(new BlizzardSpell());
 
     private static Supplier<AbstractSpell> registerSpell(AbstractSpell spell) {
         return SPELLS.register(spell.getSpellName(), () -> spell);
