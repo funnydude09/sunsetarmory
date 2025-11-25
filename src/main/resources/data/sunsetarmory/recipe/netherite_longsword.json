@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "I": {
+      "item": "sunsetarmory:fortified_knightsteel"
+    },
+    "O": {
+      "item": "irons_spellbooks:decrepit_flamberge"
+    }
+  },
+  "pattern": [
+    "  I",
+    "NI ",
+    "ON "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:netherite_longsword"
+  }
+}

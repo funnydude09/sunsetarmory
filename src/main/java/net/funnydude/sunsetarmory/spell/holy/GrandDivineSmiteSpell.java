@@ -62,7 +62,7 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
             .setMinRarity(SpellRarity.LEGENDARY)
             .setSchoolResource(SchoolRegistry.HOLY_RESOURCE)
             .setMaxLevel(1)
-            .setCooldownSeconds(60)
+            .setCooldownSeconds(80)
             .build();
 
 

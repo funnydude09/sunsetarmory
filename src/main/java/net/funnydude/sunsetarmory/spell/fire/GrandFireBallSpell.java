@@ -74,7 +74,7 @@ public class GrandFireBallSpell extends AbstractSpell {
     @Override
     public CastResult canBeCastedBy(int spellLevel, CastSource castSource, MagicData playerMagicData, Player player) {
         if(!(player.getHealth()<=0.5*player.getMaxHealth())){
-            return new CastResult(CastResult.Type.FAILURE,Component.translatable("spell.sunsetarmory.grand_fire_ball.message").withStyle(ChatFormatting.DARK_RED));
+            return new CastResult(CastResult.Type.FAILURE,Component.translatable("spell.sunsetarmory.grand_fireball.message").withStyle(ChatFormatting.DARK_RED));
         }
         return new CastResult(CastResult.Type.SUCCESS);
     }
@@ -138,7 +138,7 @@ public class GrandFireBallSpell extends AbstractSpell {
     }
     @Override
     public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("grand_fire_ball_spell");
+        return SunsetArmory.id("grand_fireball_spell");
     }
 
     @Override
