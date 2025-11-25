@@ -63,13 +63,14 @@ public class ServerEvents {
         var level = entity.level();
         if(entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.COOL_DOWN_EFFECT)&& ((LivingEntity) entity).hasEffect(MobEffectRegistry.CHARGED)){
             Vec3 explosionLocation  = entity.position();
+            var damage = Math.pow(16,((LivingEntity) entity).getAttribute(AttributeRegistry.FIRE_SPELL_POWER).getValue());
             ((LivingEntity)entity).removeEffect(ModEffects.COOL_DOWN_EFFECT);
             ((LivingEntity)entity).removeEffect(MobEffectRegistry.CHARGED);
             var entities = level.getEntities(entity, AABB.ofSize(explosionLocation, 5, 2, 5));
             var damageSource = new DamageSource(entity.level().damageSources().cactus().typeHolder(),entity);
             for (Entity targetEntity : entities) {
                 if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, explosionLocation.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
-                    if (DamageSources.applyDamage(targetEntity,10 , damageSource)) {
+                    if (DamageSources.applyDamage(targetEntity,(float)damage , damageSource)) {
                         EnchantmentHelper.doPostAttackEffects((ServerLevel) level, targetEntity, damageSource);
                     }
                 }
