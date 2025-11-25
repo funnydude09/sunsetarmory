@@ -17,7 +17,6 @@ public class ModSounds {
         SOUND_EVENTS.register(eventBus);
     }
 
-    //TODO: bring sound locations into spec
    public static DeferredHolder<SoundEvent, SoundEvent> KINETIC_CAST = registerSoundEvent("kinetic_cast");
 
     private static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvent(String name) {

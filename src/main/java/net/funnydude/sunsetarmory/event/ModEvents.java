@@ -11,7 +11,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 @EventBusSubscriber(modid = SunsetArmory.MODID, value = Dist.CLIENT)
 public class ModEvents {
-
     @SubscribeEvent
     public static void OnBrewingRecipeRegister(RegisterBrewingRecipesEvent event){
         PotionBrewing.Builder builder = event.getBuilder();
@@ -19,4 +18,9 @@ public class ModEvents {
         builder.addMix(Potions.TURTLE_MASTER, Items.DEEPSLATE_REDSTONE_ORE, ModPotions.AMBROSIA_POTION);
         builder.addMix(Potions.AWKWARD, Items.WITHER_ROSE, ModPotions.WITHERING_POTION);
     }
+    //@SubscribeEvent
+    //UseItemOnBlockEvent (kinda useless idk why i put it here)
+    //RegisterConfigurationTasksEvent
+    //EntityEvent->ProjectileImpactEvent
+    //ModifySpellLevelEvent
 }
