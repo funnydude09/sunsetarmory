@@ -82,7 +82,7 @@ public class ArmorLockSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity)), spellLevel, false, false, true));
+        entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, (int) (getSpellPower(spellLevel, entity)), 1, false, false, true));
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 

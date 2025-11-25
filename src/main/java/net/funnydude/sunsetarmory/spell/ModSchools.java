@@ -8,6 +8,7 @@ import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.attribute.ModAttributes;
 import net.funnydude.sunsetarmory.damagetype.ModDamageTypes;
+import net.funnydude.sunsetarmory.sounds.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -30,7 +31,7 @@ public class ModSchools {
             Component.translatable("school.sunsetarmory.kinetic").withStyle(ChatFormatting.WHITE),
             ModAttributes.KINETIC_MAGIC_POWER,
             ModAttributes.KINETIC_MAGIC_RESIST,
-            SoundRegistry.FIRE_CAST,
+            ModSounds.KINETIC_CAST,
             ModDamageTypes.KINETIC_MAGIC
     ));
     public static void register(IEventBus eventBus) {

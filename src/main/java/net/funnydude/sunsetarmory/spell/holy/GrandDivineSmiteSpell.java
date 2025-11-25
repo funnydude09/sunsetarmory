@@ -169,27 +169,12 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
 
        new Thread(() -> {
            try {
-               Thread.sleep(1000);
+               Thread.sleep(250);
+
                Vec3 particleLocation1 = level.clip(new ClipContext(smiteLocation1, smiteLocation1.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
                MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
                        particleLocation1.x, particleLocation1.y, particleLocation1.z, 1, 0, 0, 0, 0, true);
                MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation1.x, particleLocation1.y, particleLocation1.z, 50, 0, 0, 0, 1, false);
-
-               Vec3 particleLocation2 = level.clip(new ClipContext(smiteLocation2, smiteLocation2.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
-               MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
-                       particleLocation2.x, particleLocation2.y, particleLocation2.z, 1, 0, 0, 0, 0, true);
-               MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation2.x, particleLocation2.y, particleLocation2.z, 50, 0, 0, 0, 1, false);
-
-               Vec3 particleLocation3 = level.clip(new ClipContext(smiteLocation3, smiteLocation3.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
-               MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
-                       particleLocation3.x, particleLocation3.y, particleLocation3.z, 1, 0, 0, 0, 0, true);
-               MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation3.x, particleLocation3.y, particleLocation3.z, 50, 0, 0, 0, 1, false);
-
-               Vec3 particleLocation4 = level.clip(new ClipContext(smiteLocation4, smiteLocation4.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
-               MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
-                       particleLocation4.x, particleLocation4.y, particleLocation4.z, 1, 0, 0, 0, 0, true);
-               MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation4.x, particleLocation4.y, particleLocation4.z, 50, 0, 0, 0, 1, false);
-
                var entities1 = level.getEntities(entity, AABB.ofSize(smiteLocation1, 3, 2, 3));
                for (Entity targetEntity : entities1) {
                    if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation1.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
@@ -198,6 +183,13 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
                        }
                    }
                }
+
+               Thread.sleep(100);
+
+               Vec3 particleLocation2 = level.clip(new ClipContext(smiteLocation2, smiteLocation2.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
+               MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
+                       particleLocation2.x, particleLocation2.y, particleLocation2.z, 1, 0, 0, 0, 0, true);
+               MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation2.x, particleLocation2.y, particleLocation2.z, 50, 0, 0, 0, 1, false);
                var entities2 = level.getEntities(entity, AABB.ofSize(smiteLocation2, 3, 2, 3));
                for (Entity targetEntity : entities2) {
                    if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation2.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
@@ -206,6 +198,13 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
                        }
                    }
                }
+
+               Thread.sleep(100);
+
+               Vec3 particleLocation3 = level.clip(new ClipContext(smiteLocation3, smiteLocation3.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
+               MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
+                       particleLocation3.x, particleLocation3.y, particleLocation3.z, 1, 0, 0, 0, 0, true);
+               MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation3.x, particleLocation3.y, particleLocation3.z, 50, 0, 0, 0, 1, false);
                var entities3 = level.getEntities(entity, AABB.ofSize(smiteLocation3, 3, 2, 3));
                for (Entity targetEntity : entities3) {
                    if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation3.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
@@ -214,6 +213,14 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
                        }
                    }
                }
+
+               Thread.sleep(100);
+
+               Vec3 particleLocation4 = level.clip(new ClipContext(smiteLocation4, smiteLocation4.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);
+               MagicManager.spawnParticles(level, new BlastwaveParticleOptions(SchoolRegistry.HOLY.get().getTargetingColor(), 3),
+                       particleLocation4.x, particleLocation4.y, particleLocation4.z, 1, 0, 0, 0, 0, true);
+               MagicManager.spawnParticles(level, ParticleTypes.ELECTRIC_SPARK, particleLocation4.x, particleLocation4.y, particleLocation4.z, 50, 0, 0, 0, 1, false);
+
                var entities4 = level.getEntities(entity, AABB.ofSize(smiteLocation4, 3, 2, 3));
                for (Entity targetEntity : entities4) {
                    if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation4.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {

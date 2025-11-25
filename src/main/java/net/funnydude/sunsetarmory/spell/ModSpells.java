@@ -34,7 +34,7 @@ public class ModSpells {
 
     //Fire Spells
     public static final Supplier<AbstractSpell> SOUL_BOUND_SPELL = registerSpell(new SoulBoundSpell());
-    public static final Supplier<AbstractSpell> GRAND_FIRE_BALL_SPELL = registerSpell(new GrandFireBallSpell());
+    public static final Supplier<AbstractSpell> GRAND_FIREBALL_SPELL = registerSpell(new GrandFireBallSpell());
 
     //Ice Spells
   //  public static final Supplier<AbstractSpell> BLIZZARD_SPELL = registerSpell(new BlizzardSpell());

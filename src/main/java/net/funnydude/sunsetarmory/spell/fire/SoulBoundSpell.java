@@ -25,7 +25,7 @@ public class SoulBoundSpell extends AbstractSpell {
     @Override
     public List<MutableComponent> getUniqueInfo(int spellLevel, LivingEntity caster) {
         return List.of(
-                Component.translatable("ui.sunsetarmory.fire_spell_power",spellLevel*10+percentage),
+                Component.translatable("ui.sunsetarmory.fire_spell_power",20*spellLevel+percentage),
                 Component.translatable("ui.irons_spellbooks.effect_length", Utils.timeFromTicks(120 * spellLevel, 1))
         );
     }
@@ -49,7 +49,7 @@ public class SoulBoundSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        entity.addEffect(new MobEffectInstance(ModEffects.SOUL_BOUND_EFFECT, 120 * spellLevel, spellLevel-1, false, false, true));
+        entity.addEffect(new MobEffectInstance(ModEffects.SOULBOUND_EFFECT, 120 * spellLevel, spellLevel-1, false, false, true));
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
@@ -65,7 +65,7 @@ public class SoulBoundSpell extends AbstractSpell {
 
     @Override
     public ResourceLocation getSpellResource() {
-        return SunsetArmory.id("soul_bound_spell");
+        return SunsetArmory.id("soulbound_spell");
     }
 
     @Override

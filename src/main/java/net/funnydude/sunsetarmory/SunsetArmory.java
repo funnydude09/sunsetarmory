@@ -10,6 +10,7 @@ import net.funnydude.sunsetarmory.fluids.ModFluids;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
 import net.funnydude.sunsetarmory.item.ModItems;
 import net.funnydude.sunsetarmory.potion.ModPotions;
+import net.funnydude.sunsetarmory.sounds.ModSounds;
 import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.funnydude.sunsetarmory.spell.ModSpells;
 import net.minecraft.resources.ResourceLocation;
@@ -98,6 +99,7 @@ public class SunsetArmory {
         ModEffects.register(modEventBus);
         ModSchools.register(modEventBus);
         ModFluids.register(modEventBus);
+        ModSounds.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
