@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "irons_spellboks:pyrium_ingot"
+    },
+    "I": {
+      "item": "sunsetarmory:scorched_knightsteel"
+    },
+    "O": {
+      "item": "irons_spellbooks:legionnaire_flamberge"
+    }
+  },
+  "pattern": [
+    "  I",
+    "NI ",
+    "ON "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:pyrium_longsword"
+  }
+}

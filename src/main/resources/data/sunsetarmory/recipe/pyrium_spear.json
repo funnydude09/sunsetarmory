@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "irons_spellbooks:pyrium_ingot"
+    },
+    "I": {
+      "item": "sunsetarmory:scorched_knightsteel"
+    },
+    "O": {
+      "item": "minecraft:netherite_shovel"
+    }
+  },
+  "pattern": [
+    " II",
+    " OI",
+    "N  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:pyrium_spear"
+  }
+}

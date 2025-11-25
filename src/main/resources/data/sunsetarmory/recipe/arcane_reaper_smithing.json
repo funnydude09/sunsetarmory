@@ -8,9 +8,9 @@
   },
   "result": {
     "count": 1,
-    "id": "sunsetarmory:mithril_knight_boots"
+    "id": "sunsetarmory:arcane_reaper"
   },
   "template": {
-    "item": "sunsetarmory:arcane_reaper"
+    "item": "sunsetarmory:mithril_upgrade_template"
   }
 }

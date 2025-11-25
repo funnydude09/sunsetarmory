@@ -4,13 +4,13 @@
     "item": "irons_spellbooks:mithril_ingot"
   },
   "base": {
-    "item": "irons_spellbooks:decreipt_flamberge"
+    "item": "irons_spellbooks:decrepit_flamberge"
   },
   "result": {
     "count": 1,
-    "id": "sunsetarmory:mithril_knight_boots"
+    "id": "sunsetarmory:arcane_flamberge"
   },
   "template": {
-    "item": "sunsetarmory:arcane_flamberge"
+    "item": "sunsetarmory:mithril_upgrade_template"
   }
 }

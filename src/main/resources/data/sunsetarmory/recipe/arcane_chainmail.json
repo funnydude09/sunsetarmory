@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "D": {
+      "item": "irons:spellbooks:magic_cloth"
+    }
+  },
+  "pattern": [
+    "ND",
+    "DN"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sunsetarmory:arcane_chainmail"
+  }
+}

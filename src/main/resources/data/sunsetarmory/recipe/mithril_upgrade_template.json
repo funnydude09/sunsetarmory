@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_upgrade_template"
+    },
+    "D": {
+      "item": "irons:spellbooks:mitril_scrap"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DND",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:mithril_upgrade_template"
+  }
+}

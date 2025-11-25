@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "S": {
+      "item": "sunsetarmory:keeper_scrap"
+    },
+    "I": {
+      "item": "sunsetarmory:reinforced_knightsteel"
+    },
+    "O": {
+      "item": "sunsetarmory:netherite_longsword"
+    }
+  },
+  "pattern": [
+    " SI",
+    "NIS",
+    "ON "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:netherite_greatsword"
+  }
+}

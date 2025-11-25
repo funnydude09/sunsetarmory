@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "irons_spellboks:mithril_ingot"
+    },
+    "S": {
+      "item": "irons_spellboks:mithril_scrap"
+    },
+    "I": {
+      "item": "sunsetarmory:potent_knightsteel"
+    },
+    "O": {
+      "item": "sunsetarmory:mithril_longsword"
+    }
+  },
+  "pattern": [
+    " SI",
+    "NIS",
+    "ON "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sunsetarmory:mithril_greatsword"
+  }
+}
