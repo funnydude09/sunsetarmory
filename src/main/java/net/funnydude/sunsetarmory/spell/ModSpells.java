@@ -10,6 +10,7 @@ import net.funnydude.sunsetarmory.spell.fire.SoulBoundSpell;
 import net.funnydude.sunsetarmory.spell.holy.DivineShieldSpell;
 import net.funnydude.sunsetarmory.spell.holy.GrandDivineSmiteSpell;
 import net.funnydude.sunsetarmory.spell.ice.BlizzardSpell;
+import net.funnydude.sunsetarmory.spell.ice.CoolDown;
 import net.funnydude.sunsetarmory.spell.kinetic.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -20,6 +21,8 @@ public class ModSpells {
 
     //Evocation Spells
     public static final Supplier<AbstractSpell> ARMOR_LOCK_SPELL    = registerSpell(new ArmorLockSpell());
+
+    public static final Supplier<AbstractSpell> COOL_DOWN_SPELL = registerSpell(new CoolDown());
 
     //Holy Spells
    // public static final Supplier<AbstractSpell> DIVINE_SHIELD_SPELL = registerSpell(new DivineShieldSpell());

@@ -91,9 +91,12 @@
   "spell.sunsetarmory.armor_lock_spell.guide": "Overwhelm yourself with the arcane, granting invincibility but being stunned",
   "spell.sunsetarmory.grand_divine_smite_spell": "Grand Divine Smite",
   "spell.sunsetarmory.grand_divine_smite_spell.guide": "Channel all of your holy energy into one devastating melee area attack, which increases with your weapon enchantments and damage. Requires you to be under half hp.",
+  "spell.sunsetarmory.cool_down_spell": "Cool Down",
+  "spell.sunsetarmory.cool_down_spell.guide": "Keep your head cool with magic, focus your arcane on your cooldowns and cast movement speed. Do not mix with charge.",
   "spell.sunsetarmory.armor_lock.message": "Cannot cast spells while immobile",
   "effect.sunsetarmory.ambrosia_effect": "Ambrosia",
   "effect.sunsetarmory.rage_effect": "Rage",
+  "effect.sunsetarmory.cool_down_effect": "Cooled Down",
   "effect.sunsetarmory.cinderous_chargeup_effect": "Cinderous Chargeup",
   "spell.sunsetarmory.grand_fireball.message":"Cannot cast Grand Fireball unless below half health",
   "spell.sunsetarmory.grand_divine_smite.message":"Cannot cast Grand Divine Smite unless below half health"

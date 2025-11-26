@@ -4,7 +4,7 @@
     "item": "irons_spellbooks:mithril_ingot"
   },
   "base": {
-    "item": "irons_spellbooks:decrepit_flamberge"
+    "item": "irons_spellbooks:keeper_flamberge"
   },
   "result": {
     "count": 1,
