@@ -9,12 +9,14 @@ import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.animations.ModAnimations;
+import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -61,6 +63,7 @@ public class KineticDropKickSpell extends AbstractSpell {
         if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData castTargetingData) {
             LivingEntity target = castTargetingData.getTarget((ServerLevel) level);
             if(target !=null){
+                entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, 4, 1, false, false, false));
                 Vec3 subtract = new Vec3(target.getForward().x, 0, target.getForward().z).scale(3);
                 Utils.handleSpellTeleport(this,entity,target.position().add(subtract));
                 entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
