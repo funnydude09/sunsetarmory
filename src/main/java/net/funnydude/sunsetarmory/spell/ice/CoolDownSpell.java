@@ -14,9 +14,9 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
-public class CoolDown extends AbstractSpell {
+public class CoolDownSpell extends AbstractSpell {
 
-    public CoolDown(){
+    public CoolDownSpell(){
         this.manaCostPerLevel = 25;
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;

@@ -4,11 +4,7 @@ import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.DamageSources;
-import io.redspace.ironsspellbooks.damage.ISSDamageTypes;
-import io.redspace.ironsspellbooks.damage.PortalDamageSource;
-import io.redspace.ironsspellbooks.damage.SpellDamageSource;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
-import net.funnydude.sunsetarmory.damagetype.ModDamageTypes;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -19,21 +15,14 @@ import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 @EventBusSubscriber
@@ -43,7 +32,7 @@ public class ServerEvents {
         Player entity = event.getEntity();
         boolean isImmobile = entity.hasEffect(ModEffects.ARMOR_LOCK_EFFECT);
         if (entity instanceof ServerPlayer player) {
-            if (!player.level().isClientSide() && event.getSpellId().equals("grand_divine_smite_spell") && (player.getHealth()>0.5*player.getMaxHealth())) {
+            if (!player.level().isClientSide() && event.getSpellId().equals("grand_divine_smite_spell") && (player.getHealth() > 0.5 * player.getMaxHealth())) {
                 ServerGamePacketListenerImpl serverGamePacketListener = player.connection;
                 serverGamePacketListener.send(new ClientboundSetActionBarTextPacket(Component.translatable("spell.sunsetarmory.grand_divine_smite.message").withStyle(ChatFormatting.DARK_RED)));
             }
@@ -57,24 +46,29 @@ public class ServerEvents {
             }
         }
     }
+
     @SubscribeEvent
-    public static void onPlayerCastEvent(EntityTickEvent.Post event){
+    public static void onEntityTick(EntityTickEvent.Post event) {
         var entity = event.getEntity();
         var level = entity.level();
-        if(entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.COOL_DOWN_EFFECT)&& ((LivingEntity) entity).hasEffect(MobEffectRegistry.CHARGED)){
-            Vec3 explosionLocation  = entity.position();
-            var damage = Math.pow(16,((LivingEntity) entity).getAttribute(AttributeRegistry.FIRE_SPELL_POWER).getValue());
-            ((LivingEntity)entity).removeEffect(ModEffects.COOL_DOWN_EFFECT);
-            ((LivingEntity)entity).removeEffect(MobEffectRegistry.CHARGED);
+        if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.COOL_DOWN_EFFECT) && ((LivingEntity) entity).hasEffect(MobEffectRegistry.CHARGED)) {
+            Vec3 explosionLocation = entity.position();
+            var damage = Math.pow(16, ((LivingEntity) entity).getAttribute(AttributeRegistry.FIRE_SPELL_POWER).getValue());
+            ((LivingEntity) entity).removeEffect(ModEffects.COOL_DOWN_EFFECT);
+            ((LivingEntity) entity).removeEffect(MobEffectRegistry.CHARGED);
             var entities = level.getEntities(entity, AABB.ofSize(explosionLocation, 5, 2, 5));
-            var damageSource = new DamageSource(entity.level().damageSources().cactus().typeHolder(),entity);
+            var damageSource = new DamageSource(entity.level().damageSources().cactus().typeHolder(), entity);
             for (Entity targetEntity : entities) {
                 if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, explosionLocation.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
-                    if (DamageSources.applyDamage(targetEntity,(float)damage , damageSource)) {
+                    if (DamageSources.applyDamage(targetEntity, (float) damage, damageSource)) {
                         EnchantmentHelper.doPostAttackEffects((ServerLevel) level, targetEntity, damageSource);
                     }
                 }
             }
+        }
+        if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.ADRENALINE_OVERFLOW_EFFECT) && ((LivingEntity) entity).hasEffect(MobEffectRegistry.HEARTSTOP)) {
+            ((LivingEntity) entity).removeEffect(ModEffects.ADRENALINE_OVERFLOW_EFFECT);
+            ((LivingEntity) entity).removeEffect(MobEffectRegistry.HEARTSTOP);
         }
     }
 }

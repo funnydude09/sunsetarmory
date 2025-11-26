@@ -8,6 +8,6 @@ import software.bernie.geckolib.animation.Animation;
 public class ModAnimations {
     public static ResourceLocation ANIMATION_RESOURCE = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "animations");
 
-    public static final AnimationHolder ANIMATION_DROPKICK = new AnimationHolder("sunsetarmory:animations/dropkick", true);
+    public static final AnimationHolder ANIMATION_DROPKICK = new AnimationHolder("sunsetarmory:dropkick", true);
 
    }
