@@ -3,10 +3,7 @@ package net.funnydude.sunsetarmory.spell.ice;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
-import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
-import io.redspace.ironsspellbooks.api.spells.CastSource;
-import io.redspace.ironsspellbooks.api.spells.CastType;
-import io.redspace.ironsspellbooks.api.spells.SpellRarity;
+import io.redspace.ironsspellbooks.api.spells.*;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +11,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
+@AutoSpellConfig
 public class CoolDownSpell extends AbstractSpell {
 
     public CoolDownSpell(){
@@ -21,14 +19,14 @@ public class CoolDownSpell extends AbstractSpell {
         this.baseSpellPower = 1;
         this.spellPowerPerLevel = 1;
         this.castTime = 0;
-        this.baseManaCost = 200;
+        this.baseManaCost = 50;
     }
 
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
-            .setMinRarity(SpellRarity.EPIC)
-            .setCooldownSeconds(60)
-            .setMaxLevel(5)
+            .setMinRarity(SpellRarity.RARE)
+            .setCooldownSeconds(40)
+            .setMaxLevel(3)
             .build();
 
     @Override

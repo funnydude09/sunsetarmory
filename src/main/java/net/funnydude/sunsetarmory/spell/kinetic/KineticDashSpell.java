@@ -7,9 +7,11 @@ import io.redspace.ironsspellbooks.capabilities.magic.ImpulseCastData;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.spell.ModSchools;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -71,6 +73,8 @@ public class KineticDashSpell extends AbstractSpell {
         if (!playerMagicData.getPlayerRecasts().hasRecastForSpell(getSpellId())) {
             playerMagicData.getPlayerRecasts().addRecast(new RecastInstance(getSpellId(), spellLevel, getRecastCount(spellLevel, entity), 800, castSource, null), playerMagicData);
         }
+        ((ServerLevel)world).sendParticles(ParticleTypes.GUST,
+                entity.getX(),entity.getY(),entity.getZ(),1,0,-0.5,0,0.025);
         entity.hasImpulse = true;
         float multiplier = (15 + getSpellPower(spellLevel, entity)) / 12f;
 

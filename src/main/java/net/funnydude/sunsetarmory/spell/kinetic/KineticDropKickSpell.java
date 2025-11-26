@@ -12,13 +12,19 @@ import net.funnydude.sunsetarmory.animations.ModAnimations;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.funnydude.sunsetarmory.spell.ModSchools;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -73,6 +79,9 @@ public class KineticDropKickSpell extends AbstractSpell {
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
+                        ((ServerLevel)level).sendParticles(ParticleTypes.EXPLOSION_EMITTER,
+                               entity.getX(),entity.getY(),entity.getZ(),1,0,-0.5,0,0.025);
+                        level.playSound(((Player) entity),entity.getX(),entity.getY(),entity.getZ(), SoundEvents.BREEZE_WIND_CHARGE_BURST, SoundSource.PLAYERS, 31F, 0.8F);
                         var entities = level.getEntities(entity, AABB.ofSize(smiteLocation, radius*2,  radius*4, radius*2));
                         var damageSource = this.getDamageSource(entity);
                         for (Entity targetEntity : entities) {

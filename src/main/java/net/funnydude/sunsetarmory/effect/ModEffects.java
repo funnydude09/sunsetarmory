@@ -92,7 +92,7 @@ public class ModEffects {
 
     public static final Holder<MobEffect> COOL_DOWN_EFFECT = MOB_EFFECTS.register("cool_down_effect",
             () -> new CoolDownEffect(MobEffectCategory.BENEFICIAL,0x8B0000)
-                    .addAttributeModifier(AttributeRegistry.COOLDOWN_REDUCTION,SunsetArmory.id("cool_down_effect"),0.5,
+                    .addAttributeModifier(AttributeRegistry.COOLDOWN_REDUCTION,SunsetArmory.id("cool_down_effect"),0.4,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(AttributeRegistry.CASTING_MOVESPEED,SunsetArmory.id("cool_down_effect"),1,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));

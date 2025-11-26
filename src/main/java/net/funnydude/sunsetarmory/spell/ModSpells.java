@@ -38,8 +38,9 @@ public class ModSpells {
     public static final Supplier<AbstractSpell> GRAND_FIREBALL_SPELL = registerSpell(new GrandFireBallSpell());
 
     //Ice Spells
+    public static final Supplier<AbstractSpell> COOL_DOWN_SPELL = registerSpell(new CoolDownSpell());
     //public static final Supplier<AbstractSpell> BLIZZARD_SPELL = registerSpell(new BlizzardSpell());
-    //public static final Supplier<AbstractSpell> COOL_DOWN_SPELL = registerSpell(new CoolDownSpell());
+
 
     private static Supplier<AbstractSpell> registerSpell(AbstractSpell spell) {
         return SPELLS.register(spell.getSpellName(), () -> spell);

@@ -8,6 +8,7 @@ import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.animations.ModAnimations;
 import net.funnydude.sunsetarmory.effect.ArmorLockEffect;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.ChatFormatting;
@@ -43,7 +44,7 @@ public class ArmorLockSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setMinRarity(SpellRarity.UNCOMMON)
             .setSchoolResource(SchoolRegistry.EVOCATION_RESOURCE)
-            .setMaxLevel(5)
+            .setMaxLevel(1)
             .setCooldownSeconds(15)
             .build();
 
@@ -88,7 +89,7 @@ public class ArmorLockSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.ANIMATION_INSTANT_CAST;
+        return ModAnimations.ARMOR_LOCK;
     }
 
 }

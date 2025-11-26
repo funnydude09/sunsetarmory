@@ -16,6 +16,7 @@ import io.redspace.ironsspellbooks.network.casting.UpdateCastingStatePacket;
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.animations.ModAnimations;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
@@ -293,7 +294,7 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
 
     @Override
     public AnimationHolder getCastStartAnimation() {
-        return SpellAnimations.OVERHEAD_MELEE_SWING_ANIMATION;
+        return ModAnimations.GRAND_SMITE;
     }
 
     @Override

@@ -17,7 +17,7 @@ import org.joml.Matrix4f;
 import java.util.Random;
 
 public class KineticSlashRenderer extends EntityRenderer<KineticSlash> {
-    private static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "textures/entity/kinetic_slash");
+    private static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "textures/entity/kinetic_slash.png");
     public KineticSlashRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
