@@ -5,6 +5,7 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
+import mod.azure.azurelib.rewrite.render.entity.AzEntityLayerRenderer;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -57,7 +58,8 @@ public class ServerEvents {
             ((LivingEntity) entity).removeEffect(ModEffects.COOL_DOWN_EFFECT);
             ((LivingEntity) entity).removeEffect(MobEffectRegistry.CHARGED);
             var entities = level.getEntities(entity, AABB.ofSize(explosionLocation, 5, 2, 5));
-            var damageSource = new DamageSource(entity.level().damageSources().cactus().typeHolder(), entity);
+            var damageSource = new DamageSource(entity.level().damageSources().explosion(null).typeHolder(), entity);
+            DamageSources.applyDamage(entity, (float) (damage*0.5),damageSource);
             for (Entity targetEntity : entities) {
                 if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, explosionLocation.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
                     if (DamageSources.applyDamage(targetEntity, (float) damage, damageSource)) {
