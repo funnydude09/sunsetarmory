@@ -117,7 +117,7 @@ public class ModItems {
   }
     static {
         PYRIUM_SPELL_BOOK = ITEMS.register("pyrium_spell_book", () -> new SpellBook(13)
-              .withSpellbookAttributes(new AttributeContainer(AttributeRegistry.MAX_MANA, 220, AttributeModifier.Operation.ADD_VALUE)));
+              .withSpellbookAttributes(new AttributeContainer(AttributeRegistry.MAX_MANA, 250, AttributeModifier.Operation.ADD_VALUE),new AttributeContainer(AttributeRegistry.CAST_TIME_REDUCTION, 0.07, AttributeModifier.Operation.ADD_VALUE),new AttributeContainer(AttributeRegistry.FIRE_SPELL_POWER, 0.05, AttributeModifier.Operation.ADD_VALUE)));
 
 
       CHAINMAIL = ITEMS.register("arcane_chainmail", () -> new Item(new Item.Properties().fireResistant()));

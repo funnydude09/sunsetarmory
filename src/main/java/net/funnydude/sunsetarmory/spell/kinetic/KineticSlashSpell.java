@@ -59,7 +59,7 @@ public class KineticSlashSpell extends AbstractSpell {
     }
 
     private float getDamage(int spellLevel, LivingEntity caster) {
-        return (float)(this.getSpellPower(spellLevel, caster) * 0.77 + this.getAdditionalDamage(caster));
+        return (float)(this.getSpellPower(spellLevel, caster) * 0.45     + this.getAdditionalDamage(caster));
     }
 
     @Override

@@ -25,7 +25,7 @@ public class CoolDownSpell extends AbstractSpell {
     private final DefaultConfig defaultConfig = new DefaultConfig()
             .setSchoolResource(SchoolRegistry.ICE_RESOURCE)
             .setMinRarity(SpellRarity.RARE)
-            .setCooldownSeconds(40)
+            .setCooldownSeconds(100)
             .setMaxLevel(3)
             .build();
 

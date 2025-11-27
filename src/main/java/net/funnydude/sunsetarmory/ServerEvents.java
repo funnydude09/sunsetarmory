@@ -5,9 +5,11 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
+import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import mod.azure.azurelib.rewrite.render.entity.AzEntityLayerRenderer;
 import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.server.level.ServerLevel;
@@ -54,10 +56,16 @@ public class ServerEvents {
         var level = entity.level();
         if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.COOL_DOWN_EFFECT) && ((LivingEntity) entity).hasEffect(MobEffectRegistry.CHARGED)) {
             Vec3 explosionLocation = entity.position();
-            var damage = Math.pow(16, ((LivingEntity) entity).getAttribute(AttributeRegistry.FIRE_SPELL_POWER).getValue());
+            var damage = Math.pow(2, ((LivingEntity) entity).getAttribute(AttributeRegistry.FIRE_SPELL_POWER).getValue()+3);
             ((LivingEntity) entity).removeEffect(ModEffects.COOL_DOWN_EFFECT);
             ((LivingEntity) entity).removeEffect(MobEffectRegistry.CHARGED);
             var entities = level.getEntities(entity, AABB.ofSize(explosionLocation, 5, 2, 5));
+            ((ServerLevel)level).sendParticles(ParticleRegistry.FIRE_PARTICLE.get(),
+                    entity.getX(),entity.getY(),entity.getZ(),50,0,0,0,0.4);
+            ((ServerLevel)level).sendParticles(ParticleRegistry.FIERY_SMOKE_PARTICLE.get(),
+                    entity.getX(),entity.getY(),entity.getZ(),200,0,0,0,0.05);
+            ((ServerLevel)level).sendParticles(ParticleRegistry.EMBEROUS_ASH_PARTICLE.get(),
+                    entity.getX(),entity.getY(),entity.getZ(),200,0,0,0,0.5);
             var damageSource = new DamageSource(entity.level().damageSources().explosion(null).typeHolder(), entity);
             DamageSources.applyDamage(entity, (float) (damage*0.5),damageSource);
             for (Entity targetEntity : entities) {
