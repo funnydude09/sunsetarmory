@@ -1,14 +1,12 @@
-package net.funnydude.sunsetarmory.item;
+package net.funnydude.sunsetarmory.item.custom;
 
 import io.redspace.ironsspellbooks.api.util.Utils;
-import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;

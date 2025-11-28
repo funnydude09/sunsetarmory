@@ -1,24 +1,17 @@
-package net.funnydude.sunsetarmory.effect;
+package net.funnydude.sunsetarmory.registries;
 
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
-import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.spell.evocation.AdrenalineOverflow;
+import net.funnydude.sunsetarmory.effect.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Cow;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.w3c.dom.Attr;
 
 public class ModEffects {
     public static final DeferredRegister<MobEffect>MOB_EFFECTS =

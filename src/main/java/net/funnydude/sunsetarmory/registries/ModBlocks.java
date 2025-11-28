@@ -1,12 +1,9 @@
-package net.funnydude.sunsetarmory.block;
+package net.funnydude.sunsetarmory.registries;
 
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.item.ModItems;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;

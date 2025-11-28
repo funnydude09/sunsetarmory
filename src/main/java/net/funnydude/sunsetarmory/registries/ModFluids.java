@@ -1,6 +1,5 @@
-package net.funnydude.sunsetarmory.fluids;
+package net.funnydude.sunsetarmory.registries;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.fluids.NoopFluid;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.core.registries.Registries;

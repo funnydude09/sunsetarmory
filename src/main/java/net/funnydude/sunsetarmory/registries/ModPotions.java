@@ -1,17 +1,13 @@
-package net.funnydude.sunsetarmory.potion;
+package net.funnydude.sunsetarmory.registries;
 
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.effect.ModEffects;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import io.redspace.ironsspellbooks.effect.RendEffect;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 
 public class ModPotions {
@@ -27,7 +23,7 @@ public class ModPotions {
     public static final Holder<Potion> REND_POTION = POTIONS.register("rend_potion",
             () -> new Potion(new MobEffectInstance(MobEffectRegistry.REND,100,19)));
 
-    public static  void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus){
         POTIONS.register(eventBus);
     }
 }

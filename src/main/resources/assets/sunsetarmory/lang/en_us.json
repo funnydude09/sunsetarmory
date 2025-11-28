@@ -71,6 +71,8 @@
   "entity.sunsetarmory.knight": "Knight of the Sunset",
   "entity.sunsetarmory.paladin": "Paladin of the Sunset",
   "school.sunsetarmory.kinetic": "Kinetic",
+  "attribute.sunsetarmory.kinetic_spell_power": "Kinetic Spell Power",
+  "attribute.sunsetarmory.kinetic_magic_resist": "Kinetic Spell Resistance",
   "entity.sunsetarmory.archangel": "Archangel of the Sunset Order",
   "spell.sunsetarmory.kinetic_slash_spell": "Kinetic Slash",
   "spell.sunsetarmory.kinetic_slash_spell.guide": "Channel your kinetic energy in multiple slashes",

@@ -1,22 +1,27 @@
-package net.funnydude.sunsetarmory.item;
+package net.funnydude.sunsetarmory.registries;
 
 import io.redspace.ironsspellbooks.api.item.weapons.ExtendedSwordItem;
 import io.redspace.ironsspellbooks.api.item.weapons.MagicSwordItem;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellDataRegistryHolder;
-import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.item.SimpleDescriptiveItem;
 import io.redspace.ironsspellbooks.item.SpellBook;
+import io.redspace.ironsspellbooks.item.UpgradeOrbItem;
 import io.redspace.ironsspellbooks.item.weapons.AttributeContainer;
+import io.redspace.ironsspellbooks.registries.ComponentRegistry;
 import io.redspace.ironsspellbooks.render.CinderousRarity;
 import io.redspace.ironsspellbooks.util.ItemPropertiesHelper;
+import net.funnydude.sunsetarmory.ModUpgradeOrbs;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.item.armor.*;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheriteKnightArmorItem;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheritePaladinArmorItem;
+import net.funnydude.sunsetarmory.item.custom.SmokeBomb;
+import net.funnydude.sunsetarmory.item.custom.SummonArchangel;
+import net.funnydude.sunsetarmory.item.custom.SummonKnights;
 import net.funnydude.sunsetarmory.item.weapons.SunsetNonSword;
 import net.funnydude.sunsetarmory.item.weapons.SunsetWeapons;
-import net.funnydude.sunsetarmory.spell.ModSpells;
+import net.funnydude.sunsetarmory.registries.ModSpells;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -27,8 +32,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Collection;
 
 public class ModItems {
-  public static final DeferredRegister.Items ITEMS =
-          DeferredRegister.createItems(SunsetArmory.MODID);;
+  public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SunsetArmory.MODID);;
   public static final DeferredItem<Item> MITHRIL_UPGRADE_TEMPLATE;
     public static final DeferredItem<Item> UNSTABLE_KNIGHTSTEEL;
     public static final DeferredItem<Item> HOLLOW_KNIGHTSTEEL;
@@ -104,6 +108,11 @@ public class ModItems {
     public static final DeferredItem<Item> PYRIUM_VIAL = ITEMS.register("fire_mixture_vial",()-> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NETHER_VIAL = ITEMS.register("nether_mixture_vial",()-> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ARCANE_VIAL = ITEMS.register("arcane_mixture_vial",()-> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> KINETIC_UPGRADE_TEMPLATE = ITEMS.register("kinetic_upgrade_template",
+            () -> new Item(ItemPropertiesHelper.material().stacksTo(16).rarity(Rarity.EPIC)));
+    public static final DeferredHolder<Item, Item> KINETIC_UPGRADE_ORB = ITEMS.register("kinetic_upgrade_orb",
+            () -> new UpgradeOrbItem(ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON).component(ComponentRegistry.UPGRADE_ORB_TYPE, ModUpgradeOrbs.KINETIC_SPELL_POWER)));
+
 
 
     public static final DeferredItem<Item> PYRIUM_SPELL_BOOK;

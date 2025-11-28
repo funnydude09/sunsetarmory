@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class AdrenalineOverflowEffect extends MobEffect {
 
-    protected AdrenalineOverflowEffect(MobEffectCategory category, int color) {
+    public AdrenalineOverflowEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 

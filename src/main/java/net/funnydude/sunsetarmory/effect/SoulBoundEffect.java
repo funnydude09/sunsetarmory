@@ -15,7 +15,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class SoulBoundEffect extends MagicMobEffect implements ISyncedMobEffect  {
 
-    protected SoulBoundEffect(MobEffectCategory category, int color) {
+    public SoulBoundEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
     @Override

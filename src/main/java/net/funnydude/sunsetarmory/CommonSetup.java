@@ -1,6 +1,6 @@
 package net.funnydude.sunsetarmory;
 
-import net.funnydude.sunsetarmory.entity.ModEntities;
+import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;

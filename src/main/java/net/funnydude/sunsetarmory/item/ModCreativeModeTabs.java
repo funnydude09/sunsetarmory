@@ -1,7 +1,8 @@
 package net.funnydude.sunsetarmory.item;
 
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.block.ModBlocks;
+import net.funnydude.sunsetarmory.registries.ModBlocks;
+import net.funnydude.sunsetarmory.registries.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

@@ -6,7 +6,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
 public class PillagerAllyEffect extends MobEffect{
-    protected PillagerAllyEffect(MobEffectCategory category, int color) {
+
+    public PillagerAllyEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 

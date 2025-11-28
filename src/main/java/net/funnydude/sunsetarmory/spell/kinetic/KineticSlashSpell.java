@@ -8,7 +8,7 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.KineticSlash;
-import net.funnydude.sunsetarmory.spell.ModSchools;
+import net.funnydude.sunsetarmory.registries.ModSchools;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

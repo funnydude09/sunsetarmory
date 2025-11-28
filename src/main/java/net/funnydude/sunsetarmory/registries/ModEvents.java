@@ -1,7 +1,6 @@
-package net.funnydude.sunsetarmory.event;
+package net.funnydude.sunsetarmory.registries;
 
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.potion.ModPotions;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
@@ -18,9 +17,4 @@ public class ModEvents {
         builder.addMix(Potions.TURTLE_MASTER, Items.DEEPSLATE_REDSTONE_ORE, ModPotions.AMBROSIA_POTION);
         builder.addMix(Potions.AWKWARD, Items.WITHER_ROSE, ModPotions.WITHERING_POTION);
     }
-    //@SubscribeEvent
-    //UseItemOnBlockEvent (kinda useless idk why i put it here)
-    //RegisterConfigurationTasksEvent
-    //EntityEvent->ProjectileImpactEvent
-    //ModifySpellLevelEvent
 }

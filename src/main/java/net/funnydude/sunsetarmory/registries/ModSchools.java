@@ -1,14 +1,10 @@
-package net.funnydude.sunsetarmory.spell;
+package net.funnydude.sunsetarmory.registries;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.SchoolType;
-import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.SunsetTags;
-import net.funnydude.sunsetarmory.attribute.ModAttributes;
-import net.funnydude.sunsetarmory.damagetype.ModDamageTypes;
-import net.funnydude.sunsetarmory.sounds.ModSounds;
+import net.funnydude.sunsetarmory.registries.ModAttributes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +25,7 @@ public class ModSchools {
             KINETIC_RESOURCE,
             SunsetTags.KINETIC_FOCUS,
             Component.translatable("school.sunsetarmory.kinetic").withStyle(ChatFormatting.WHITE),
-            ModAttributes.KINETIC_MAGIC_POWER,
+            ModAttributes.KINETIC_SPELL_POWER,
             ModAttributes.KINETIC_MAGIC_RESIST,
             ModSounds.KINETIC_CAST,
             ModDamageTypes.KINETIC_MAGIC

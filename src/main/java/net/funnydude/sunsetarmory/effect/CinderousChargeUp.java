@@ -8,7 +8,7 @@ import org.apache.logging.log4j.core.util.SystemMillisClock;
 
 public class CinderousChargeUp extends MobEffect {
 
-    protected CinderousChargeUp(MobEffectCategory category, int color) {
+    public CinderousChargeUp(MobEffectCategory category, int color) {
         super(category, color);
     }
 

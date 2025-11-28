@@ -1,15 +1,12 @@
-package net.funnydude.sunsetarmory.spell;
+package net.funnydude.sunsetarmory.registries;
 
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
-import mod.azure.azurelib.core.math.functions.classic.Abs;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.spell.evocation.ArmorLockSpell;
 import net.funnydude.sunsetarmory.spell.fire.GrandFireBallSpell;
 import net.funnydude.sunsetarmory.spell.fire.SoulBoundSpell;
-import net.funnydude.sunsetarmory.spell.holy.DivineShieldSpell;
 import net.funnydude.sunsetarmory.spell.holy.GrandDivineSmiteSpell;
-import net.funnydude.sunsetarmory.spell.ice.BlizzardSpell;
 import net.funnydude.sunsetarmory.spell.ice.CoolDownSpell;
 import net.funnydude.sunsetarmory.spell.kinetic.*;
 import net.neoforged.bus.api.IEventBus;

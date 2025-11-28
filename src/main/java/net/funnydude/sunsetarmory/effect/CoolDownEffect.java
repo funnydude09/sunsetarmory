@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class CoolDownEffect extends MobEffect {
 
-    protected CoolDownEffect(MobEffectCategory category, int color) {
+    public CoolDownEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 

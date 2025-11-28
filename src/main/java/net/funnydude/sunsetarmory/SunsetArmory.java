@@ -1,18 +1,18 @@
 package net.funnydude.sunsetarmory;
 
-import com.llamalad7.mixinextras.utils.ASMUtils;
 import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
-import net.funnydude.sunsetarmory.block.ModBlocks;
-import net.funnydude.sunsetarmory.effect.ModEffects;
-import net.funnydude.sunsetarmory.entity.ModEntities;
+import net.funnydude.sunsetarmory.registries.ModAttributes;
+import net.funnydude.sunsetarmory.registries.ModBlocks;
+import net.funnydude.sunsetarmory.registries.ModEffects;
+import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.entity.armor.*;
-import net.funnydude.sunsetarmory.fluids.ModFluids;
+import net.funnydude.sunsetarmory.registries.ModFluids;
 import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
-import net.funnydude.sunsetarmory.item.ModItems;
-import net.funnydude.sunsetarmory.potion.ModPotions;
-import net.funnydude.sunsetarmory.sounds.ModSounds;
-import net.funnydude.sunsetarmory.spell.ModSchools;
-import net.funnydude.sunsetarmory.spell.ModSpells;
+import net.funnydude.sunsetarmory.registries.ModItems;
+import net.funnydude.sunsetarmory.registries.ModPotions;
+import net.funnydude.sunsetarmory.registries.ModSounds;
+import net.funnydude.sunsetarmory.registries.ModSchools;
+import net.funnydude.sunsetarmory.registries.ModSpells;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -37,8 +37,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import top.theillusivec4.curios.Curios;
-import top.theillusivec4.curios.api.CuriosApi;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SunsetArmory.MODID)
@@ -100,6 +98,7 @@ public class SunsetArmory {
         ModSchools.register(modEventBus);
         ModFluids.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModAttributes.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 

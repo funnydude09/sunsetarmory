@@ -1,4 +1,4 @@
-package net.funnydude.sunsetarmory.item;
+package net.funnydude.sunsetarmory.item.custom;
 
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;

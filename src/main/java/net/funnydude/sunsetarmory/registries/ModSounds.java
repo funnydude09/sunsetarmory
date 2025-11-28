@@ -1,6 +1,5 @@
-package net.funnydude.sunsetarmory.sounds;
+package net.funnydude.sunsetarmory.registries;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;

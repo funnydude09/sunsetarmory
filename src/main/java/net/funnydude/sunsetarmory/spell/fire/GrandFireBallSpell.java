@@ -10,7 +10,7 @@ import io.redspace.ironsspellbooks.entity.spells.fireball.MagicFireball;
 import io.redspace.ironsspellbooks.network.casting.OnCastStartedPacket;
 import io.redspace.ironsspellbooks.network.casting.UpdateCastingStatePacket;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.effect.ModEffects;
+import net.funnydude.sunsetarmory.registries.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -59,15 +59,15 @@ public class GrandFireBallSpell extends AbstractSpell {
     }
 
     @Override
-    public void onCast(Level world, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData){
+    public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData){
             Vec3 origin = entity.getEyePosition();
-            MagicFireball fireball = new MagicFireball(world, entity);
+            MagicFireball fireball = new MagicFireball(level, entity);
             fireball.setDamage(20);
             fireball.setExplosionRadius(100);
             fireball.setPos(origin.add(entity.getForward()).subtract(0, fireball.getBbHeight() / 2, 0));
             fireball.shoot(entity.getLookAngle());
-            world.addFreshEntity(fireball);
-            super.onCast(world, spellLevel, entity, castSource, playerMagicData);
+            level.addFreshEntity(fireball);
+            super.onCast(level, spellLevel, entity, castSource, playerMagicData);
 
     }
 

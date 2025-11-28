@@ -1,23 +1,17 @@
 package net.funnydude.sunsetarmory;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.fluids.SimpleClientFluidType;
-import io.redspace.ironsspellbooks.fluids.SimpleTintedClientFluidType;
-import io.redspace.ironsspellbooks.registries.FluidRegistry;
-import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
-import net.funnydude.sunsetarmory.entity.ModEntities;
-import net.funnydude.sunsetarmory.fluids.ModFluids;
+import net.funnydude.sunsetarmory.registries.ModEntities;
+import net.funnydude.sunsetarmory.registries.ModFluids;
 import net.funnydude.sunsetarmory.render.BlizzardHailRenderer;
 import net.funnydude.sunsetarmory.render.KineticSlashRenderer;
 import net.funnydude.sunsetarmory.render.KineticVerticalSlashRenderer;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelRenderer;
 import net.funnydude.sunsetarmory.render.KnightRenderer;
 import net.funnydude.sunsetarmory.entity.wizards.living_armor_stand.LivingArmorStandRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;

@@ -2,6 +2,7 @@ package net.funnydude.sunsetarmory.item;
 
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.registries.ModItems;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;

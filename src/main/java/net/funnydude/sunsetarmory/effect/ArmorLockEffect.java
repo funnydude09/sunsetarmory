@@ -1,7 +1,7 @@
 package net.funnydude.sunsetarmory.effect;
 
 import io.redspace.ironsspellbooks.effect.CustomDescriptionMobEffect;
-import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
+import net.funnydude.sunsetarmory.registries.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -9,16 +9,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.EffectCure;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
-import java.util.Set;
 @EventBusSubscriber
 public class ArmorLockEffect extends CustomDescriptionMobEffect {
-    public static final float REDUCTION_PER_LEVEL = 0f;
-    public static final float BASE_REDUCTION = 1f;
 
-    protected ArmorLockEffect(MobEffectCategory pCategory, int pColor) {
+    public ArmorLockEffect(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
     }
 
@@ -28,6 +24,7 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
         float reductionAmount = getReductionAmount(amp);
         return Component.translatable("tooltip.irons_spellbooks.oakskin_description", (int) (reductionAmount * 100)).withStyle(ChatFormatting.BLUE);
     }
+
     @SubscribeEvent
     public static void reduceDamage(LivingIncomingDamageEvent event) {
         var entity = event.getEntity();
@@ -38,7 +35,7 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
     }
 
     public static float getReductionAmount(int level) {
-        return BASE_REDUCTION + REDUCTION_PER_LEVEL*level;
+        return 1;
     }
 
     @Override
