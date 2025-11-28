@@ -1,7 +1,8 @@
-package net.funnydude.sunsetarmory;
+package net.funnydude.sunsetarmory.registries;
 
 import io.redspace.ironsspellbooks.item.armor.UpgradeOrbType;
 import io.redspace.ironsspellbooks.registries.UpgradeOrbTypeRegistry;
+import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.resources.ResourceKey;
 
 public class ModUpgradeOrbs {

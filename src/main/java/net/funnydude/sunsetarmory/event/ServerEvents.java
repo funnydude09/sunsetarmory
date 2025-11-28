@@ -1,4 +1,4 @@
-package net.funnydude.sunsetarmory;
+package net.funnydude.sunsetarmory.event;
 
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;

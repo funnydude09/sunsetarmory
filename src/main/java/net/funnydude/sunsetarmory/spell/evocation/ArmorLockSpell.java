@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-
 public class ArmorLockSpell extends AbstractSpell {
 
     @Override

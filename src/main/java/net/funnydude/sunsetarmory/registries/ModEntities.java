@@ -20,13 +20,9 @@ import java.util.function.Supplier;
 
 
 public class ModEntities {
-
-
-
     public static void register(IEventBus eventBus) {
         ENTITIES.register(eventBus);
     }
-
 
     private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, "sunsetarmory");
 
@@ -36,7 +32,7 @@ public class ModEntities {
             .clientTrackingRange(64)
             .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
 
-    public static final Supplier<EntityType<Entity>> DIVINE_SHEILD_ENTITY =
+    public static final Supplier<EntityType<Entity>> DIVINE_SHIELD_ENTITY =
             ENTITIES.register("divine_shield", () -> EntityType.Builder.of(DivineShieldEntity::new, MobCategory.MISC)
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
