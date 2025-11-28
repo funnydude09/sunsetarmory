@@ -22,6 +22,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 @EventBusSubscriber(modid = SunsetArmory.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetupEvent {
     private static final long ARMOR_LOCK = 2;
+    private static final long COOL_DOWN = 2;
 
     @SubscribeEvent
     public static void rendererRegister(EntityRenderersEvent.RegisterRenderers event) {
@@ -51,6 +52,7 @@ public class ClientSetupEvent {
     private static void addLayerToPlayerSkin(EntityRenderersEvent.AddLayers event, PlayerSkin.Model skinName) {
         EntityRenderer<? extends Player> render = event.getSkin(skinName);
         if (render instanceof LivingEntityRenderer livingRenderer) {
+            livingRenderer.addLayer(new CoolDownSwirlRenderer.Vanilla(livingRenderer, SunsetArmory.id("textures/entity/cool_down_layer.png"), COOL_DOWN));
             livingRenderer.addLayer(new ArmorLockSwirlRenderer.Vanilla(livingRenderer, SunsetArmory.id("textures/entity/armor_lock_layer.png"), ARMOR_LOCK));
         }
     }
