@@ -83,7 +83,6 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
     public PaladinEntity(Level level) {
         this(ModEntities.PALADIN.get(), level);
         this.giveThisPaladinSomeEquipment();
-
     }
 
     @Override
@@ -238,7 +237,6 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         this.targetSelector.addGoal(1, new MomentHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Pig.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, DeadKingBoss.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     /*

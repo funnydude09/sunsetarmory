@@ -17,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,6 +31,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @AutoSpellConfig
@@ -67,24 +69,23 @@ public class KineticDropKickSpell extends AbstractSpell {
         if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData castTargetingData) {
             LivingEntity target = castTargetingData.getTarget((ServerLevel) level);
             if(target !=null){
-                entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, 4, 1, false, false, false));
+                entity.addEffect(new MobEffectInstance(ModEffects.ARMOR_LOCK_EFFECT, 4, 0, false, false, false));
                 Vec3 subtract = new Vec3(target.getForward().x, 0, target.getForward().z).scale(3);
                 Utils.handleSpellTeleport(this,entity,target.position().add(subtract));
                 entity.lookAt(EntityAnchorArgument.Anchor.EYES, target.getEyePosition());
                 float radius = 2.2f;
                 float range = 0.5f;
-                Vec3 smiteLocation = Utils.raycastForBlock(level, entity.getEyePosition().add(entity.getForward()), entity.getEyePosition().add(entity.getForward().multiply(range, 0, range)), ClipContext.Fluid.NONE).getLocation();
+                Vec3 dropkickLocation = Utils.raycastForBlock(level, entity.getEyePosition().add(entity.getForward()), entity.getEyePosition().add(entity.getForward().multiply(range, 0, range)), ClipContext.Fluid.NONE).getLocation();
                 new Thread(() -> {
                     try {
                         Thread.sleep(500);
-                        ((ServerLevel)level).sendParticles(ParticleTypes.EXPLOSION_EMITTER,
-                               entity.getX(),entity.getY(),entity.getZ(),1,0,-0.5,0,0.025);
-                        level.playSound(((Player) entity),entity.getX(),entity.getY(),entity.getZ(), SoundEvents.BREEZE_WIND_CHARGE_BURST, SoundSource.PLAYERS, 31F, 0.8F);
-                        var entities = level.getEntities(entity, AABB.ofSize(smiteLocation, radius*2,  radius*4, radius*2));
+                        ((ServerLevel)level).sendParticles(ParticleTypes.EXPLOSION_EMITTER,entity.getX(),entity.getY(),entity.getZ(),1,0,-0.5,0,0.025);
+                        (level).playSound(((Player) entity),entity.getX(),entity.getY(),entity.getZ(),SoundEvents.GOAT_HORN_PLAY,SoundSource.PLAYERS,1,1);
+                        var entities = level.getEntities(entity, AABB.ofSize(dropkickLocation, radius*2,  radius*4, radius*2));
                         var damageSource = this.getDamageSource(entity);
                         for (Entity targetEntity : entities) {
-                            if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, smiteLocation.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
-                                if (DamageSources.applyDamage(targetEntity, 10, damageSource)) {
+                            if (targetEntity.isAlive() && targetEntity.isPickable() && Utils.hasLineOfSight(level, dropkickLocation.add(0, 1, 0), targetEntity.getBoundingBox().getCenter(), true)) {
+                                if (DamageSources.applyDamage(targetEntity, 1, damageSource)) {
                                     EnchantmentHelper.doPostAttackEffects((ServerLevel) level, targetEntity, damageSource);
                                 }
                             }
@@ -120,7 +121,6 @@ public class KineticDropKickSpell extends AbstractSpell {
     public AnimationHolder getCastStartAnimation() {
         return ModAnimations.ANIMATION_DROPKICK;
     }
-
 
     @Override
     public CastType getCastType() {

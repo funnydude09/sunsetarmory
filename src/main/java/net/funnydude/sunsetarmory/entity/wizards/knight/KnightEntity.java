@@ -17,6 +17,9 @@ import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.registries.ModEffects;
 import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.registries.ModItems;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
@@ -42,7 +45,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttacker {
-
+    private static final EntityDataAccessor<Boolean> DATA_IS_PLAYING_SPAWN_ANIM = SynchedEntityData.defineId(KnightEntity.class, EntityDataSerializers.BOOLEAN);
     public KnightEntity(EntityType<? extends AbstractSpellCastingMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         xpReward = 25;
@@ -53,8 +56,12 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     public KnightEntity(Level level) {
         this(ModEntities.KNIGHT.get(), level);
         this.giveThisKnightSomeEquipment();
+        fallingAnimation();
     }
 
+    public void fallingAnimation(){
+        entityData.set(DATA_IS_PLAYING_SPAWN_ANIM,true);
+    }
     protected LookControl createLookControl() {
         return new LookControl(this) {
             //This allows us to more rapidly turn towards our target. Helps to make sure his targets are aligned with his swing animations
@@ -243,4 +250,10 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     protected PathNavigation createNavigation(Level pLevel) {
         return new NotIdioticNavigation(this, pLevel);
     }
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_IS_PLAYING_SPAWN_ANIM, false);
+    }
 }
+
