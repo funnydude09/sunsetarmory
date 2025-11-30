@@ -31,7 +31,7 @@ public class ModEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> ARMOR_LOCK_EFFECT = MOB_EFFECTS.register("armor_lock_effect",
             () -> new ArmorLockEffect(MobEffectCategory.BENEFICIAL, 0x808080)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, SunsetArmory.id("armor_lock_effect"), -1f,
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, SunsetArmory.id("armor_lock_effect"), -69420f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(Attributes.JUMP_STRENGTH, SunsetArmory.id("armor_lock_effect"), -1f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
