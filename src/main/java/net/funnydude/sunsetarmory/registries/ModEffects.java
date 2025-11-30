@@ -33,17 +33,17 @@ public class ModEffects {
             () -> new ArmorLockEffect(MobEffectCategory.BENEFICIAL, 0x808080)
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED, SunsetArmory.id("armor_lock_effect"), -69420f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.JUMP_STRENGTH, SunsetArmory.id("armor_lock_effect"), -1f,
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH, SunsetArmory.id("armor_lock_effect"), -69420f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(AttributeRegistry.SPELL_RESIST, SunsetArmory.id("armor_lock_effect"), 1f,
+                    .addAttributeModifier(AttributeRegistry.SPELL_RESIST, SunsetArmory.id("armor_lock_effect"), 100f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(AttributeRegistry.MANA_REGEN, SunsetArmory.id("armor_lock_effect"), -1f,
+                    .addAttributeModifier(AttributeRegistry.MANA_REGEN, SunsetArmory.id("armor_lock_effect"), -100f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.ATTACK_SPEED, SunsetArmory.id("armor_lock_effect"), -1f,
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, SunsetArmory.id("armor_lock_effect"), -100f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, SunsetArmory.id("armor_lock_effect"), -1f,
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, SunsetArmory.id("armor_lock_effect"), -100f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, SunsetArmory.id("armor_lock_effect"), -1f,
+                    .addAttributeModifier(Attributes.BLOCK_BREAK_SPEED, SunsetArmory.id("armor_lock_effect"), -100f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 

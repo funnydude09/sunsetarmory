@@ -180,8 +180,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_name               : "Sunset Amory",
             mod_license            : "MIT",
             mod_version            : "0.0.1",
-            mod_authors            : "Funnydude09 and Itachi(norfolkzar)",
-            mod_description        : "Cool mod :D"
+            mod_authors            : "funnydude09 and Itachi(norfolkzar)",
+            mod_description        : "Sunset Armory adds a bunch of content expanding on Iron's Spellbook's Pyrium & Mithril, as well as netherite to create new armor, weapons and tools. Some new spells are available as well, alongside with a brand new kinetic school."
     ]
     inputs.properties replaceProperties
     expand replaceProperties

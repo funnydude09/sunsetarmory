@@ -82,6 +82,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.ARCANE_FLAMBERGE);
                         output.accept(ModItems.ARCANE_REAPER);
+                        output.accept(ModItems.SMOKE_BOMB);
                         output.accept(ModItems.PYRIUM_SPELL_BOOK);
                         output.accept(ModItems.SUMMON_KNIGHTS);
                         output.accept(ModItems.SUMMON_ARCHANGEL);

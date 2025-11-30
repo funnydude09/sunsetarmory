@@ -16,6 +16,8 @@ import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -76,7 +78,9 @@ public class ServerEvents {
         }
         if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.ADRENALINE_OVERFLOW_EFFECT) && ((LivingEntity) entity).hasEffect(MobEffectRegistry.HEARTSTOP)) {
             ((LivingEntity) entity).removeEffect(ModEffects.ADRENALINE_OVERFLOW_EFFECT);
-            ((LivingEntity) entity).removeEffect(MobEffectRegistry.HEARTSTOP);
+        }
+        if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.ARMOR_LOCK_EFFECT) && ((LivingEntity) entity).hasEffect(MobEffects.JUMP)) {
+            ((LivingEntity) entity).removeEffect(MobEffects.JUMP);
         }
     }
 }
