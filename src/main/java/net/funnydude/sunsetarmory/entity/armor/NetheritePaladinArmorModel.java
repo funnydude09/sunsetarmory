@@ -1,6 +1,5 @@
 package net.funnydude.sunsetarmory.entity.armor;
 
-
 import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
 import net.minecraft.resources.ResourceLocation;
 

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 public abstract class AbstractArmorModel extends AzArmorRenderer {
+
     public AbstractArmorModel(AzArmorRendererConfig config) {
         super(config);
     }
