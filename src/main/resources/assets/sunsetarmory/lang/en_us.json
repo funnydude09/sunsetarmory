@@ -80,6 +80,7 @@
   "spell.sunsetarmory.kinetic_slash_vertical_spell.guide": "Channel your kinetic energy in multiple precise slashes, dealing significant damage",
   "spell.sunsetarmory.divine_shield_spell": "Divine Shield",
   "spell.sunsetarmory.soulbound_spell": "Soulbound",
+  "effect.sunsetarmory.soulbound_effect": "Soulbound",
   "spell.sunsetarmory.soulbound_spell.guide": "Channel the soul fire within you to empower your fire attacks, at the cost of burning bright enough to melt armor and ice.",
   "ui.sunsetarmory.fire_spell_power": "%d Fire Spell Power",
   "spell.sunsetarmory.grand_fireball_spell": "Grand Fireball",
