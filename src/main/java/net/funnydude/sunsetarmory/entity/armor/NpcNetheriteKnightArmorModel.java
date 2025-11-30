@@ -2,7 +2,6 @@ package net.funnydude.sunsetarmory.entity.armor;
 
 
 import io.redspace.ironsspellbooks.IronsSpellbooks;
-import io.redspace.ironsspellbooks.item.armor.NetheriteMageArmorItem;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheriteKnightArmorItem;
 import net.minecraft.resources.ResourceLocation;

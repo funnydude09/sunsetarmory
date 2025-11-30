@@ -1,10 +1,7 @@
 package net.funnydude.sunsetarmory.entity.armor;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRenderer;
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererConfig;
-import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheritePaladinArmorItem;
+
+import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
 import net.minecraft.resources.ResourceLocation;
 
 public class NetheritePaladinArmorModel extends AbstractArmorModel {
