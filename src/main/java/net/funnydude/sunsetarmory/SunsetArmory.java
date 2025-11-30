@@ -1,6 +1,6 @@
 package net.funnydude.sunsetarmory;
 
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererRegistry;
+import mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry;
 import net.funnydude.sunsetarmory.registries.ModAttributes;
 import net.funnydude.sunsetarmory.registries.ModBlocks;
 import net.funnydude.sunsetarmory.registries.ModEffects;

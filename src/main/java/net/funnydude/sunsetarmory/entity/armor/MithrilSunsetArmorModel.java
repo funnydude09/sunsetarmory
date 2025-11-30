@@ -1,7 +1,6 @@
 package net.funnydude.sunsetarmory.entity.armor;
 
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRenderer;
-import mod.azure.azurelib.rewrite.render.armor.AzArmorRendererConfig;
+import mod.azure.azurelib.common.render.armor.AzArmorRendererConfig;
 import net.minecraft.resources.ResourceLocation;
 
 public class MithrilSunsetArmorModel extends AbstractArmorModel {
