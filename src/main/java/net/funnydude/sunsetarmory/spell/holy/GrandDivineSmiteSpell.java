@@ -168,8 +168,8 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
            }
        }
 
-       new Thread(() -> {
-           try {
+        new Thread(() -> {
+            try {
                Thread.sleep(250);
 
                Vec3 particleLocation1 = level.clip(new ClipContext(smiteLocation1, smiteLocation1.add(0, 1, 0), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().add(0, 0.1, 0);

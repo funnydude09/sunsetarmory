@@ -9,6 +9,7 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import io.redspace.ironsspellbooks.util.NBT;
+import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -50,6 +51,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public class LivingArmorStandEntity extends AbstractSpellCastingMob implements IAnimatedAttacker, NeutralMob {
+    @Override
+    public void playAnimation(String animationId) {
+
+    }
+
     public enum Pose {
         /**
          * vanilla armor stand pose
@@ -167,6 +173,10 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
         xpReward = 0;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
+    }
+
+    public LivingArmorStandEntity(Level level){
+        this(ModEntities.LIVING_ARMOR_STAND.get(),level);
     }
     protected LookControl createLookControl() {
         return new LookControl(this) {
@@ -369,15 +379,6 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
     RawAnimation animationToPlay = null;
     private final AnimationController<LivingArmorStandEntity> meleeController = new AnimationController<>(this, "keeper_animations", 0, this::predicate);
 
-    @Override
-    public void playAnimation(String animationId) {
-        try {
-            animationToPlay = RawAnimation.begin().thenPlay(animationId);
-        } catch (Exception ignored) {
-            IronsSpellbooks.LOGGER.error("Entity {} Failed to play animation: {}", this, animationId);
-        }
-    }
-
     private PlayState predicate(AnimationState<LivingArmorStandEntity> animationEvent) {
         var controller = animationEvent.getController();
 
@@ -425,14 +426,14 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
         remainingPersistentAngerTime = pRemainingPersistentAngerTime;
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public UUID getPersistentAngerTarget() {
         return persistentAngerTarget;
     }
 
     @Override
-    public void setPersistentAngerTarget(@org.jetbrains.annotations.Nullable UUID pPersistentAngerTarget) {
+    public void setPersistentAngerTarget(@Nullable UUID pPersistentAngerTarget) {
         persistentAngerTarget = pPersistentAngerTarget;
     }
 

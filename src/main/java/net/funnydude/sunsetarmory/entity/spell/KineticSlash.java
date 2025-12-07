@@ -34,6 +34,7 @@ public class KineticSlash extends Projectile implements AntiMagicSusceptible {
     private List<Entity> entities;
     private int lifetimeInTicks;
     private float thisdamage;
+
     public KineticSlash(EntityType<KineticSlash> kineticSlashEntityType, Level level) {
         super(kineticSlashEntityType, level);
         this.lifetimeInTicks = 60;

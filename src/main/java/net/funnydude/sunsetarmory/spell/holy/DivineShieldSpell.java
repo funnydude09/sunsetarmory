@@ -11,10 +11,13 @@ import net.funnydude.sunsetarmory.entity.spell.DivineShieldEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.List;
@@ -70,18 +73,17 @@ public class DivineShieldSpell extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-        DivineShieldEntity shield0 = new DivineShieldEntity(level, getShieldHP(spellLevel,entity));
-        level.addFreshEntity(shield0);
+        /*DivineShieldEntity shield0 = new DivineShieldEntity(level, getShieldHP(spellLevel,entity));
+        level.addFreshEntity(shield0);*/
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 
-    @Override
-    public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
-        DivineShieldEntity shield0 = new DivineShieldEntity(level, getShieldHP(spellLevel,entity));
+    /*public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
+        DivineShieldEntity shield0 = new DivineShieldEntity(level, getShieldHP(spellLevel,entity),entity);
         shield0.setRotation(entity.getXRot(), entity.getYRot());
         Vec3 spawn0 = Utils.raycastForEntity(level, entity, 2, true).getLocation();
         shield0.moveTo(spawn0);
-    }
+    }*/
 
     private float getShieldHP(int spellLevel, LivingEntity caster) {
         return 30 * getSpellPower(spellLevel, caster);

@@ -32,11 +32,11 @@ public class ModEntities {
             .clientTrackingRange(64)
             .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
 
-    public static final Supplier<EntityType<Entity>> DIVINE_SHIELD_ENTITY =
+    /*public static final Supplier<EntityType<Entity>> DIVINE_SHIELD_ENTITY =
             ENTITIES.register("divine_shield", () -> EntityType.Builder.of(DivineShieldEntity::new, MobCategory.MISC)
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
-                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield").toString()));
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield").toString()));*/
 
     public static final DeferredHolder<EntityType<?>, EntityType<KineticSlash>> KINETIC_SLASH =
             ENTITIES.register("kinetic_slash", () -> EntityType.Builder.<KineticSlash>of(KineticSlash::new, MobCategory.MISC)
@@ -74,6 +74,19 @@ public class ModEntities {
                     .sized(.5f, .5f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "blizzard").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<WallOfClearEffectEntity>> WALL_OF_EFFECT_CLEAR =
+            ENTITIES.register("wall_of_effect_clear", () -> EntityType.Builder.<WallOfClearEffectEntity>of(WallOfClearEffectEntity::new, MobCategory.MISC)
+                    .sized(10f, 1f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "wall_of_effect_clear").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<HalfSwordStanceEntity>> HALF_SWORD_STANCE_ENTITY =
+            ENTITIES.register("half_sword_stance",()-> EntityType.Builder.<HalfSwordStanceEntity>of(HalfSwordStanceEntity::new,MobCategory.MISC)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "half_sword_stance").toString()));
+
 }
 
 

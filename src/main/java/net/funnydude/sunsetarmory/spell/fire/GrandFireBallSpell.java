@@ -29,7 +29,6 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
 @AutoSpellConfig
 public class GrandFireBallSpell extends AbstractSpell {
 
@@ -72,56 +71,6 @@ public class GrandFireBallSpell extends AbstractSpell {
     }
 
     @Override
-    public CastResult canBeCastedBy(int spellLevel, CastSource castSource, MagicData playerMagicData, Player player) {
-        if(!(player.getHealth()<=0.5*player.getMaxHealth())){
-            return new CastResult(CastResult.Type.FAILURE,Component.translatable("spell.sunsetarmory.grand_fireball.message").withStyle(ChatFormatting.DARK_RED));
-        }
-        return new CastResult(CastResult.Type.SUCCESS);
-    }
-
-    @Override
-    public boolean attemptInitiateCast(ItemStack stack, int spellLevel, Level level, Player player, CastSource castSource, boolean triggerCooldown, String castingEquipmentSlot) {
-        hp=player.getHealth();
-
-        if (level.isClientSide) {
-            return false;
-        }
-
-        var serverPlayer = (ServerPlayer) player;
-        var playerMagicData = MagicData.getPlayerMagicData(serverPlayer);
-
-        if (!playerMagicData.isCasting()) {
-            CastResult castResult = canBeCastedBy(spellLevel, castSource, playerMagicData, serverPlayer);
-            if (castResult.message != null) {
-                serverPlayer.connection.send(new ClientboundSetActionBarTextPacket(castResult.message));
-            }
-
-            if (!castResult.isSuccess() || !checkPreCastConditions(level, spellLevel, serverPlayer, playerMagicData) || NeoForge.EVENT_BUS.post(new SpellPreCastEvent(player, this.getSpellId(), spellLevel, getSchoolType(), castSource)).isCanceled()) {
-                return false;
-            }
-
-            if (serverPlayer.isUsingItem()) {
-                serverPlayer.stopUsingItem();
-            }
-            int effectiveCastTime = getEffectiveCastTime(spellLevel, player);
-
-            playerMagicData.initiateCast(this, spellLevel, effectiveCastTime, castSource, castingEquipmentSlot);
-            playerMagicData.setPlayerCastingItem(stack);
-
-            onServerPreCast(player.level(), spellLevel, player, playerMagicData);
-
-            PacketDistributor.sendToPlayer(serverPlayer, new UpdateCastingStatePacket(getSpellId(), spellLevel, effectiveCastTime, castSource, castingEquipmentSlot));
-            PacketDistributor.sendToPlayersTrackingEntityAndSelf(serverPlayer, new OnCastStartedPacket(serverPlayer.getUUID(), getSpellId(), spellLevel));
-
-            return true;
-        } else {
-            Utils.serverSideCancelCast(serverPlayer);
-            return false;
-        }
-    }
-
-
-    @Override
     public void onServerCastTick(Level level, int spellLevel, LivingEntity entity, @Nullable MagicData playerMagicData) {
         entity.addEffect(new MobEffectInstance(ModEffects.CINDEROUS_CHARGE_UP,3,0,false,false,true));
         super.onServerCastTick(level, spellLevel, entity, playerMagicData);
@@ -153,11 +102,6 @@ public class GrandFireBallSpell extends AbstractSpell {
 
     @Override
     public boolean shouldAIStopCasting(int spellLevel, Mob mob, LivingEntity target) {
-        if(!(mob.getHealth()>=0.5*mob.getMaxHealth())){
-            return false;
-        }
-        else {
-            return true;
-        }
+        return mob.getHealth() >= 0.5 * mob.getMaxHealth();
     }
 }

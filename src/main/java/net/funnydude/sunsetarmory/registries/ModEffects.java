@@ -33,8 +33,8 @@ public class ModEffects {
             () -> new ArmorLockEffect(MobEffectCategory.BENEFICIAL, 0x808080)
                     .addAttributeModifier(Attributes.MOVEMENT_SPEED, SunsetArmory.id("armor_lock_effect"), -69420f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-                    .addAttributeModifier(Attributes.JUMP_STRENGTH, SunsetArmory.id("armor_lock_effect"), -69420f,
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH, SunsetArmory.id("armor_lock_effect"), -999999999999999999f,
+                            AttributeModifier.Operation.ADD_VALUE)
                     .addAttributeModifier(AttributeRegistry.SPELL_RESIST, SunsetArmory.id("armor_lock_effect"), 100f,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(AttributeRegistry.MANA_REGEN, SunsetArmory.id("armor_lock_effect"), -100f,
@@ -97,6 +97,16 @@ public class ModEffects {
                     .addAttributeModifier(AttributeRegistry.SPELL_RESIST,SunsetArmory.id("adrenaline_overflow_effect"),-0.75,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
                     .addAttributeModifier(AttributeRegistry.SPELL_POWER,SunsetArmory.id("adrenaline_overflow_effect"),-0.5,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+
+    public static final Holder<MobEffect> KINETIC_INCREASE_EFFECT = MOB_EFFECTS.register("kinetic_increase_effect",
+            () -> new KineticEnergyEffect(MobEffectCategory.BENEFICIAL,0xABCEDE)
+                    .addAttributeModifier(ModAttributes.KINETIC_ENERGY,SunsetArmory.id("kinetic_increase_effect"),1,
+                            AttributeModifier.Operation.ADD_VALUE));
+
+    public static final DeferredHolder<MobEffect, MobEffect> HALF_STANCE_SWORD_EFFECT = MOB_EFFECTS.register("half_stance_sword_effect",
+            () -> new HalfSwordStanceEffect(MobEffectCategory.BENEFICIAL, 0x293805)
+                    .addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,SunsetArmory.id("half_stance_sword_effect"),10,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
 }

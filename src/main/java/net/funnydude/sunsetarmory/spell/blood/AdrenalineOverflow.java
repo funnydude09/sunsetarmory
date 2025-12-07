@@ -1,4 +1,4 @@
-package net.funnydude.sunsetarmory.spell.evocation;
+package net.funnydude.sunsetarmory.spell.blood;
 
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Optional;
 
 @AutoSpellConfig
-
 public class AdrenalineOverflow extends AbstractSpell {
 
     @Override

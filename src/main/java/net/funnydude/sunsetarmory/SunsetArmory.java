@@ -13,6 +13,7 @@ import net.funnydude.sunsetarmory.registries.ModPotions;
 import net.funnydude.sunsetarmory.registries.ModSounds;
 import net.funnydude.sunsetarmory.registries.ModSchools;
 import net.funnydude.sunsetarmory.registries.ModSpells;
+import net.minecraft.SharedConstants;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;

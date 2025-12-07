@@ -1,12 +1,17 @@
 package net.funnydude.sunsetarmory.event;
 
+import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
+import io.redspace.ironsspellbooks.api.events.ModifySpellLevelEvent;
 import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
+import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import io.redspace.ironsspellbooks.registries.ParticleRegistry;
+import net.funnydude.sunsetarmory.registries.ModAttributes;
 import net.funnydude.sunsetarmory.registries.ModEffects;
+import net.funnydude.sunsetarmory.registries.ModSchools;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
@@ -16,7 +21,7 @@ import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +31,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 @EventBusSubscriber
@@ -47,9 +53,30 @@ public class ServerEvents {
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SHULKER_BOX_OPEN, SoundSource.PLAYERS, 0.5F, 1.0F);
                 }
             }
+            if(event.getSchoolType() == ModSchools.KINETIC.get()){
+                if(!(entity.getAttributeValue(ModAttributes.KINETIC_ENERGY) == 100)) {
+                    if (!entity.hasEffect(ModEffects.KINETIC_INCREASE_EFFECT)) {
+                        entity.addEffect(new MobEffectInstance(ModEffects.KINETIC_INCREASE_EFFECT, (int) Double.POSITIVE_INFINITY, 0), entity);
+                    }
+                    int i = entity.getEffect(ModEffects.KINETIC_INCREASE_EFFECT).getAmplifier();
+                    entity.addEffect(new MobEffectInstance(ModEffects.KINETIC_INCREASE_EFFECT, (int) Double.POSITIVE_INFINITY, i + 1), entity);
+                }
+            }
         }
     }
 
+    @SubscribeEvent
+    public static void reduceDamage(LivingDamageEvent.Pre event) {
+        var livingEntity = event.getEntity();
+        if (livingEntity instanceof IMagicEntity || livingEntity instanceof ServerPlayer) {
+            var playerMagicData = MagicData.getPlayerMagicData(livingEntity);
+            if (livingEntity.hasEffect(ModEffects.HALF_STANCE_SWORD_EFFECT)) {
+                playerMagicData.getSyncedData().addHeartstopDamage(event.getOriginalDamage() * .8f);
+                var damage = event.getOriginalDamage() * 0.2;
+                event.setNewDamage((float) damage);
+            }
+        }
+    }
     @SubscribeEvent
     public static void onEntityTick(EntityTickEvent.Post event) {
         var entity = event.getEntity();
@@ -81,6 +108,15 @@ public class ServerEvents {
         }
         if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.ARMOR_LOCK_EFFECT) && ((LivingEntity) entity).hasEffect(MobEffects.JUMP)) {
             ((LivingEntity) entity).removeEffect(MobEffects.JUMP);
+        }
+    }
+
+    @SubscribeEvent
+    public static void Energy(ModifySpellLevelEvent event){
+        var entity = event.getEntity();
+        if((entity.getAttributeValue(ModAttributes.KINETIC_ENERGY)==100)){
+            entity.removeEffect(ModEffects.KINETIC_INCREASE_EFFECT);
+            event.addLevels(3);
         }
     }
 }

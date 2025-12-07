@@ -10,9 +10,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 
 @EventBusSubscriber
 public class ArmorLockEffect extends CustomDescriptionMobEffect {
+
 
     public ArmorLockEffect(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
@@ -46,10 +48,5 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
-    }
-
-    @Override
-    public int getSortOrder(MobEffectInstance effectInstance) {
-        return super.getSortOrder(effectInstance);
     }
 }

@@ -15,6 +15,6 @@ public class CommonSetupEvent {
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
          event.put(ModEntities.KNIGHT.get(), KnightEntity.prepareAttributes().build());
          event.put(ModEntities.PALADIN.get(), PaladinEntity.prepareAttributes().build());
-        event.put(ModEntities.ARCHANGEL.get(), ArchangelEntity.prepareAttributes().build());
+         event.put(ModEntities.ARCHANGEL.get(), ArchangelEntity.prepareAttributes().build());
      }
 }

@@ -17,7 +17,9 @@ public class ModAttributes  {
 
     public static final DeferredHolder<Attribute, Attribute> KINETIC_MAGIC_RESIST = newResistanceAttribute();
     public static final DeferredHolder<Attribute, Attribute> KINETIC_SPELL_POWER =  newPowerAttribute();
-    public static final DeferredHolder<Attribute,Attribute> SUNSET_ALLY = ATTRIBUTES.register("sunset_ally",()-> (new RangedAttribute("attribute.sunsetarmory.sunset_ally", 0.00,-1.0F, 1.0F)).setSyncable(true).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> SUNSET_ALLY = ATTRIBUTES.register("sunset_ally",()-> (new RangedAttribute("attribute.sunsetarmory.sunset_ally", 0.00,-1.0F, 1.0F)).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> KINETIC_ENERGY = ATTRIBUTES.register("kinetic_energy",()-> (new RangedAttribute("attribute.sunsetarmory.kinetic_energy",0.00f,0,100.0f)).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> MAX_POTENTIAL_ENERGY = ATTRIBUTES.register("potential_energy",()-> (new RangedAttribute("attribute.sunsetarmory.potential_energy",0.00f,-100.0f,100.0f)).setSyncable(true));
 
     @SubscribeEvent
     public static void modifyEntityAttributes(EntityAttributeModificationEvent e) {
