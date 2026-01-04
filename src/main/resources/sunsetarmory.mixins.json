@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.funnydude.sunsetarmory.mixin",
+  "refmap": "sunsetarmory.refmap.json",
+  "plugin": "net.funnydude.sunsetarmory.mixin.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CultistMixin",
+    "PillagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "minVersion": "0.8"
+}

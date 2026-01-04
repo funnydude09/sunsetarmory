@@ -1,10 +1,8 @@
 package net.funnydude.sunsetarmory.effect;
 
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import org.apache.logging.log4j.core.util.SystemMillisClock;
 
 public class CinderousChargeUp extends MobEffect {
 

@@ -1,6 +1,7 @@
 package net.funnydude.sunsetarmory.registries;
 
 import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.block.AwoogaBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -13,12 +14,16 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks   BLOCKS  =
+    public static final DeferredRegister.Blocks BLOCKS  =
             DeferredRegister.createBlocks(SunsetArmory.MODID);
 
     public static final DeferredBlock<Block> PYRIUM_BLOCK = registerBlock("pyrium_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(3f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
+
+    public static final DeferredBlock<Block> AWOOGA_BLOCK = registerBlock("awooga_block",
+            () -> new AwoogaBlock(BlockBehaviour.Properties.of()
+                    .strength(3f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

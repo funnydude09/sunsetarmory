@@ -13,8 +13,9 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.SpellBarrageGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.GenericAnimatedWarlockAttackGoal;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
+import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.SunsetTags;
-import net.funnydude.sunsetarmory.registries.ModEffects;
+import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
 import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.registries.ModItems;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -40,6 +41,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -55,13 +57,9 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
 
     public KnightEntity(Level level) {
         this(ModEntities.KNIGHT.get(), level);
-        this.giveThisKnightSomeEquipment();
-        fallingAnimation();
+        this.giveThisKnightSomeEquipment();;
     }
 
-    public void fallingAnimation(){
-        entityData.set(DATA_IS_PLAYING_SPAWN_ANIM,true);
-    }
     protected LookControl createLookControl() {
         return new LookControl(this) {
             //This allows us to more rapidly turn towards our target. Helps to make sure his targets are aligned with his swing animations
@@ -98,6 +96,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, new Class[]{PaladinEntity.class}).setAlertOthers(new Class[0])));
         this.goalSelector.addGoal(2, new SpellBarrageGoal(this, SpellRegistry.COUNTERSPELL_SPELL.get(), 1, 1, 100, 250, 1));
         this.goalSelector.addGoal(3, new GenericAnimatedWarlockAttackGoal<>(this, 1.25f, 50, 75)
                 .setMoveset(List.of(
@@ -143,7 +142,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NPC_KNIGHT_HELMET.get()));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.NPC_KNIGHT_CHESTPLATE.get()));
-       this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_KNIGHT_LEGGINGS.get()));
+        this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ModItems.NPC_KNIGHT_LEGGINGS.get()));
         this.setItemSlot(EquipmentSlot.FEET, new ItemStack(ModItems.NPC_KNIGHT_BOOTS.get()));
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHERITE_LONGSWORD.get()));
         this.setDropChance(EquipmentSlot.HEAD, 0);
@@ -208,18 +207,13 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
 
     @Override
     public boolean isAlliedTo(Entity entityIn) {
-        if (entityIn instanceof IMagicSummon summon && summon.getSummoner() == this)
-        {
-            return true;
+        if(entityIn instanceof LivingEntity) {
+            if (entityIn instanceof IMagicSummon summon && summon.getSummoner() == this || SunsetArmory.hasCurios(((LivingEntity) entityIn), ModItems.SUNSET_WRISTBAND.get())) {
+                return true;
+            }
+            return super.isAlliedTo(entityIn);
         }
-        else if (entityIn.getType().is(SunsetTags.SUNSET_ORDER))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        else return entityIn.getType().is(SunsetTags.SUNSET_ORDER);
     }
 
     @Override
@@ -243,7 +237,8 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         return super.isHostileTowards(pTarget)
                 || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
                 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
-                || pTarget.hasEffect(ModEffects.PILLAGER_ALLY);
+                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_WRISTBAND.get())
+                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_WRISTBAND.get());
     }
 
     @Override

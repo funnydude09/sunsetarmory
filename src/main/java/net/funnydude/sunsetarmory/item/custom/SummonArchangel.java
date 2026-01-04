@@ -31,7 +31,7 @@ public class SummonArchangel extends Item {
         }
         super.inventoryTick(itemstack, level, player, slotId, isSelected);
     }
-
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (!level.isClientSide&&!isDamaged(itemstack)) {

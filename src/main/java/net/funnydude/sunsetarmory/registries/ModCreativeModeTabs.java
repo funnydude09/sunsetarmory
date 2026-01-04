@@ -1,8 +1,6 @@
-package net.funnydude.sunsetarmory.item;
+package net.funnydude.sunsetarmory.registries;
 
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.registries.ModBlocks;
-import net.funnydude.sunsetarmory.registries.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -86,6 +84,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PYRIUM_SPELL_BOOK);
                         output.accept(ModItems.SUMMON_KNIGHTS);
                         output.accept(ModItems.SUMMON_ARCHANGEL);
+                        output.accept(ModItems.D4C_LOVE_TRAIN);
 
                         output.accept(ModItems.CHAINMAIL);
                         output.accept(ModItems.DECREPIT_SCRAP);
@@ -103,6 +102,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.FORTIFIED_KNIGHTSTEEL);
                         output.accept(ModItems.SCORCHED_KNIGHTSTEEL);
                         output.accept(ModItems.POTENT_KNIGHTSTEEL);
+
+
+                        output.accept(ModItems.LOVE_LANGUAGEHATRED);
+                        output.accept(ModItems.ORTU_SOLIS_STANDS);
+                        output.accept(ModItems.NIGHT_BLADE);
 
 
 

@@ -1,23 +1,17 @@
 package net.funnydude.sunsetarmory.entity.wizards.archangel;
 
-import io.redspace.ironsspellbooks.IronsSpellbooks;
-import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMob;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.AbstractSpellCastingMobModel;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.FireBossEntity;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
-import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import io.redspace.ironsspellbooks.util.DefaultBipedBoneIdents;
-import io.redspace.ironsspellbooks.util.ParticleHelper;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.PartNames;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.WalkAnimationState;
-import net.minecraft.world.phys.Vec3;
 import org.joml.Vector2f;
-import org.joml.Vector3d;
 import org.joml.Vector3f;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
@@ -38,7 +32,7 @@ public class ArchangelModel extends AbstractSpellCastingMobModel {
         return MODEL;
     }
 
-    //fixme: this really doesnt work when multiple entities exist
+    //fixme: this really doesnt work when multiple  exist
     int lastTick;
 
     @Override

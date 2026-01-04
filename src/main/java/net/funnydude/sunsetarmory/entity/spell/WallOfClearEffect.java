@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEntityWithComplexSpawn {
+public class WallOfClearEffect extends AbstractShieldEntity implements IEntityWithComplexSpawn {
     public ShieldPart[] subEntities;
     protected List<Vec3> partPositions = new ArrayList<>();
     protected List<Vec3> anchorPoints = new ArrayList<>();
@@ -35,9 +35,8 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
     private Entity cachedOwner;
     protected int lifetime = 12 * 20;
 
-    public WallOfClearEffectEntity(EntityType<WallOfClearEffectEntity> pEntityType, Level pLevel) {
+    public WallOfClearEffect(EntityType<WallOfClearEffect> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        //Ironsspellbooks.logger.debug("WallOfFire.attempting to create sub entities");
         subEntities = new ShieldPart[0];
 
     }
@@ -47,7 +46,7 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
 
     }
 
-    public WallOfClearEffectEntity(Level level, Entity owner, List<Vec3> anchors) {
+    public WallOfClearEffect(Level level, Entity owner, List<Vec3> anchors) {
         this(ModEntities.WALL_OF_EFFECT_CLEAR.get(), level);
         this.anchorPoints = anchors;
         createShield();
@@ -92,11 +91,9 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
 
     @Override
     public void createShield() {
-        //Ironsspellbooks.logger.debug("Attempting to create shield, achor points length: {}", anchorPoints.size());
         float height = 3;
         float step = .8f;
         List<ShieldPart> entitiesList = new ArrayList<>();
-        //Ironsspellbooks.logger.debug("WallOfFire:Creating shield");
         for (int i = 0; i < anchorPoints.size() - 1; i++) {
             Vec3 start = anchorPoints.get(i);
             Vec3 end = anchorPoints.get(i + 1);
@@ -112,14 +109,12 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
                 Vec3 pos = new Vec3(x, groundY, z);
 
                 partPositions.add(pos);
-                //Ironsspellbooks.logger.debug("WallOfFire:Creating shield: new sub entity {}", pos);
                 entitiesList.add(part);
             }
 
         }
         //subEntities = new ShieldPart[entitiesList.size()];
         subEntities = entitiesList.toArray(subEntities);
-        //Ironsspellbooks.logger.debug("WallOfFire.createShield (array length: {}, real length: {}),", subEntities.length, entitiesList.size());
 
     }
 
@@ -156,7 +151,6 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
         }
         compoundTag.putInt("lifetime", lifetime);
 
-        //TODO: use castData
         ListTag anchors = new ListTag();
         for (Vec3 vec : anchorPoints) {
             CompoundTag anchor = new CompoundTag();
@@ -177,8 +171,6 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
         if (compoundTag.contains("lifetime"))
             this.lifetime = compoundTag.getInt("lifetime");
 
-        //9 is list tag id
-        //TODO: use castData
         anchorPoints = new ArrayList<>();
         if (compoundTag.contains("Anchors", 9)) {
             ListTag anchors = (ListTag) compoundTag.get("Anchors");
@@ -194,8 +186,6 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
 
     @Override
     public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
-        //Ironsspellbooks.logger.debug("WallOfFire.writeSpawnData");
-        //TODO: use castData
         buffer.writeInt(anchorPoints.size());
         for (Vec3 vec : anchorPoints) {
             buffer.writeFloat((float) vec.x);
@@ -206,8 +196,6 @@ public class WallOfClearEffectEntity extends AbstractShieldEntity implements IEn
 
     @Override
     public void readSpawnData(RegistryFriendlyByteBuf additionalData) {
-        //Ironsspellbooks.logger.debug("WallOfFire.readSpawnData");
-        //TODO: use castData
         anchorPoints = new ArrayList<>();
         int length = additionalData.readInt();
         for (int i = 0; i < length; i++) {

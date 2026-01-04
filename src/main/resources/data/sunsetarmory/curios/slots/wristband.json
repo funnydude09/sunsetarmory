@@ -1,0 +1,9 @@
+{
+  "order": 6,
+  "size": 1,
+  "icon": "sunsetarmory:slot/wristband",
+  "add_cosmetic": false,
+  "operation": "SET",
+  "render_toggle": true,
+  "drop_rule": "ALWAYS_KEEP"
+}

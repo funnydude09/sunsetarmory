@@ -99,14 +99,22 @@ public class ModEffects {
                     .addAttributeModifier(AttributeRegistry.SPELL_POWER,SunsetArmory.id("adrenaline_overflow_effect"),-0.5,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
-    public static final Holder<MobEffect> KINETIC_INCREASE_EFFECT = MOB_EFFECTS.register("kinetic_increase_effect",
+   /* public static final Holder<MobEffect> KINETIC_INCREASE_EFFECT = MOB_EFFECTS.register("kinetic_increase_effect",
             () -> new KineticEnergyEffect(MobEffectCategory.BENEFICIAL,0xABCEDE)
                     .addAttributeModifier(ModAttributes.KINETIC_ENERGY,SunsetArmory.id("kinetic_increase_effect"),1,
-                            AttributeModifier.Operation.ADD_VALUE));
+                            AttributeModifier.Operation.ADD_VALUE));*/
 
     public static final DeferredHolder<MobEffect, MobEffect> HALF_STANCE_SWORD_EFFECT = MOB_EFFECTS.register("half_stance_sword_effect",
             () -> new HalfSwordStanceEffect(MobEffectCategory.BENEFICIAL, 0x293805)
                     .addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,SunsetArmory.id("half_stance_sword_effect"),10,
                             AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+
+    public static final DeferredHolder<MobEffect, MobEffect> LOVE_TRAIN = MOB_EFFECTS.register("love_train_effect",
+            () -> new LoveTrainEffect(MobEffectCategory.BENEFICIAL, 0xFFD700)
+                    .addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,SunsetArmory.id("love_train_effect"),10,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+
+    public static final DeferredHolder<MobEffect, MobEffect> CURIOS_COOL_DOWN_EFFECT = MOB_EFFECTS.register("curios_cool_down",
+            () -> new CuriosCooldown(MobEffectCategory.HARMFUL, 0xFFD700));
 
 }

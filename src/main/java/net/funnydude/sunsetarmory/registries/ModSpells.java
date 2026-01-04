@@ -2,7 +2,6 @@ package net.funnydude.sunsetarmory.registries;
 
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.spells.AbstractSpell;
-import mod.azure.azurelib.core.math.functions.classic.Abs;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.spell.blood.AdrenalineOverflow;
 import net.funnydude.sunsetarmory.spell.ender.WallOfClearEffect;
@@ -48,6 +47,7 @@ public class ModSpells {
     public static final Supplier<AbstractSpell> KINETIC_DASH_SPELL = registerSpell(new KineticDashSpell());
     public static final Supplier<AbstractSpell> KINETIC_DROP_KICK_SPELL = registerSpell(new KineticDropKickSpell());
     public static final Supplier<AbstractSpell> HALF_SWORD_STANCE_SPELL = registerSpell(new HalfSwordStanceSpell());
+    public static final Supplier<AbstractSpell> KINETIC_SENTRY_TURRET_SPELL = registerSpell(new KineticSentryTurretSpell());
 
 
     //Nature Spells

@@ -17,6 +17,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class KineticSlashSpell extends AbstractSpell {
         KineticSlash kineticSlash = new KineticSlash(level,entity);
         kineticSlash.setPos(entity.position().add(0,entity.getEyeHeight() - kineticSlash.getBoundingBox().getYsize() * 0.5F,0));
         kineticSlash.shootFromRotation(entity, entity.getXRot(), entity.getYHeadRot(), 0.0F, kineticSlash.getSpeed(), 1.0F);
-        kineticSlash.setDamage(this.getDamage(spellLevel, entity));
+        kineticSlash.setDamage(4*10^8);
         level.addFreshEntity(kineticSlash);
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }

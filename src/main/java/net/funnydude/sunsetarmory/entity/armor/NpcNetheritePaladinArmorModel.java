@@ -8,19 +8,21 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedItemGeoModel;
 
 public class NpcNetheritePaladinArmorModel extends DefaultedItemGeoModel<NpcNetheritePaladinArmorItem> {
-    public NpcNetheritePaladinArmorModel() {super(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, ""));}
+    public NpcNetheritePaladinArmorModel(){
+        super(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, ""));
+    }
 
-    //@Override
+    @Override
     public ResourceLocation getModelResource(NpcNetheritePaladinArmorItem object) {
         return ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "geo/npc_paladin_armor.geo.json");
     }
 
-    //@Override
+    @Override
     public ResourceLocation getTextureResource(NpcNetheritePaladinArmorItem object) {
         return ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "textures/models/armor/netherite_paladin_armor.png");
     }
 
-    //@Override
+    @Override
     public ResourceLocation getAnimationResource(NpcNetheritePaladinArmorItem animatable) {
         return ResourceLocation.fromNamespaceAndPath(IronsSpellbooks.MODID, "animations/wizard_armor_animation.json");
     }

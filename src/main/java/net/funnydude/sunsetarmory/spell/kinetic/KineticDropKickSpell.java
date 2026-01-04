@@ -7,6 +7,7 @@ import io.redspace.ironsspellbooks.api.util.AnimationHolder;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.TargetEntityCastData;
 import io.redspace.ironsspellbooks.damage.DamageSources;
+import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.registries.ModAnimations;
 import net.funnydude.sunsetarmory.registries.ModEffects;
@@ -30,7 +31,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @AutoSpellConfig
@@ -79,7 +79,6 @@ public class KineticDropKickSpell extends AbstractSpell {
                     try {
                         Thread.sleep(500);
                         ((ServerLevel)level).sendParticles(ParticleTypes.EXPLOSION_EMITTER,entity.getX(),entity.getY(),entity.getZ(),1,0,-0.5,0,0.025);
-                        (level).playSound(((Player) entity),entity.getX(),entity.getY(),entity.getZ(),SoundEvents.GOAT_HORN_PLAY,SoundSource.PLAYERS,1,1);
                         var entities = level.getEntities(entity, AABB.ofSize(dropkickLocation, radius*2,  radius*4, radius*2));
                         var damageSource = this.getDamageSource(entity);
                         for (Entity targetEntity : entities) {

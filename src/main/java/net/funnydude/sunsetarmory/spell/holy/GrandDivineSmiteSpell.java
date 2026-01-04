@@ -6,8 +6,6 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.spells.*;
 import io.redspace.ironsspellbooks.api.util.AnimationHolder;
-import io.redspace.ironsspellbooks.api.util.CameraShakeData;
-import io.redspace.ironsspellbooks.api.util.CameraShakeManager;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.damage.DamageSources;
@@ -231,7 +229,7 @@ public class GrandDivineSmiteSpell extends AbstractSpell {
                    }
                }
            } catch (InterruptedException e) {
-               e.printStackTrace();
+                e.printStackTrace();
            }
        }).start();
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);

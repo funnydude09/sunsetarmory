@@ -4,7 +4,7 @@ import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.effect.ISyncedMobEffect;
 import io.redspace.ironsspellbooks.effect.MagicMobEffect;
-import net.funnydude.sunsetarmory.entity.spell.HalfSwordStanceEntity;
+import net.funnydude.sunsetarmory.entity.spell.HalfSwordStance;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,7 +26,7 @@ public class HalfSwordStanceEffect extends MagicMobEffect implements ISyncedMobE
         float weaponDamage = Utils.getWeaponDamage(entity);
         var damage = playerMagicData.getSyncedData().getHeartstopAccumulatedDamage();
         Vec3 spawnPos = entity.position().add(entity.getForward().scale(3));
-        HalfSwordStanceEntity halfSwordStanceEntity = new HalfSwordStanceEntity(level,entity);
+        HalfSwordStance halfSwordStanceEntity = new HalfSwordStance(level,entity);
         halfSwordStanceEntity.setPos(spawnPos);
         halfSwordStanceEntity.setDamage(damage+weaponDamage);
         halfSwordStanceEntity.setRadius(3);

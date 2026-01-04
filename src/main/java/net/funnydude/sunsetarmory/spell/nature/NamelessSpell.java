@@ -1,6 +1,5 @@
 package net.funnydude.sunsetarmory.spell.nature;
 
-import com.mojang.authlib.minecraft.TelemetrySession;
 import io.redspace.ironsspellbooks.api.config.DefaultConfig;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
@@ -43,7 +42,7 @@ public class NamelessSpell extends AbstractSpell {
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
         if (playerMagicData.getAdditionalCastData() instanceof TargetEntityCastData castTargetingData) {
             LivingEntity target = castTargetingData.getTarget((ServerLevel) level);
-            boolean canSee = CuriosApi.getCuriosHelper().findEquippedCurio(ItemRegistry.INVISIBILITY_RING.get(), entity).isPresent();
+            boolean canSee = SunsetArmory.hasCurios(entity,ItemRegistry.INVISIBILITY_RING.get());
             if(target !=null ){
                 Vec3 subtract = new Vec3(target.getForward().x, 0, target.getForward().z).scale(3);
                 Utils.handleSpellTeleport(this,entity,target.position().add(subtract));

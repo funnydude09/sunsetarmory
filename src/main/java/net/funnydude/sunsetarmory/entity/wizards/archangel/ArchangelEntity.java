@@ -21,6 +21,7 @@ import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.registries.ModItems;
@@ -452,7 +453,11 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
     @Override
     public boolean isHostileTowards(LivingEntity pTarget) {
-        return super.isHostileTowards(pTarget) || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8;
+        return super.isHostileTowards(pTarget)
+                || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
+                || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
+                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_WRISTBAND.get())
+                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_WRISTBAND.get());
     }
 
     @Override
@@ -657,6 +662,9 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
     @Override
     public boolean isAlliedTo(Entity pEntity) {
+        if(pEntity instanceof LivingEntity && SunsetArmory.hasCurios(((LivingEntity) pEntity),ModItems.SUNSET_WRISTBAND.get())){
+            return true;
+        }
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);
     }
 

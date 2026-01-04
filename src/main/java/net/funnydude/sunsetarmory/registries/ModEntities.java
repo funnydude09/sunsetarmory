@@ -3,12 +3,12 @@ package net.funnydude.sunsetarmory.registries;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.spell.*;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
+import net.funnydude.sunsetarmory.entity.wizards.cultist.EldritchCultistEntity;
 import net.funnydude.sunsetarmory.entity.wizards.knight.KnightEntity;
 import net.funnydude.sunsetarmory.entity.wizards.living_armor_stand.LivingArmorStandEntity;
 import net.funnydude.sunsetarmory.entity.wizards.paladin.PaladinEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -32,11 +32,17 @@ public class ModEntities {
             .clientTrackingRange(64)
             .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "knight").toString()));
 
-    /*public static final Supplier<EntityType<Entity>> DIVINE_SHIELD_ENTITY =
-            ENTITIES.register("divine_shield", () -> EntityType.Builder.of(DivineShieldEntity::new, MobCategory.MISC)
+    public static final DeferredHolder<EntityType<?>, EntityType<EldritchCultistEntity>> ELDRITCH_CULTIST
+            = ENTITIES.register("eldritch_cultist", () -> EntityType.Builder.<EldritchCultistEntity>of(EldritchCultistEntity::new, MobCategory.MISC)
+            .sized(.6f, 1.8f)
+            .clientTrackingRange(64)
+            .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "eldritch_cultist").toString()));
+
+    public static final Supplier<EntityType<DivineShieldEntity>> DIVINE_SHIELD_ENTITY =
+            ENTITIES.register("divine_shield", () -> EntityType.Builder.<DivineShieldEntity>of(DivineShieldEntity::new, MobCategory.MISC)
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
-                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield").toString()));*/
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "divine_shield").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<KineticSlash>> KINETIC_SLASH =
             ENTITIES.register("kinetic_slash", () -> EntityType.Builder.<KineticSlash>of(KineticSlash::new, MobCategory.MISC)
@@ -75,18 +81,24 @@ public class ModEntities {
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "blizzard").toString()));
 
-    public static final DeferredHolder<EntityType<?>, EntityType<WallOfClearEffectEntity>> WALL_OF_EFFECT_CLEAR =
-            ENTITIES.register("wall_of_effect_clear", () -> EntityType.Builder.<WallOfClearEffectEntity>of(WallOfClearEffectEntity::new, MobCategory.MISC)
+    public static final DeferredHolder<EntityType<?>, EntityType<WallOfClearEffect>> WALL_OF_EFFECT_CLEAR =
+            ENTITIES.register("wall_of_effect_clear", () -> EntityType.Builder.<WallOfClearEffect>of(WallOfClearEffect::new, MobCategory.MISC)
                     .sized(10f, 1f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "wall_of_effect_clear").toString()));
 
-    public static final DeferredHolder<EntityType<?>, EntityType<HalfSwordStanceEntity>> HALF_SWORD_STANCE_ENTITY =
-            ENTITIES.register("half_sword_stance",()-> EntityType.Builder.<HalfSwordStanceEntity>of(HalfSwordStanceEntity::new,MobCategory.MISC)
+    public static final DeferredHolder<EntityType<?>, EntityType<HalfSwordStance>> HALF_SWORD_STANCE_ENTITY =
+            ENTITIES.register("half_sword_stance",()-> EntityType.Builder.<HalfSwordStance>of(HalfSwordStance::new,MobCategory.MISC)
                     .sized(1f, 1f)
                     .clientTrackingRange(64)
                     .build(ResourceLocation.fromNamespaceAndPath("sunsetarmory", "half_sword_stance").toString()));
 
+
+    public static final DeferredHolder<EntityType<?>, EntityType<KineticSentryTurret>> KINETIC_SENTRY_TURRET =
+            ENTITIES.register("kinetic_sentry_turret", () -> EntityType.Builder.<KineticSentryTurret>of(KineticSentryTurret::new, MobCategory.MISC)
+                    .sized(1.0F, 1.0F)
+                    .clientTrackingRange(64)
+                    .build(ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "kinetic_sentry_turret").toString()));
 }
 
 

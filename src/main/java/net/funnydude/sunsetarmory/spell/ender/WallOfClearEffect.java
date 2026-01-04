@@ -9,7 +9,6 @@ import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastInstance;
 import io.redspace.ironsspellbooks.capabilities.magic.RecastResult;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.entity.spell.WallOfClearEffectEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
@@ -109,7 +108,7 @@ public class WallOfClearEffect extends AbstractSpell {
             }
 
             if (effectClearData.anchorPoints.size() > 0) {
-                WallOfClearEffectEntity fireWall = new WallOfClearEffectEntity(level, entity, effectClearData.anchorPoints);
+                net.funnydude.sunsetarmory.entity.spell.WallOfClearEffect fireWall = new net.funnydude.sunsetarmory.entity.spell.WallOfClearEffect(level, entity, effectClearData.anchorPoints);
                 Vec3 origin = effectClearData.anchorPoints.get(0);
                 for (int i = 1; i < effectClearData.anchorPoints.size(); i++) {
                     origin.add(effectClearData.anchorPoints.get(i));

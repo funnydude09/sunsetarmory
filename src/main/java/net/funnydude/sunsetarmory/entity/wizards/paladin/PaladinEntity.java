@@ -4,7 +4,7 @@ import io.redspace.ironsspellbooks.IronsSpellbooks;
 import io.redspace.ironsspellbooks.api.network.IClientEventEntity;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
-import io.redspace.ironsspellbooks.api.util.*;
+import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
 import io.redspace.ironsspellbooks.config.ServerConfigs;
 import io.redspace.ironsspellbooks.entity.mobs.IAnimatedAttacker;
@@ -20,6 +20,7 @@ import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavig
 import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import io.redspace.ironsspellbooks.util.ParticleHelper;
+import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.registries.ModEffects;
 import net.funnydude.sunsetarmory.registries.ModEntities;
@@ -436,7 +437,8 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         return super.isHostileTowards(pTarget)
                 || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
                 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
-                || pTarget.hasEffect(ModEffects.PILLAGER_ALLY);
+                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_WRISTBAND.get())
+                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_WRISTBAND.get());
     }
 
     @Override
@@ -580,6 +582,9 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
 
     @Override
     public boolean isAlliedTo(Entity pEntity) {
+        if(pEntity instanceof LivingEntity && SunsetArmory.hasCurios(((LivingEntity) pEntity),ModItems.SUNSET_WRISTBAND.get())){
+            return true;
+        }
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);
     }
 

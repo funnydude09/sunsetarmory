@@ -73,7 +73,7 @@ public class AdrenalineOverflow extends AbstractSpell {
 
     @Override
     public boolean checkPreCastConditions(Level level, int spellLevel, LivingEntity entity, MagicData playerMagicData) {
-        return !(entity.hasEffect(MobEffectRegistry.HEARTSTOP));
+        return !(entity.hasEffect(MobEffectRegistry.HEARTSTOP)) && super.checkPreCastConditions(level,spellLevel,entity,playerMagicData);
     }
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {

@@ -10,11 +10,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 
 @EventBusSubscriber
 public class ArmorLockEffect extends CustomDescriptionMobEffect {
-
 
     public ArmorLockEffect(MobEffectCategory pCategory, int pColor) {
         super(pCategory, pColor);
@@ -22,8 +20,7 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
 
     @Override
     public Component getDescriptionLine(MobEffectInstance instance) {
-        int amp = instance.getAmplifier() + 1;
-        float reductionAmount = getReductionAmount(amp);
+        float reductionAmount = 100;
         return Component.translatable("tooltip.irons_spellbooks.oakskin_description", (int) (reductionAmount * 100)).withStyle(ChatFormatting.BLUE);
     }
 
@@ -34,10 +31,6 @@ public class ArmorLockEffect extends CustomDescriptionMobEffect {
         if (effect != null) {
             event.setAmount(0);
         }
-    }
-
-    public static float getReductionAmount(int level) {
-        return 1;
     }
 
     @Override

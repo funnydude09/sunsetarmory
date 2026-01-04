@@ -1,43 +1,36 @@
 package net.funnydude.sunsetarmory;
 
-import mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry;
-import net.funnydude.sunsetarmory.registries.ModAttributes;
-import net.funnydude.sunsetarmory.registries.ModBlocks;
-import net.funnydude.sunsetarmory.registries.ModEffects;
-import net.funnydude.sunsetarmory.registries.ModEntities;
-import net.funnydude.sunsetarmory.entity.armor.*;
-import net.funnydude.sunsetarmory.registries.ModFluids;
-import net.funnydude.sunsetarmory.item.ModCreativeModeTabs;
-import net.funnydude.sunsetarmory.registries.ModItems;
-import net.funnydude.sunsetarmory.registries.ModPotions;
-import net.funnydude.sunsetarmory.registries.ModSounds;
-import net.funnydude.sunsetarmory.registries.ModSchools;
-import net.funnydude.sunsetarmory.registries.ModSpells;
-import net.minecraft.SharedConstants;
-import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-
 import com.mojang.logging.LogUtils;
-
+import io.redspace.ironsspellbooks.registries.CommandRegistry;
+import mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry;
+import net.funnydude.sunsetarmory.entity.armor.*;
+import net.funnydude.sunsetarmory.registries.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.commands.CommandResultCallback;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraft.client.Minecraft;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import top.theillusivec4.curios.api.CuriosApi;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SunsetArmory.MODID)
@@ -47,9 +40,7 @@ public class SunsetArmory {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
-   public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
-   public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -78,9 +69,7 @@ public class SunsetArmory {
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -90,6 +79,7 @@ public class SunsetArmory {
         NeoForge.EVENT_BUS.register(this);
 
         ModCreativeModeTabs.register(modEventBus);
+        ModAttachments.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
@@ -128,7 +118,6 @@ public class SunsetArmory {
     // You can use SubscribeEvent and let the Event Bus discover me thods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
 
@@ -194,7 +183,16 @@ public class SunsetArmory {
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
     }
+
     public static ResourceLocation id(@NotNull String path) {
         return ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, path);
     }
+
+    public static boolean hasCurios(LivingEntity entity, Item item){
+        if(entity!=null && item!=null) {
+            return CuriosApi.getCuriosHelper().findEquippedCurio(item, entity).isPresent();
+        }
+        return false;
+    }
+
 }

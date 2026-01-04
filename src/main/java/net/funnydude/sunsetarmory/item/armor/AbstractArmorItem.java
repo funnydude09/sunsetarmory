@@ -6,9 +6,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.item.ArmorMaterial;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
-import java.util.List;
-import java.util.function.Consumer;
-
 public abstract class AbstractArmorItem extends ImbuableChestplateArmorItem {
 
     public AbstractArmorItem(Holder<ArmorMaterial> pMaterial, Type pType, Properties pProperties, AttributeContainer... attributes) {

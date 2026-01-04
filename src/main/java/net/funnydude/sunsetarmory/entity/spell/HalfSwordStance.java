@@ -4,28 +4,28 @@ import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.damage.DamageSources;
 import io.redspace.ironsspellbooks.entity.spells.AoeEntity;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
-import io.redspace.ironsspellbooks.registries.SoundRegistry;
 import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.registries.ModSpells;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 import java.util.Optional;
 
-public class HalfSwordStanceEntity extends AoeEntity {
+public class HalfSwordStance extends AoeEntity {
 
     private float lifetime = 1f;
 
-    public HalfSwordStanceEntity(Level level,LivingEntity owner) {
+    public HalfSwordStance(Level level, LivingEntity owner) {
         this(ModEntities.HALF_SWORD_STANCE_ENTITY.get(),level);
         setOwner(owner);
     }
 
-    public HalfSwordStanceEntity(EntityType<HalfSwordStanceEntity> halfSwordStanceEntityEntityType, Level level) {
+    public HalfSwordStance(EntityType<HalfSwordStance> halfSwordStanceEntityEntityType, Level level) {
         super(halfSwordStanceEntityEntityType, level);
     }
 

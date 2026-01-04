@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack.Pose;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.funnydude.sunsetarmory.SunsetArmory;
-import net.funnydude.sunsetarmory.entity.spell.WallOfClearEffectEntity;
+import net.funnydude.sunsetarmory.entity.spell.WallOfClearEffect;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
-public class WallOfClearEffectRenderer extends EntityRenderer<WallOfClearEffectEntity> {
+public class WallOfClearEffectRenderer extends EntityRenderer<WallOfClearEffect> {
 
     private static ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(SunsetArmory.MODID, "textures/entity/...");
 
@@ -25,7 +25,7 @@ public class WallOfClearEffectRenderer extends EntityRenderer<WallOfClearEffectE
     }
 
     @Override
-    public void render(WallOfClearEffectEntity entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
+    public void render(WallOfClearEffect entity, float yaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int light) {
         VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityCutout(TEXTURE));
         Pose pose = poseStack.last();
         Matrix4f poseMatrix = pose.pose();
@@ -57,7 +57,7 @@ public class WallOfClearEffectRenderer extends EntityRenderer<WallOfClearEffectE
     }
 
     @Override
-    public ResourceLocation getTextureLocation(WallOfClearEffectEntity entity) {
+    public ResourceLocation getTextureLocation(WallOfClearEffect entity) {
         return TEXTURE;
     }
 }
