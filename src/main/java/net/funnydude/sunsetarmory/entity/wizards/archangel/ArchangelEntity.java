@@ -501,17 +501,13 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     }
 
     @Override
-    public void knockback(double pStrength, double pX, double pZ) {
-        super.knockback(pStrength, pX, pZ);
-    }
-
-    @Override
     public boolean isPushable() {
         return super.isPushable() && !isImmobile();
     }
 
     RawAnimation animationToPlay = null;
     private final AnimationController<ArchangelEntity> meleeController = new AnimationController<>(this, "melee_animations", 0, this::predicate);
+    private final AnimationController<ArchangelEntity> spawnController = new AnimationController<>(this, "fire_boss_death", 0, this::predicate);
 
     @Override
     public void die(DamageSource pDamageSource) {
@@ -589,7 +585,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
     private PlayState predicate(AnimationState<ArchangelEntity> animationEvent) {
         var controller = animationEvent.getController();
-
         if (this.animationToPlay != null) {
             controller.forceAnimationReset();
             controller.setAnimation(animationToPlay);
@@ -601,6 +596,7 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(meleeController);
+        controllerRegistrar.add(spawnController);
         super.registerControllers(controllerRegistrar);
     }
 
