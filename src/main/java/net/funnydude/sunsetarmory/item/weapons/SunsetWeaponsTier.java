@@ -41,6 +41,7 @@ public class SunsetWeaponsTier implements Tier, IronsWeaponTier {
     public static SunsetWeaponsTier NIGHT_BLADE = new SunsetWeaponsTier((int) Double.POSITIVE_INFINITY, 1500, 1f, 99, BlockTags.INCORRECT_FOR_NETHERITE_TOOL, () -> Ingredient.of((ItemLike) ItemRegistry.MITHRIL_SCRAP), new AttributeContainer(Attributes.ENTITY_INTERACTION_RANGE, 1, AttributeModifier.Operation.ADD_VALUE));
     public static SunsetWeaponsTier GOLDEN_SPEAR = new SunsetWeaponsTier(2000, 18, -2.1f, 20, BlockTags.INCORRECT_FOR_NETHERITE_TOOL, () -> Ingredient.of((ItemLike) ItemRegistry.MITHRIL_SCRAP), new AttributeContainer(Attributes.ENTITY_INTERACTION_RANGE, 3, AttributeModifier.Operation.ADD_VALUE));
     public static SunsetWeaponsTier TRUTH_ENFORCER = new SunsetWeaponsTier(2000, 21, -2f, 20, BlockTags.INCORRECT_FOR_NETHERITE_TOOL, () -> Ingredient.of((ItemLike) ItemRegistry.MITHRIL_SCRAP), new AttributeContainer(Attributes.ENTITY_INTERACTION_RANGE, 1, AttributeModifier.Operation.ADD_VALUE));
+    public static SunsetWeaponsTier SACRIFICAL_DAGGER = new SunsetWeaponsTier(2000, 10, -1f, 20, BlockTags.INCORRECT_FOR_NETHERITE_TOOL, () -> Ingredient.of((ItemLike) ItemRegistry.MITHRIL_SCRAP));
 
     int uses;
     float damage;

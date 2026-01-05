@@ -125,6 +125,7 @@ public class ModItems {
     public static final DeferredItem<OrtuSolisStands> ORTU_SOLIS_STANDS = ITEMS.register("ortu_solis_stands", () -> new OrtuSolisStands(SunsetWeaponsTier.ORTU_SOLIS_STANDS, ItemPropertiesHelper.equipment().attributes(ExtendedSwordItem.createAttributes(SunsetWeaponsTier.ORTU_SOLIS_STANDS)).rarity(Rarity.EPIC).fireResistant(), SpellDataRegistryHolder.of(new SpellDataRegistryHolder(SpellRegistry.DIVINE_SMITE_SPELL, 15))));
     public static final DeferredItem<GoldenSpear> GOLDEN_SPEAR = ITEMS.register("golden_spear",()-> new GoldenSpear(SunsetWeaponsTier.GOLDEN_SPEAR,new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).attributes(GoldenSpear.createAttributes(SunsetWeaponsTier.GOLDEN_SPEAR))));
     public static final DeferredItem<TruthEnforcer> TRUTH_ENFORCER = ITEMS.register("truth_enforcer",()-> new TruthEnforcer(SunsetWeaponsTier.TRUTH_ENFORCER,new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).attributes(TruthEnforcer.createAttributes(SunsetWeaponsTier.TRUTH_ENFORCER))));
+    public static final DeferredItem<SacrificialDagger> SACRIFICIAL_DAGGER = ITEMS.register("sacrificial_dagger",()-> new SacrificialDagger(SunsetWeaponsTier.SACRIFICAL_DAGGER,new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).attributes(SacrificialDagger.createAttributes(SunsetWeaponsTier.SACRIFICAL_DAGGER))));
 
 
     public static final DeferredItem<Item> PYRIUM_SPELL_BOOK;

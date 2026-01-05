@@ -35,6 +35,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SunsetArmory.MODID)
 public class SunsetArmory {
+    //TODO:LevelEvent.CreateSpawnPosition for spawning stuff at the start of the game
     // Define mod id in a common place for everything to reference
     public static final String MODID = "sunsetarmory";
     // Directly reference a slf4j logger

@@ -107,6 +107,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LOVE_LANGUAGEHATRED);
                         output.accept(ModItems.ORTU_SOLIS_STANDS);
                         output.accept(ModItems.NIGHT_BLADE);
+                        output.accept(ModItems.GOLDEN_SPEAR);
+                        output.accept(ModItems.TRUTH_ENFORCER);
+                        output.accept(ModItems.SACRIFICIAL_DAGGER);
 
 
 
