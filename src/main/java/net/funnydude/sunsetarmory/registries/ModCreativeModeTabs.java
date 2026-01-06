@@ -103,6 +103,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SCORCHED_KNIGHTSTEEL);
                         output.accept(ModItems.POTENT_KNIGHTSTEEL);
 
+                        output.accept(ModItems.SUNSET_BANNER.get());
+                        output.accept(ModItems.BLOOD_CULTIST_BANNER.get());
+                        output.accept(ModItems.ELDRITCH_CULTIST_BANNER.get());
 
                         output.accept(ModItems.LOVE_LANGUAGEHATRED);
                         output.accept(ModItems.ORTU_SOLIS_STANDS);

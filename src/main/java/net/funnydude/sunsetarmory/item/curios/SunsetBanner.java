@@ -5,8 +5,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
-public class SunsetWristBand extends WristBandCuriosItem {
-    public SunsetWristBand(Properties properties, String slotIdentifier) {
+public class SunsetBanner extends BannerCuriosItem {
+    public SunsetBanner(Properties properties, String slotIdentifier) {
         super(properties, slotIdentifier);
     }
 

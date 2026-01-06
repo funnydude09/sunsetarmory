@@ -208,7 +208,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     @Override
     public boolean isAlliedTo(Entity entityIn) {
         if(entityIn instanceof LivingEntity) {
-            if (entityIn instanceof IMagicSummon summon && summon.getSummoner() == this || SunsetArmory.hasCurios(((LivingEntity) entityIn), ModItems.SUNSET_WRISTBAND.get())) {
+            if (entityIn instanceof IMagicSummon summon && summon.getSummoner() == this || SunsetArmory.hasCurios(((LivingEntity) entityIn), ModItems.SUNSET_BANNER.get())) {
                 return true;
             }
             return super.isAlliedTo(entityIn);
@@ -237,8 +237,8 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         return super.isHostileTowards(pTarget)
                 || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
                 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
-                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_WRISTBAND.get())
-                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_WRISTBAND.get());
+                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_BANNER.get())
+                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_BANNER.get());
     }
 
     @Override

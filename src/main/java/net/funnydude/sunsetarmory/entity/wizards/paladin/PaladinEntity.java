@@ -437,8 +437,8 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
         return super.isHostileTowards(pTarget)
                 || pTarget.getAttributeValue(AttributeRegistry.BLOOD_SPELL_POWER) > 1.15
                 || pTarget.getAttributeValue(AttributeRegistry.ELDRITCH_SPELL_POWER) > 1.8
-                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_WRISTBAND.get())
-                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_WRISTBAND.get());
+                || SunsetArmory.hasCurios(pTarget,ModItems.ELDRITCH_CULTIST_BANNER.get())
+                || SunsetArmory.hasCurios(pTarget,ModItems.BLOOD_CULTIST_BANNER.get());
     }
 
     @Override
@@ -582,7 +582,7 @@ public class PaladinEntity extends NeutralWizard implements Enemy, IAnimatedAtta
 
     @Override
     public boolean isAlliedTo(Entity pEntity) {
-        if(pEntity instanceof LivingEntity && SunsetArmory.hasCurios(((LivingEntity) pEntity),ModItems.SUNSET_WRISTBAND.get())){
+        if(pEntity instanceof LivingEntity && SunsetArmory.hasCurios(((LivingEntity) pEntity),ModItems.SUNSET_BANNER.get())){
             return true;
         }
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);

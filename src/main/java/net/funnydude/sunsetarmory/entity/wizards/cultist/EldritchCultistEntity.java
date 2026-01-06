@@ -185,14 +185,14 @@ public class EldritchCultistEntity extends NeutralWizard implements Enemy, IAnim
     @Override
     public boolean isHostileTowards(LivingEntity pTarget) {
         return super.isHostileTowards(pTarget)
-                || SunsetArmory.hasCurios(pTarget, ModItems.BLOOD_CULTIST_WRISTBAND.get())
-                || SunsetArmory.hasCurios(pTarget, ModItems.SUNSET_WRISTBAND.get());
+                || SunsetArmory.hasCurios(pTarget, ModItems.BLOOD_CULTIST_BANNER.get())
+                || SunsetArmory.hasCurios(pTarget, ModItems.SUNSET_BANNER.get());
     }
 //((LivingEntity) entityIn).getType().is(SunsetTags.SUNSET_ORDER)
     @Override
     public boolean isAlliedTo(Entity entityIn) {
         if(entityIn instanceof LivingEntity) {
-            if (SunsetArmory.hasCurios(((LivingEntity) entityIn), ModItems.ELDRITCH_CULTIST_WRISTBAND.get())) {
+            if (SunsetArmory.hasCurios(((LivingEntity) entityIn), ModItems.ELDRITCH_CULTIST_BANNER.get())) {
                 return true;
             }
             return super.isAlliedTo(entityIn);

@@ -53,12 +53,12 @@ public abstract class CultistMixin extends NeutralWizard implements Enemy, IAnim
 
     @Override
     public boolean canAttack(LivingEntity livingentity, TargetingConditions condition) {
-        return super.canAttack(livingentity, condition) && !SunsetArmory.hasCurios(livingentity,ModItems.BLOOD_CULTIST_WRISTBAND.get());
+        return super.canAttack(livingentity, condition) && !SunsetArmory.hasCurios(livingentity,ModItems.BLOOD_CULTIST_BANNER.get());
     }
 
     @Override
     public boolean isAlliedTo(Entity entityIn) {
-        if (SunsetArmory.hasCurios(((LivingEntity) entityIn),ModItems.BLOOD_CULTIST_WRISTBAND.get())) {
+        if (SunsetArmory.hasCurios(((LivingEntity) entityIn),ModItems.BLOOD_CULTIST_BANNER.get())) {
             return true;
         }
         else return super.isAlliedTo(entityIn);
@@ -66,10 +66,10 @@ public abstract class CultistMixin extends NeutralWizard implements Enemy, IAnim
 
     @Inject(method = "isHostileTowards", at = @At(value = "HEAD"),cancellable = true)
     public void injectIsHostileTowards(LivingEntity entity, CallbackInfoReturnable cir) {
-        if(SunsetArmory.hasCurios(entity,ModItems.BLOOD_CULTIST_WRISTBAND.get())){
+        if(SunsetArmory.hasCurios(entity,ModItems.BLOOD_CULTIST_BANNER.get())){
             cir.setReturnValue(false);
         }
-        if(SunsetArmory.hasCurios(entity,ModItems.ELDRITCH_CULTIST_WRISTBAND.get())|| SunsetArmory.hasCurios(entity,ModItems.SUNSET_WRISTBAND.get())){
+        if(SunsetArmory.hasCurios(entity,ModItems.ELDRITCH_CULTIST_BANNER.get())|| SunsetArmory.hasCurios(entity,ModItems.SUNSET_BANNER.get())){
             cir.setReturnValue(true);
         }
         else cir.setReturnValue(super.isHostileTowards(entity));

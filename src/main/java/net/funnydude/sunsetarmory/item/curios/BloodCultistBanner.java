@@ -5,8 +5,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 
-public class BloodCultistWristBand extends WristBandCuriosItem {
-    public BloodCultistWristBand(Properties properties, String slotIdentifier) {
+public class BloodCultistBanner extends BannerCuriosItem {
+    public BloodCultistBanner(Properties properties, String slotIdentifier) {
         super(properties, slotIdentifier);
     }
 

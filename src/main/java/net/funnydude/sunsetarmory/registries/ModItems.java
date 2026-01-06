@@ -17,9 +17,9 @@ import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.item.armor.*;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheriteKnightArmorItem;
 import net.funnydude.sunsetarmory.item.armor.geckolib.NpcNetheritePaladinArmorItem;
-import net.funnydude.sunsetarmory.item.curios.BloodCultistWristBand;
-import net.funnydude.sunsetarmory.item.curios.EldritchCultistWristBand;
-import net.funnydude.sunsetarmory.item.curios.SunsetWristBand;
+import net.funnydude.sunsetarmory.item.curios.BloodCultistBanner;
+import net.funnydude.sunsetarmory.item.curios.EldritchCultistBanner;
+import net.funnydude.sunsetarmory.item.curios.SunsetBanner;
 import net.funnydude.sunsetarmory.item.custom.LoveTrain;
 import net.funnydude.sunsetarmory.item.custom.SmokeBomb;
 import net.funnydude.sunsetarmory.item.custom.SummonArchangel;
@@ -117,9 +117,9 @@ public class ModItems {
             () -> new Item(ItemPropertiesHelper.material().stacksTo(16).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, Item> KINETIC_UPGRADE_ORB = ITEMS.register("kinetic_upgrade_orb",
             () -> new UpgradeOrbItem(ItemPropertiesHelper.material().rarity(Rarity.UNCOMMON).component(ComponentRegistry.UPGRADE_ORB_TYPE, ModUpgradeOrbs.KINETIC_SPELL_POWER)));
-    public static final Supplier<CurioBaseItem> SUNSET_WRISTBAND = ITEMS.register("sunset_wristband",()-> new SunsetWristBand(new Item.Properties().stacksTo(1),"wristband"));
-    public static final Supplier<CurioBaseItem> ELDRITCH_CULTIST_WRISTBAND = ITEMS.register("eldritch_cultist_wristband",()-> new EldritchCultistWristBand(new Item.Properties().stacksTo(1),"wristband"));
-    public static final Supplier<CurioBaseItem> BLOOD_CULTIST_WRISTBAND = ITEMS.register("blood_cultist_wristband",()-> new BloodCultistWristBand(new Item.Properties().stacksTo(1),"wristband"));
+    public static final Supplier<CurioBaseItem> SUNSET_BANNER = ITEMS.register("banner_of_the_new_sunset",()-> new SunsetBanner(new Item.Properties().stacksTo(1),"banner"));
+    public static final Supplier<CurioBaseItem> ELDRITCH_CULTIST_BANNER = ITEMS.register("banner_of_the_elders",()-> new EldritchCultistBanner(new Item.Properties().stacksTo(1),"banner"));
+    public static final Supplier<CurioBaseItem> BLOOD_CULTIST_BANNER = ITEMS.register("banner_of_unnamed",()-> new BloodCultistBanner(new Item.Properties().stacksTo(1),"banner"));
     public static final DeferredItem<Lovelanguagehatred> LOVE_LANGUAGEHATRED = ITEMS.register("lovelanguagehatred",()-> new Lovelanguagehatred(SunsetWeaponsTier.LOVE_LANGUAGEHATRED,new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).attributes(Lovelanguagehatred.createAttributes(SunsetWeaponsTier.LOVE_LANGUAGEHATRED))));
     public static final DeferredItem<NightBlade> NIGHT_BLADE = ITEMS.register("nightblade",()-> new NightBlade(SunsetWeaponsTier.NIGHT_BLADE,new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).attributes(NightBlade.createAttributes(SunsetWeaponsTier.NIGHT_BLADE))));
     public static final DeferredItem<OrtuSolisStands> ORTU_SOLIS_STANDS = ITEMS.register("ortu_solis_stands", () -> new OrtuSolisStands(SunsetWeaponsTier.ORTU_SOLIS_STANDS, ItemPropertiesHelper.equipment().attributes(ExtendedSwordItem.createAttributes(SunsetWeaponsTier.ORTU_SOLIS_STANDS)).rarity(Rarity.EPIC).fireResistant(), SpellDataRegistryHolder.of(new SpellDataRegistryHolder(SpellRegistry.DIVINE_SMITE_SPELL, 15))));

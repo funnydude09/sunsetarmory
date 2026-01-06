@@ -86,7 +86,7 @@
   "spell.sunsetarmory.grand_fireball_spell": "Grand Fireball",
   "spell.sunsetarmory.grand_fireball_spell.guide": "A spell which is fueled by burning hatred within, and such can be only cast at half of your health. Has a long charge-up after which it unleashes a devastating fireball.",
   "spell.sunsetarmory.kinetic_dash_spell": "Kinetic Dash",
-  "spell.sunsetarmory.kinetic_dash_spell.guide": "Channel kinetic energy to get multiple dashes which can be preformed in quick succession, after which the spell goes on a cooldown.",
+  "spell.sunsetarmory.kinetic_dash_spell.guide": "Channel kinetic energy to get multiple dashes which can be preformxed in quick succession, after which the spell goes on a cooldown.",
   "spell.sunsetarmory.kinetic_dropkick_spell": "Kinetic Dropkick",
   "spell.sunsetarmory.kinetic_dropkick_spell.guide": "Quickly teleport yourself in front of the target and release a quick aoe attack.",
   "spell.sunsetarmory.armor_lock_spell": "Armor Lock",
@@ -102,5 +102,12 @@
   "effect.sunsetarmory.cool_down_effect": "Cooled Down",
   "effect.sunsetarmory.cinderous_chargeup_effect": "Cinderous Chargeup",
   "spell.sunsetarmory.grand_fireball.message":"Cannot cast Grand Fireball unless below half health",
-  "spell.sunsetarmory.grand_divine_smite.message":"Cannot cast Grand Divine Smite unless below half health"
+  "spell.sunsetarmory.grand_divine_smite.message":"Cannot cast Grand Divine Smite unless below half health",
+  "item.sunsetarmory.banner_of_the_new_sunset": "Banner Of The New Sunset",
+  "item.sunsetarmory.banner_of_the_new_sunset.desc": "Members of the Order will honor this flag as much as you do.",
+  "item.sunsetarmory.banner_of_unnamed": "Banner Of Unnamed",
+  "item.sunsetarmory.banner_of_unnamed.desc": "Everyone with this banner is viewed by unnamed's gaze equally.",
+  "item.sunsetarmory.banner_of_the_elders": "Banner Of The Elders",
+  "item.sunsetarmory.banner_of_the_elders.desc": "Minds that bear the knowledge of this banner are aware of each other.",
+  "curios.modifiers.banner": "When wearing the banner:"
 }

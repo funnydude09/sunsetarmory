@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "sunsetarmory:banner_of_the_new_sunset",
+    "sunsetarmory:banner_of_unnamed",
+    "sunsetarmory:banner_of_the_elders",
+    "#minecraft:banners"
+  ]
+}
