@@ -23,6 +23,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -41,23 +42,45 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.AnimationState;
-import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttacker {
-    private static final EntityDataAccessor<Boolean> DATA_IS_PLAYING_SPAWN_ANIM = SynchedEntityData.defineId(KnightEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_IS_PLAYING_SUMMON_ANIM = SynchedEntityData.defineId(KnightEntity.class, EntityDataSerializers.BOOLEAN);
+    private float summonAnimationTime = 50;
+
     public KnightEntity(EntityType<? extends AbstractSpellCastingMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        xpReward = 25;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
+        this.isPlayingSummonAnim();
     }
 
     public KnightEntity(Level level) {
         this(ModEntities.KNIGHT.get(), level);
-        this.giveThisKnightSomeEquipment();;
+        this.giveThisKnightSomeEquipment();
+        this.isPlayingSummonAnim();
+    }
+
+    @Override
+    public void push(Entity pEntity) {
+        if (!isSummoning()) {
+            super.push(pEntity);
+        }
+    }
+
+    public boolean isSummoning() {
+        return entityData.get(DATA_IS_PLAYING_SUMMON_ANIM);
+    }
+
+    public void isPlayingSummonAnim() {
+        entityData.set(DATA_IS_PLAYING_SUMMON_ANIM, true);
+    }
+
+    @Override
+    protected boolean isImmobile() {
+        return isSummoning() || super.isImmobile();
     }
 
     protected LookControl createLookControl() {
@@ -74,6 +97,18 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
                 return getTarget() == null;
             }
         };
+    }
+
+    @Override
+    public void tick() {
+        if (isSummoning()) {
+            if (--summonAnimationTime < 0) {
+                entityData.set(DATA_IS_PLAYING_SUMMON_ANIM, false);
+            }
+        }
+        else{
+            super.tick();
+        }
     }
 
     protected MoveControl createMoveControl() {
@@ -130,6 +165,14 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
         this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (isSummoning()) {
+            return false;
+        } else {
+            return super.hurt(source, amount);
+        }
+    }
 
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData) {
@@ -195,10 +238,13 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     private PlayState predicate(AnimationState<KnightEntity> animationEvent) {
         var controller = animationEvent.getController();
 
-        if (this.animationToPlay != null) {
+        if (this.animationToPlay != null && !isSummoning()) {
             controller.forceAnimationReset();
             controller.setAnimation(animationToPlay);
             animationToPlay = null;
+        }
+        if(isSummoning()){
+            controller.setAnimation(RawAnimation.begin().thenPlay("knight_spawn"));
         }
         return PlayState.CONTINUE;
     }
@@ -248,7 +294,7 @@ public class KnightEntity extends NeutralWizard implements Enemy, IAnimatedAttac
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
-        builder.define(DATA_IS_PLAYING_SPAWN_ANIM, false);
+        builder.define(DATA_IS_PLAYING_SUMMON_ANIM, false);
     }
 }
 

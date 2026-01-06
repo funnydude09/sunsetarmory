@@ -9,6 +9,7 @@ import net.funnydude.sunsetarmory.entity.wizards.cultist.EldritchCultistRenderer
 import net.funnydude.sunsetarmory.entity.wizards.living_armor_stand.LivingArmorStandRenderer;
 import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.registries.ModFluids;
+import net.funnydude.sunsetarmory.registries.ModItemProperties;
 import net.funnydude.sunsetarmory.render.*;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -64,7 +65,8 @@ public class ClientSetupEvent {
         }
     }
 
-     static void onClientSetup(FMLClientSetupEvent event) {
-
+    @SubscribeEvent
+     public static void onClientSetup(FMLClientSetupEvent event) {
+        ModItemProperties.addCustomItemProperties();
      }
 }

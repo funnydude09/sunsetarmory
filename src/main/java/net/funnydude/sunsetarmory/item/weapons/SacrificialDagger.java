@@ -19,7 +19,7 @@ public class SacrificialDagger extends SwordItem {
     }
 
     @SubscribeEvent
-    public static void e(LivingDamageEvent.Pre event) {
+    public static void backStab(LivingDamageEvent.Pre event) {
         var target = event.getEntity();
         var attacker = event.getSource().getEntity();
         if(attacker != null) {

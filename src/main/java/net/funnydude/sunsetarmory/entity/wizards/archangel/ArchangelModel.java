@@ -32,9 +32,6 @@ public class ArchangelModel extends AbstractSpellCastingMobModel {
         return MODEL;
     }
 
-    //fixme: this really doesnt work when multiple  exist
-    int lastTick;
-
     @Override
     public void setCustomAnimations(AbstractSpellCastingMob entity, long instanceId, AnimationState<AbstractSpellCastingMob> animationState) {
         if (Minecraft.getInstance().isPaused()) {
@@ -43,11 +40,8 @@ public class ArchangelModel extends AbstractSpellCastingMobModel {
         if (entity instanceof FireBossEntity fireBossEntity) {
             float partialTick = animationState.getPartialTick();
             Vector2f limbSwing = getLimbSwing(entity, entity.walkAnimation, partialTick);
-            if (entity.isAnimating()) {
-                fireBossEntity.isAnimatingDampener = Mth.lerp(.15f * partialTick, fireBossEntity.isAnimatingDampener, 0);
-            } else {
                 fireBossEntity.isAnimatingDampener = Mth.lerp(.05f * partialTick, fireBossEntity.isAnimatingDampener, 1);
-            }
+
             if (entity.getMainHandItem().is(ItemRegistry.HELLRAZOR) || entity.getMainHandItem().is(ItemRegistry.DECREPIT_SCYTHE)) {
                 GeoBone rightArm = this.getAnimationProcessor().getBone(PartNames.RIGHT_ARM);
                 GeoBone rightHand = this.getAnimationProcessor().getBone(DefaultBipedBoneIdents.RIGHT_HAND_BONE_IDENT);

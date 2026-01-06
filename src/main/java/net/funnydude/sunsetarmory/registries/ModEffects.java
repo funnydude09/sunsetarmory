@@ -117,4 +117,7 @@ public class ModEffects {
     public static final DeferredHolder<MobEffect, MobEffect> CURIOS_COOL_DOWN_EFFECT = MOB_EFFECTS.register("curios_cool_down",
             () -> new CuriosCooldown(MobEffectCategory.HARMFUL, 0xFFD700));
 
+    public static final DeferredHolder<MobEffect, MobEffect> BURNING_EFFECT = MOB_EFFECTS.register("burning_effect",
+            () -> new BurningEffect(MobEffectCategory.NEUTRAL, 0xFFD700));
+
 }

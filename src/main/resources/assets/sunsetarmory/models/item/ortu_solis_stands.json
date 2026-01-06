@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "irons_spellbooks:item/template_large_sword",
+    "textures": {
+      "layer0": "sunsetarmory:item/ortu_solis_stands"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "minecraft:item/handheld",
+      "textures": {
+        "layer0": "sunsetarmory:item/netherite_greatsword_gui"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "sunsetarmory:ignited": 1
+      },
+      "model": "sunsetarmory:item/ortu_solis_stands_on_fire"
+    }
+  ]
+}

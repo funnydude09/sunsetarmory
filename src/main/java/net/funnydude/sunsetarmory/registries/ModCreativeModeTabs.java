@@ -107,12 +107,17 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BLOOD_CULTIST_BANNER.get());
                         output.accept(ModItems.ELDRITCH_CULTIST_BANNER.get());
 
-                        output.accept(ModItems.LOVE_LANGUAGEHATRED);
+                        output.accept(ModItems.LOVELANGUAGEHATRED);
                         output.accept(ModItems.ORTU_SOLIS_STANDS);
-                        output.accept(ModItems.NIGHT_BLADE);
+                        output.accept(ModItems.NIGHTBLADE);
                         output.accept(ModItems.GOLDEN_SPEAR);
                         output.accept(ModItems.TRUTH_ENFORCER);
                         output.accept(ModItems.SACRIFICIAL_DAGGER);
+
+                        output.accept(ModItems.SUNSET_BANNER.get());
+                        output.accept(ModItems.ELDRITCH_CULTIST_BANNER.get());
+                        output.accept(ModItems.BLOOD_CULTIST_BANNER.get());
+
 
 
 

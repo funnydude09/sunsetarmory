@@ -6,7 +6,6 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
 import io.redspace.ironsspellbooks.api.util.Utils;
 import io.redspace.ironsspellbooks.capabilities.magic.MagicManager;
-import io.redspace.ironsspellbooks.config.ServerConfigs;
 import io.redspace.ironsspellbooks.entity.mobs.IAnimatedAttacker;
 import io.redspace.ironsspellbooks.entity.mobs.abstract_spell_casting_mob.NeutralWizard;
 import io.redspace.ironsspellbooks.entity.mobs.dead_king_boss.DeadKingBoss;
@@ -16,36 +15,27 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.SpellBarrageGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackKeyframe;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
-import io.redspace.ironsspellbooks.particle.BlastwaveParticleOptions;
 import io.redspace.ironsspellbooks.registries.ParticleRegistry;
 import io.redspace.ironsspellbooks.registries.SoundRegistry;
-import io.redspace.ironsspellbooks.util.ParticleHelper;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.registries.ModEntities;
 import net.funnydude.sunsetarmory.registries.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
@@ -65,10 +55,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 import software.bernie.geckolib.animation.*;
@@ -95,12 +81,10 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
     @Override
     public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
-        buffer.writeInt(this.spawnTimer);
     }
 
     @Override
     public void readSpawnData(RegistryFriendlyByteBuf additionalData) {
-        this.spawnTimer = additionalData.readInt();
         float y = this.getYRot();
         this.yBodyRot = y;
         this.yBodyRotO = y;
@@ -109,37 +93,24 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         this.yRotO = y;
     }
 
-    private static final EntityDataAccessor<Boolean> DATA_SOUL_MODE = SynchedEntityData.defineId(ArchangelEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> DATA_IS_DESPAWNING = SynchedEntityData.defineId(ArchangelEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final AttributeModifier SOUL_SPEED_MODIFIER = new AttributeModifier(IronsSpellbooks.id("soul_mode"), 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-    private static final AttributeModifier SOUL_SCALE_MODIFIER = new AttributeModifier(IronsSpellbooks.id("soul_mode"), 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    private static final EntityDataAccessor<Boolean> DATA_IS_PLAYING_SUMMON_ANIM = SynchedEntityData.defineId(ArchangelEntity.class, EntityDataSerializers.BOOLEAN);
     private static final AttributeModifier MANA_MODIFIER = new AttributeModifier(IronsSpellbooks.id("mana"), 10000, AttributeModifier.Operation.ADD_VALUE);
-    private int despawnAggroDelay;
     private int destroyBlockDelay;
-    /**
-     * Amount of non-creative/spectator players within 60 blocks of summoning this entity. Affects attribute scaling and drop count.
-     */
-    private int playerScale;
-
-    /**
-     * Client flag for whether code animations should pause over current animation
-     */
     private boolean canAnimateOver;
-    /**
-     * Client flag for whether the head should stop animating lookat for the current animation
-     */
     private boolean stopHeadAnimation;
-
-    /**
-     * Client side model control value
-     */
-    public float isAnimatingDampener;
-
     private ExtendedServerBossEvent bossEvent;
+    private float summonAnimationTime = 130f;
+
+    public boolean isSpawning() {
+        return entityData.get(DATA_IS_PLAYING_SUMMON_ANIM);
+    }
+
+    public void setDataIsPlayingSummonAnim() {
+        entityData.set(DATA_IS_PLAYING_SUMMON_ANIM,true);
+    }
 
     public ArchangelEntity(EntityType<ArchangelEntity> archangelEntityEntityType, Level pLevel) {
         super(archangelEntityEntityType, pLevel);
-        xpReward = 25;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
         createBossEvent();
@@ -148,9 +119,8 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     public ArchangelEntity(Level level) {
         this(ModEntities.ARCHANGEL.get(), level);
         this.giveThisArchangelSomeEquipment();
-        RawAnimation.begin().thenPlay("fire_boss_spawn");
+        this.setDataIsPlayingSummonAnim();
     }
-
 
     public void startSeenByPlayer(ServerPlayer pPlayer) {
         super.startSeenByPlayer(pPlayer);
@@ -165,8 +135,7 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
-        pBuilder.define(DATA_SOUL_MODE, false);
-        pBuilder.define(DATA_IS_DESPAWNING, false);
+        pBuilder.define(DATA_IS_PLAYING_SUMMON_ANIM,false);
     }
 
     protected LookControl createLookControl() {
@@ -254,7 +223,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
         this.goalSelector.addGoal(2, new SpellBarrageGoal(this, SpellRegistry.COUNTERSPELL_SPELL.get(), 1, 1, 80, 240, 3));
         this.goalSelector.addGoal(3, attackGoal);
-
         this.goalSelector.addGoal(4, new PatrolNearLocationGoal(this, 30, .75f));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.targetSelector.addGoal(1, new MomentHurtByTargetGoal(this));
@@ -262,45 +230,11 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, DeadKingBoss.class, true));
     }
 
-    /*
-     * Stance Break Mechanic
-     * - In order for a long-form cinematic and serializable ability to take place, we must store a decent bit of data on the entity itself
-     * - At 2/3 and 1/3 health, the boss's stance will break, interrupting all actions, and playing a short stun animation
-     * - At the end of the stun, he performs 3 strikes of Raise Hell
-     * - He goes into Soul Mode on the second break
-     */
-    /*
-     * Spawn Animation Handlers
-     */
-    int spawnTimer;
-    private static final int SPAWN_ANIM_TIME = (int) (8.75 * 20);
-    private static final int SPAWN_DELAY = 40;
-
-    /*
-     * Half Health Ability
-     * - Upon reaching half health, the boss performs a pseudo wipe mechanic
-     * - He Jumps into the air and beings charging a fireball/meteor
-     * - After 10 seconds, he will launch it, which is powerful enough to nearly kill most anything
-     * - However, if 10% of his max health is dealt as damage during this phase, the ability is interrupted and blows up the boss instead
-     */
-    /*
-     * Spectral Dagger
-     * client synced timer
-     */
-    int daggerTime;
     int parryCooldown;
-    boolean clientDaggerParticles;
 
-    public void triggerSpawnAnim() {
-        this.spawnTimer = SPAWN_ANIM_TIME + SPAWN_DELAY;
-    }
 
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
         return SoundRegistry.FIRE_BOSS_HURT.get();
-    }
-
-    public boolean isSpawning() {
-        return spawnTimer > 0;
     }
 
     @Override
@@ -325,24 +259,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         this.populateDefaultEquipmentSlots(randomsource, pDifficulty);
         this.setLeftHanded(false);
         this.getAttribute(AttributeRegistry.MAX_MANA).addOrReplacePermanentModifier(MANA_MODIFIER);
-        this.playerScale = pLevel.players().stream().filter(player -> distanceToSqr(player) < 3600 && !player.isSpectator() && !player.isCreative()).toList().size();
-        int extraPlayers = Math.max(0, playerScale - 1);
-        double extraHealthPercent = extraPlayers * 0.40 + extraPlayers * extraPlayers * 0.10;
-        double extraHealth = ServerConfigs.TYROS_ADDITIONAL_HEALTH.get();
-        double extraDamage = ServerConfigs.TYROS_ADDITIONAL_ATTACK_DAMAGE.get();
-        double extraPower = ServerConfigs.TYROS_ADDITIONAL_SPELL_POWER.get();
-        if (extraHealth != 0) {
-            this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(IronsSpellbooks.id("config"), extraHealth, AttributeModifier.Operation.ADD_VALUE));
-        }
-        if (extraHealthPercent != 0) {
-            this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier(IronsSpellbooks.id("player_scale"), extraHealthPercent, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-        }
-        if (extraDamage != 0) {
-            this.getAttribute(Attributes.ATTACK_DAMAGE).addPermanentModifier(new AttributeModifier(IronsSpellbooks.id("config"), extraDamage, AttributeModifier.Operation.ADD_VALUE));
-        }
-        if (extraPower != 0) {
-            this.getAttribute(AttributeRegistry.SPELL_POWER).addPermanentModifier(new AttributeModifier(IronsSpellbooks.id("config"), extraPower, AttributeModifier.Operation.ADD_VALUE));
-        }
         this.setHealth(this.getMaxHealth());
         return pSpawnData;
     }
@@ -363,17 +279,11 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         float maxHealth = this.getMaxHealth();
         float currentHealth = this.getHealth();
        this.bossEvent.setProgress(currentHealth / maxHealth);
-        if (daggerTime > 0) {
-            daggerTime--;
-        }
         if (parryCooldown > 0) {
             parryCooldown--;
         }
-        if (isSpawning()) {
-            spawnTimer--;
-            handleSpawnSequence();
-            if (spawnTimer == 0 && !level().isClientSide) {
-            }
+        if(--summonAnimationTime <=0){
+            entityData.set(DATA_IS_PLAYING_SUMMON_ANIM,false);
         }
         if (destroyBlockDelay > 0) {
             --destroyBlockDelay;
@@ -394,43 +304,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         return false;
     }
 
-    private void handleSpawnSequence() {
-        int animProgress = SPAWN_ANIM_TIME + SPAWN_DELAY - spawnTimer; // counts up to max (whereas timer counts down from max)
-        float walkProgress = getSpawnWalkPercent(0); // 0-1f, percent progress of the spawn animation from starting to walk to finishing animation
-        float worldZOffset = Mth.lerp(walkProgress, -60 / 16f * getScale(), 0);
-        Vec3 position = this.position().add(new Vec3(0, 0, worldZOffset).yRot(-this.getYRot() * Mth.DEG_TO_RAD));
-        // timed delay to sync beginning of music with beginning of fight
-        if (animProgress == SPAWN_DELAY) {
-            // begin walking out of puff of smoke
-            if (!level().isClientSide) {
-                //smoke to step out of
-                MagicManager.spawnParticles(level(), ParticleTypes.CAMPFIRE_COSY_SMOKE, position.x, position.y + 1.2, position.z, (int) (165 * getScale()), 0.4 * getScale(), 1.0 * getScale(), 0.4 * getScale(), 0.01, true);
-                MagicManager.spawnParticles(level(), ParticleHelper.FOG_CAMPFIRE_SMOKE, position.x, position.y + 0.1, position.z, 6, 0.6, .1, 0.6, 0.05, true);
-                // responding bell toll echo
-                MagicManager.spawnParticles(level(), new BlastwaveParticleOptions(1, .6f, 0.3f, 8), position.x, position.y, position.z, 0, 0, 0, 0, 0, true);
-                serverTriggerAnimation("fire_boss_spawn");
-            }
-            level().playSound(null, position.x, position.y, position.z, SoundRegistry.SOULCALLER_TOLL_SUCCESS, SoundSource.PLAYERS, 5f, .75f);
-        }
-        //step sounds
-        if (animProgress == SPAWN_DELAY + 20 || animProgress == SPAWN_DELAY + 40 || animProgress == SPAWN_DELAY + 60 || animProgress == SPAWN_DELAY + 80 || animProgress == SPAWN_DELAY + 100 || animProgress == SPAWN_DELAY + 114 || animProgress == SPAWN_DELAY + 128) {
-            level().playSound(null, position.x, position.y, position.z, SoundRegistry.KEEPER_STEP, this.getSoundSource(), 0.4f, 1f);
-        }
-        // summon scythe sound (happens at tick 132, with 17 tick windup)
-        if (animProgress == SPAWN_DELAY + 132 - 17) {
-            level().playSound(null, position.x, position.y, position.z, SoundRegistry.FIRE_BOSS_SUMMON_SCYTHE, this.getSoundSource(), 3f, 1f);
-        }
-    }
-
-    /**
-     * @return 0-1f, percent progress of the spawn animation from starting to walk to finishing animation
-     */
-    protected float getSpawnWalkPercent(float partialTick) {
-        return Math.clamp((SPAWN_ANIM_TIME - spawnTimer + partialTick) / (float) SPAWN_ANIM_TIME, 0, 1);
-    }
-
-    SimpleContainer deathLoot = null;
-
     @Override
     public void kill() {
         if (this.isDeadOrDying() || this.isSpawning()) {
@@ -448,7 +321,7 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     @Override
     protected void updateWalkAnimation(float f) {
         //reduce walk animation swing if we are floating or meleeing
-        super.updateWalkAnimation(f * (!this.onGround() ? .5f : (this.isSoulMode() ? .7f : .9f)));
+        super.updateWalkAnimation(f * (!this.onGround() ? .5f : .9f));
     }
 
     @Override
@@ -522,36 +395,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         }
     }
 
-    @Override
-    protected void dropAllDeathLoot(ServerLevel pLevel, DamageSource pDamageSource) {
-        // prevent drops from appearing before death animation, just store them
-        this.dropEquipment();
-        this.dropExperience(pDamageSource.getEntity());
-        boolean playerDeath = this.lastHurtByPlayerTime > 0;
-        this.dropCustomDeathLoot(pLevel, pDamageSource, playerDeath);
-        ResourceKey<LootTable> resourcekey = this.getLootTable();
-        LootTable mainLoot = this.level().getServer().reloadableRegistries().getLootTable(resourcekey);
-        LootTable lootPerPlayer = this.level().getServer().reloadableRegistries().getLootTable(ResourceKey.create(resourcekey.registryKey(), resourcekey.location().withSuffix("_per_player")));
-        LootParams.Builder lootparams$builder = new LootParams.Builder(pLevel)
-                .withParameter(LootContextParams.THIS_ENTITY, this)
-                .withParameter(LootContextParams.ORIGIN, this.position())
-                .withParameter(LootContextParams.DAMAGE_SOURCE, pDamageSource)
-                .withOptionalParameter(LootContextParams.ATTACKING_ENTITY, pDamageSource.getEntity())
-                .withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, pDamageSource.getDirectEntity());
-        if (playerDeath && this.lastHurtByPlayer != null) {
-            lootparams$builder = lootparams$builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, this.lastHurtByPlayer)
-                    .withLuck(this.lastHurtByPlayer.getLuck());
-        }
-
-        LootParams lootparams = lootparams$builder.create(LootContextParamSets.ENTITY);
-        ObjectArrayList<ItemStack> objectarraylist = new ObjectArrayList<>();
-        mainLoot.getRandomItems(lootparams, this.getLootTableSeed(), objectarraylist::add);
-        for (int i = 0; i < playerScale; i++) {
-            lootPerPlayer.getRandomItems(lootparams, this.getLootTableSeed(), objectarraylist::add);
-        }
-        this.deathLoot = new SimpleContainer(objectarraylist.size());
-        objectarraylist.forEach(deathLoot::addItem);
-    }
 
     @Override
     protected void tickDeath() {
@@ -560,9 +403,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
             float scale = getScale();
             Vec3 vec3 = this.position();
             if (this.deathTime >= 160 && !this.level().isClientSide() && !this.isRemoved()) {
-                if (this.deathLoot != null) {
-                    deathLoot.getItems().forEach(this::spawnAtLocation);
-                }
                 this.remove(Entity.RemovalReason.KILLED);
                 MagicManager.spawnParticles(level(), ParticleRegistry.EMBEROUS_ASH_PARTICLE.get(), vec3.x, vec3.y + 1, vec3.z, 50, 0.3, 0.3, 0.3, 0.2 * scale, true);
                 this.playSound(SoundRegistry.FIRE_BOSS_ACCENT.get(), 4, .9f);
@@ -574,7 +414,7 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     @Override
     public void playAnimation(String animationId) {
         animationToPlay = RawAnimation.begin().thenPlay(animationId);
-        canAnimateOver = animationId.equals("fire_boss_spawn") || animationId.equals("summon_fiery_daggers");
+        canAnimateOver = animationId.equals("fire_boss_spawn");
         stopHeadAnimation = animationId.equals("fire_boss_break_stance") || animationId.equals("fire_boss_death");
     }
 
@@ -585,10 +425,13 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
 
     private PlayState predicate(AnimationState<ArchangelEntity> animationEvent) {
         var controller = animationEvent.getController();
-        if (this.animationToPlay != null) {
+        if (this.animationToPlay != null && !isSpawning()) {
             controller.forceAnimationReset();
             controller.setAnimation(animationToPlay);
             animationToPlay = null;
+        }
+        if(isSpawning()){
+            controller.setAnimation(RawAnimation.begin().thenPlay("fire_boss_spawn"));
         }
         return PlayState.CONTINUE;
     }
@@ -610,15 +453,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         if (level().isClientSide) {
             return false;
         }
-        /*
-        can parry:
-        - serverside
-        - in combat
-        - we aren't in melee attack anim or spell cast
-        - the damage source is caused by an entity (ie not fall damage)
-        - the damage is caused within our rough field of vision (117 degrees)
-        - the damage is not /kill
-         */
         boolean canParry = this.isAggressive() &&
                 parryCooldown <= 0 &&
                 !isImmobile() &&
@@ -627,9 +461,8 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
                 pSource.getSourcePosition() != null && pSource.getSourcePosition().subtract(this.position()).normalize().dot(this.getForward()) >= 0.35
                 && !pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
         if (canParry && this.random.nextFloat() < 0.5) {
-            //todo: dynamic parry chance (recent hits, ominious mode, damage type, etc)
+            //todo: dynamic parry chance (recent hits, ominous mode, damage type, etc)
             serverTriggerAnimation("spear_block");
-            //procSpectralDagger();
             this.parryCooldown = 0;
             this.playSound(SoundEvents.SHIELD_BLOCK);
             return false;
@@ -652,10 +485,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         super.actuallyHurt(damageSource, damageAmount);
     }
 
-    public boolean isSoulMode() {
-        return false;
-    }
-
     @Override
     public boolean isAlliedTo(Entity pEntity) {
         if(pEntity instanceof LivingEntity && SunsetArmory.hasCurios(((LivingEntity) pEntity),ModItems.SUNSET_BANNER.get())){
@@ -663,15 +492,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
         }
         return super.isAlliedTo(pEntity) || pEntity.getType().is(SunsetTags.SUNSET_ORDER);
     }
-
-    /*public Component string_name() {
-        Component[] name = new Component[3];
-        name[0] = Component.literal("Josh");
-        name[1] = Component.literal("John Mastermind");
-        name[2] = Component.literal("gg");
-        int rng = new Random().nextInt(name.length);
-        return name[rng];
-    }*/
 
     public Component string_name() {
         Component[] name = new Component[1];
@@ -682,10 +502,6 @@ public class ArchangelEntity extends NeutralWizard implements Enemy, IAnimatedAt
     @Override
     protected PathNavigation createNavigation(Level pLevel) {
         return new NotIdioticNavigation(this, pLevel);
-    }
-
-    public boolean spectralDaggerActive() {
-        return false;
     }
 
     public void load(CompoundTag pCompound) {

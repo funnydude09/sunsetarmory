@@ -80,6 +80,7 @@ public class SunsetArmory {
         NeoForge.EVENT_BUS.register(this);
 
         ModCreativeModeTabs.register(modEventBus);
+        ModDataComponents.register(modEventBus);
         ModAttachments.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
