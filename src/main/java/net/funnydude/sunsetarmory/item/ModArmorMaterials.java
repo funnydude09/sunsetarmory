@@ -92,6 +92,59 @@ public class ModArmorMaterials {
                 attribute.put(ArmorItem.Type.BODY, 11);
             }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
 
+    public static final Holder<ArmorMaterial> RED_TERROR_ARMOR_MATERIAL = register("red_terror_armor",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
+                attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 11);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
+
+    public static final Holder<ArmorMaterial> YELLOW_MENACE_ARMOR_MATERIAL = register("yellow_menace_armor",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
+                attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 11);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
+
+    public static final Holder<ArmorMaterial> BLUE_NIGHTMARE_ARMOR_MATERIAL = register("blue_nightmare_armor",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
+                attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 11);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
+
+    public static final Holder<ArmorMaterial> GOLDEN_DRAGON_ARMOR_MATERIAL = register("golden_dragon_armor",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
+                attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 11);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
+
+    public static final Holder<ArmorMaterial> ROARING_KNIGHT_ARMOR_MATERIAL = register("roaring_knight_armor",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 5);
+                attribute.put(ArmorItem.Type.LEGGINGS, 8);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 9);
+                attribute.put(ArmorItem.Type.HELMET, 6);
+                attribute.put(ArmorItem.Type.BODY, 11);
+            }), 20, 2f, 0.1f, () -> ItemRegistry.MITHRIL_SCRAP.get());
+
+    public static final Holder<ArmorMaterial> FIRST_SUNSET_PV_ARMOR_MATERIAL = register("first_sunset_pv_armor",
+            Util.make(new EnumMap<>(ArmorItem.Type.class), attribute -> {
+                attribute.put(ArmorItem.Type.BOOTS, 6);
+                attribute.put(ArmorItem.Type.LEGGINGS, 9);
+                attribute.put(ArmorItem.Type.CHESTPLATE, 10);
+                attribute.put(ArmorItem.Type.HELMET, 7);
+                attribute.put(ArmorItem.Type.BODY, 12);
+            }), 30, 3f, 0.3f, () -> ItemRegistry.MITHRIL_SCRAP.get());
 
     private static Holder<ArmorMaterial> register(String name, EnumMap<ArmorItem.Type, Integer> typeProtection,
                                                   int enchantability, float toughness, float knockbackResistance,

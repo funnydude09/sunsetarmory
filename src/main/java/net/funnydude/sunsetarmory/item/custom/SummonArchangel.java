@@ -2,6 +2,7 @@ package net.funnydude.sunsetarmory.item.custom;
 
 import io.redspace.ironsspellbooks.api.util.Utils;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelEntity;
+import net.funnydude.sunsetarmory.entity.wizards.living_armor_stand.LivingArmorStandEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -37,10 +38,13 @@ public class SummonArchangel extends Item {
         if (!level.isClientSide&&!isDamaged(itemstack)) {
             level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GOAT_HORN_PLAY, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
             ArchangelEntity archangelEntity = new ArchangelEntity(level);
+            LivingArmorStandEntity e = new LivingArmorStandEntity(level);
             double randRot = getRangedRandom(-Math.PI,Math.PI);
             Vec3 spawn = Utils.moveToRelativeGroundLevel(level, player.getEyePosition().add(new Vec3(10 * Mth.cos((float) randRot), 0, 10 * Mth.sin((float) randRot))), 10);
             archangelEntity.setPos(spawn);
             level.addFreshEntity(archangelEntity);
+            e.setPos(spawn);
+            level.addFreshEntity(e);
             itemstack.hurtAndBreak(itemstack.getMaxDamage()-1,player,player.getEquipmentSlotForItem(itemstack));
         }
         return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());

@@ -110,7 +110,7 @@ public class EldritchCultistEntity extends NeutralWizard implements Enemy, IAnim
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, CultistEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PaladinEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ArchangelEntity.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ArchangelEntity.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, KnightEntity.class, false));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isHostileTowards));
         this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
@@ -197,7 +197,7 @@ public class EldritchCultistEntity extends NeutralWizard implements Enemy, IAnim
             }
             return super.isAlliedTo(entityIn);
         }
-        else return super.isAlliedTo(entityIn) || entityIn.getType().is(SunsetTags.ELDRITCH_CULTIST);
+        else return super.isAlliedTo(entityIn) || entityIn.getType().is(SunsetTags.ELDRITCH_GOD);
     }
 
     @Override

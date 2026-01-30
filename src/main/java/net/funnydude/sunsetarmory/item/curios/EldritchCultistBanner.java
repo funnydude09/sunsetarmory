@@ -16,4 +16,5 @@ public class EldritchCultistBanner extends BannerCuriosItem {
         entity.addEffect(new MobEffectInstance(ModEffects.CURIOS_COOL_DOWN_EFFECT,1200));
         super.onUnequip(slotContext, newStack, stack);
     }
+
 }

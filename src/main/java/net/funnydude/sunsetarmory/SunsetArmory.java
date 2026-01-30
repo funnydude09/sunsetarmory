@@ -1,19 +1,17 @@
 package net.funnydude.sunsetarmory;
 
 import com.mojang.logging.LogUtils;
-import io.redspace.ironsspellbooks.registries.CommandRegistry;
 import mod.azure.azurelib.common.render.armor.AzArmorRendererRegistry;
 import net.funnydude.sunsetarmory.entity.armor.*;
 import net.funnydude.sunsetarmory.registries.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.commands.CommandResultCallback;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -35,7 +33,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SunsetArmory.MODID)
 public class SunsetArmory {
-    //TODO:LevelEvent.CreateSpawnPosition for spawning stuff at the start of the game
     // Define mod id in a common place for everything to reference
     public static final String MODID = "sunsetarmory";
     // Directly reference a slf4j logger
@@ -46,21 +43,21 @@ public class SunsetArmory {
    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-  //  public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
+    // public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
     // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-  //  public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+    // public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
 
     // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
-  //  public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
-   //         .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+    // public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
+    //        .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
 
     // Creates a creative tab with the id "examplemod:example_tab" for the example item, that is placed after the combat tab
     // public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-     //       .title(Component.translatable("itemGroup.examplemod")) //The language key for the title of your CreativeModeTab
-     //       .withTabsBefore(CreativeModeTabs.COMBAT)
-     //       .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
-     //       .displayItems((parameters, output) -> {
-      //          output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+    //      .title(Component.translatable("itemGroup.examplemod")) //The language key for the title of your CreativeModeTab
+    //      .withTabsBefore(CreativeModeTabs.COMBAT)
+    //      .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
+    //     .displayItems((parameters, output) -> {
+    //          output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
       //      }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -123,8 +120,6 @@ public class SunsetArmory {
         LOGGER.info("HELLO from server starting");
     }
 
-
-   //
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = SunsetArmory.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

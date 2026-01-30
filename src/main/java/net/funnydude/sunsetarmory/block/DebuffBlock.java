@@ -13,9 +13,11 @@ public class DebuffBlock extends BaseEntityBlock {
         super(properties);
     }
 
+    public static final MapCodec<DebuffBlock> CODEC = simpleCodec(DebuffBlock::new);
+
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     @Override

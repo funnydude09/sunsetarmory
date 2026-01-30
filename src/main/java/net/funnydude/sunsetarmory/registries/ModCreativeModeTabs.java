@@ -119,13 +119,39 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BLOOD_CULTIST_BANNER.get());
 
 
+                        output.accept(ModItems.RED_TERROR_HELMET);
+                        output.accept(ModItems.RED_TERROR_CHESTPLATE);
+                        output.accept(ModItems.RED_TERROR_LEGGINGS);
+                        output.accept(ModItems.RED_TERROR_BOOTS);
 
+                        output.accept(ModItems.YELLOW_MENACE_HELMET);
+                        output.accept(ModItems.YELLOW_MENACE_CHESTPLATE);
+                        output.accept(ModItems.YELLOW_MENACE_LEGGINGS);
+                        output.accept(ModItems.YELLOW_MENACE_BOOTS);
 
+                        output.accept(ModItems.BLUE_NIGHTMARE_HELMET);
+                        output.accept(ModItems.BLUE_NIGHTMARE_CHESTPLATE);
+                        output.accept(ModItems.BLUE_NIGHTMARE_LEGGINGS);
+                        output.accept(ModItems.BLUE_NIGHTMARE_BOOTS);
 
+                        output.accept(ModItems.GOLDEN_DRAGON_HELMET);
+                        output.accept(ModItems.GOLDEN_DRAGON_CHESTPLATE);
+                        output.accept(ModItems.GOLDEN_DRAGON_LEGGINGS);
+                        output.accept(ModItems.GOLDEN_DRAGON_BOOTS);
+
+                        output.accept(ModItems.ROARING_KNIGHT_HELMET);
+                        output.accept(ModItems.ROARING_KNIGHT_CHESTPLATE);
+                        output.accept(ModItems.ROARING_KNIGHT_LEGGINGS);
+                        output.accept(ModItems.ROARING_KNIGHT_BOOTS);
+
+                        output.accept(ModItems.FIRST_SUNSET_PV_HELMET);
+                        output.accept(ModItems.FIRST_SUNSET_PV_CHESTPLATE);
+                        output.accept(ModItems.FIRST_SUNSET_PV_LEGGINGS);
+                        output.accept(ModItems.FIRST_SUNSET_PV_BOOTS);
 
                     }).build());
 
-    public  static void register(IEventBus eventBus) {
+    public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TAB.register(eventBus);
     }
 }

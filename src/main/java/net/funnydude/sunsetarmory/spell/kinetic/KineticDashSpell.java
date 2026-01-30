@@ -81,12 +81,7 @@ public class KineticDashSpell extends AbstractSpell {
         Vec3 forward = entity.getLookAngle();
         var vec = forward.multiply(1.5, 1, 1.5).normalize().scale(multiplier);
         playerMagicData.setAdditionalCastData(new ImpulseCastData((float) vec.x, (float) 0, (float) vec.z, true));
-
-        entity.setDeltaMovement(new Vec3(
-                Mth.lerp(1, entity.getDeltaMovement().x, vec.x),
-                entity.getDeltaMovement().y,
-                Mth.lerp(1, entity.getDeltaMovement().z, vec.z)
-        ));
+        entity.setDeltaMovement(new Vec3(vec.x, entity.getDeltaMovement().y, vec.z));
         entity.invulnerableTime = 5;
 
         super.onCast(world, spellLevel, entity, castSource, playerMagicData);

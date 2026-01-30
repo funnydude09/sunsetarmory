@@ -16,17 +16,13 @@ public class ImbuableGeckolibArmor extends GeckolibArmor implements IPresetSpell
 
     @Override
     public void initializeSpellContainer(ItemStack itemStack) {
-        if (itemStack == null)
-        {
+        if (itemStack == null) {
             return;
         }
 
-        if (itemStack.getItem() instanceof ArmorItem armorItem)
-        {
-            if (armorItem.getType() == Type.CHESTPLATE || armorItem.getType() == Type.HELMET)
-            {
-                if (!ISpellContainer.isSpellContainer(itemStack))
-                {
+        if (itemStack.getItem() instanceof ArmorItem armorItem) {
+            if (armorItem.getType() == Type.CHESTPLATE || armorItem.getType() == Type.HELMET) {
+                if (!ISpellContainer.isSpellContainer(itemStack)) {
                     var spellContainer = ISpellContainer.create(1, true, true);
                     itemStack.set(ComponentRegistry.SPELL_CONTAINER, spellContainer);
                 }

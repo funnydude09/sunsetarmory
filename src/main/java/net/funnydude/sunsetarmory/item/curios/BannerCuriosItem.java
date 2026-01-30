@@ -6,4 +6,5 @@ public abstract class BannerCuriosItem extends SimpleDescriptiveCurio {
     public BannerCuriosItem(Properties properties, String slotIdentifier) {
         super(properties, slotIdentifier);
     }
+
 }

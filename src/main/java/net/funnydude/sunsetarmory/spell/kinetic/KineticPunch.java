@@ -30,7 +30,6 @@ public class KineticPunch extends AbstractSpell {
 
     @Override
     public void onCast(Level level, int spellLevel, LivingEntity entity, CastSource castSource, MagicData playerMagicData) {
-
         super.onCast(level, spellLevel, entity, castSource, playerMagicData);
     }
 

@@ -1,8 +1,6 @@
 package net.funnydude.sunsetarmory.event;
 
-import io.redspace.ironsspellbooks.entity.mobs.wizards.cultist.CultistRenderer;
 import io.redspace.ironsspellbooks.fluids.SimpleClientFluidType;
-import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import net.funnydude.sunsetarmory.SunsetArmory;
 import net.funnydude.sunsetarmory.entity.wizards.archangel.ArchangelRenderer;
 import net.funnydude.sunsetarmory.entity.wizards.cultist.EldritchCultistRenderer;
@@ -35,11 +33,12 @@ public class ClientSetupEvent {
        event.registerEntityRenderer(ModEntities.WALL_OF_EFFECT_CLEAR.get(), WallOfClearEffectRenderer::new);
        event.registerEntityRenderer(ModEntities.KINETIC_VERTICAL_SLASH.get(), KineticVerticalSlashRenderer::new);
        event.registerEntityRenderer(ModEntities.PALADIN.get(), KnightRenderer::new);
-        event.registerEntityRenderer(ModEntities.ELDRITCH_CULTIST.get(), EldritchCultistRenderer::new);
-        event.registerEntityRenderer(ModEntities.ARCHANGEL.get(), ArchangelRenderer::new);
+       event.registerEntityRenderer(ModEntities.ELDRITCH_CULTIST.get(), EldritchCultistRenderer::new);
+       event.registerEntityRenderer(ModEntities.ARCHANGEL.get(), ArchangelRenderer::new);
        event.registerEntityRenderer(ModEntities.BLIZZARD_HAIL.get(), (context) -> new BlizzardHailRenderer(context, 0.75f));
-        event.registerEntityRenderer(ModEntities.LIVING_ARMOR_STAND.get(), LivingArmorStandRenderer::new);
-        event.registerEntityRenderer(ModEntities.HALF_SWORD_STANCE_ENTITY.get(), NoopRenderer::new);
+       event.registerEntityRenderer(ModEntities.LIVING_ARMOR_STAND.get(), LivingArmorStandRenderer::new);
+       event.registerEntityRenderer(ModEntities.HALF_SWORD_STANCE_ENTITY.get(), NoopRenderer::new);
+       event.registerEntityRenderer(ModEntities.KINETIC_SENTRY_TURRET.get(), NoopRenderer::new);
 
     }
 
@@ -66,7 +65,7 @@ public class ClientSetupEvent {
     }
 
     @SubscribeEvent
-     public static void onClientSetup(FMLClientSetupEvent event) {
+    public static void onClientSetup(FMLClientSetupEvent event) {
         ModItemProperties.addCustomItemProperties();
-     }
+    }
 }

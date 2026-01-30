@@ -14,14 +14,13 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 
 public class OrtuSolisStands extends MagicSwordItem {
-
     public OrtuSolisStands(Tier pTier, Properties pProperties, SpellDataRegistryHolder[] spellDataRegistryHolders) {
         super(pTier, pProperties, spellDataRegistryHolders);
     }
 
     @Override
     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        target.setRemainingFireTicks(60);
+        target.igniteForTicks(60);
         super.postHurtEnemy(stack, target, attacker);
     }
 

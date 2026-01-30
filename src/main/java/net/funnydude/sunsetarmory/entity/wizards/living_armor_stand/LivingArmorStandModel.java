@@ -14,15 +14,12 @@ import software.bernie.geckolib.cache.object.GeoBone;
 import static io.redspace.ironsspellbooks.entity.mobs.wizards.cursed_armor_stand.CursedArmorStandEntity.JIGGLE_TIME;
 
 public class LivingArmorStandModel extends AbstractSpellCastingMobModel {
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(IronsSpellbooks.MODID, "textures/entity/cultist.png");
     public static final ResourceLocation MODEL = ResourceLocation.fromNamespaceAndPath(IronsSpellbooks.MODID, "geo/armor_stand.geo.json");
 
     @Override
     public ResourceLocation getTextureResource(AbstractSpellCastingMob object) {
         return ArmorStandRenderer.DEFAULT_SKIN_LOCATION;
     }
-
-    public static double[] rightArmPos = new double[]{0, 0, 0};
 
     @Override
     public void setCustomAnimations(AbstractSpellCastingMob entity, long instanceId, AnimationState<AbstractSpellCastingMob> animationState) {

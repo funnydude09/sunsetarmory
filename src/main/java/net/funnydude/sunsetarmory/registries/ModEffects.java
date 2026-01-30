@@ -120,4 +120,9 @@ public class ModEffects {
     public static final DeferredHolder<MobEffect, MobEffect> BURNING_EFFECT = MOB_EFFECTS.register("burning_effect",
             () -> new BurningEffect(MobEffectCategory.NEUTRAL, 0xFFD700));
 
+    public static final DeferredHolder<MobEffect, MobEffect> ATTACK_SPEED_EFFECT = MOB_EFFECTS.register("attack_speed",
+            () -> new AttackSpeed(MobEffectCategory.NEUTRAL, 0xFFD700)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED,SunsetArmory.id("half_stance_sword_effect"),AttackSpeed.attackSpeed,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+
 }

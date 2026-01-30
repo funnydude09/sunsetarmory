@@ -8,7 +8,10 @@ import io.redspace.ironsspellbooks.entity.mobs.goals.melee.AttackAnimationData;
 import io.redspace.ironsspellbooks.entity.mobs.wizards.fire_boss.NotIdioticNavigation;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import io.redspace.ironsspellbooks.util.NBT;
+import net.funnydude.sunsetarmory.SunsetArmory;
+import net.funnydude.sunsetarmory.SunsetTags;
 import net.funnydude.sunsetarmory.registries.ModEntities;
+import net.funnydude.sunsetarmory.registries.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -50,9 +53,18 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public class LivingArmorStandEntity extends AbstractSpellCastingMob implements IAnimatedAttacker, NeutralMob {
+    private LivingEntity owner;
     @Override
     public void playAnimation(String animationId) {
 
+    }
+
+    public LivingEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(LivingEntity owner) {
+        this.owner = owner;
     }
 
     public enum Pose {
@@ -75,7 +87,6 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
     }
 
     public static final int JIGGLE_TIME = 15;
-
     private static final EntityDataAccessor<Boolean> DATA_FROZEN = SynchedEntityData.defineId(LivingArmorStandEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<String> DATA_POSE = SynchedEntityData.defineId(LivingArmorStandEntity.class, EntityDataSerializers.STRING);
 
@@ -126,21 +137,14 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
     @Override
     public InteractionResult interactAt(Player pPlayer, Vec3 pVector, InteractionHand pHand) {
         if (isArmorStandFrozen()) {
-            if (pPlayer.level().isClientSide) {
-                handleInteraction(pVector, slot -> {
-                    switch (slot) {
-                        case HEAD -> helmetJiggle = JIGGLE_TIME;
-                        case CHEST -> chestJiggle = JIGGLE_TIME;
-                        case LEGS -> legJiggle = JIGGLE_TIME;
-                        case FEET -> bootJiggle = JIGGLE_TIME;
-                    }
-                });
-            } else {
+            if (pPlayer.level().isClientSide){
+                var item = pPlayer.getItemInHand(pHand);
+            }else {
                 AtomicReference<SoundEvent> sound = new AtomicReference<>(SoundEvents.ARMOR_STAND_HIT);
 
 
                 playSound(sound.get());
-                if (canAttack(pPlayer) && interactionAnger++ >= 2) {
+                if (canAttack(pPlayer) && interactionAnger++ >= 2 && pPlayer != getOwner()) {
                     this.setTarget(pPlayer);
                 }
             }
@@ -149,7 +153,7 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
         return super.interactAt(pPlayer, pVector, pHand);
     }
 
-    private void handleInteraction(Vec3 interactionVector, Consumer<EquipmentSlot> onInteract) {
+    /*private void handleInteraction(Vec3 interactionVector, Consumer<EquipmentSlot> onInteract) {
         double d0 = interactionVector.y / (double) (this.getScale() * this.getAgeScale());
         if (d0 >= 0.1 && d0 < 0.1 + 0.45) {
             onInteract.accept(EquipmentSlot.FEET);
@@ -160,7 +164,7 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
         } else if (d0 >= 1.6) {
             onInteract.accept(EquipmentSlot.HEAD);
         }
-    }
+    }*/
 
     @Override
     public boolean shouldBeExtraAnimated() {
@@ -169,7 +173,6 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
 
     public LivingArmorStandEntity(EntityType<? extends AbstractSpellCastingMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        xpReward = 0;
         this.lookControl = createLookControl();
         this.moveControl = createMoveControl();
     }
@@ -177,6 +180,7 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
     public LivingArmorStandEntity(Level level){
         this(ModEntities.LIVING_ARMOR_STAND.get(),level);
     }
+
     protected LookControl createLookControl() {
         return new LookControl(this) {
             //This allows us to more rapidly turn towards our target. Helps to make sure his targets are aligned with his swing animations
@@ -308,10 +312,9 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
 
         );
         this.goalSelector.addGoal(5, new LivingArmorStandReturnToHomeGoal(this, 1));
-
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-        this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, false));
+        this.targetSelector.addGoal(5, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
     @Override
@@ -325,6 +328,14 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
     }
 
     @Override
+    public boolean isAngryAt(LivingEntity target) {
+        if(target != getOwner()) {
+            return NeutralMob.super.isAngryAt(target);
+        }
+        else return false;
+    }
+
+    @Override
     protected boolean isImmobile() {
         return super.isImmobile() || isArmorStandFrozen();
     }
@@ -335,6 +346,22 @@ public class LivingArmorStandEntity extends AbstractSpellCastingMob implements I
             setArmorStandFrozen(false);
         }
         super.setTarget(pTarget);
+    }
+
+    @Override
+    public boolean isAlliedTo(Entity entity) {
+        if(entity instanceof LivingEntity) {
+            if (SunsetArmory.hasCurios(getOwner(), ModItems.SUNSET_BANNER.get())) {
+                return SunsetArmory.hasCurios(((LivingArmorStandEntity) entity), ModItems.SUNSET_BANNER.get()) || super.isAlliedTo(entity) || entity.getType().is(SunsetTags.SUNSET_ORDER);
+            }
+            if (SunsetArmory.hasCurios(getOwner(), ModItems.ELDRITCH_CULTIST_BANNER.get())) {
+                return SunsetArmory.hasCurios(((LivingArmorStandEntity) entity), ModItems.ELDRITCH_CULTIST_BANNER.get()) || super.isAlliedTo(entity) || entity.getType().is(SunsetTags.ELDRITCH_GOD);
+            }
+            if (SunsetArmory.hasCurios(getOwner(), ModItems.BLOOD_CULTIST_BANNER.get())) {
+                return SunsetArmory.hasCurios(((LivingArmorStandEntity) entity), ModItems.BLOOD_CULTIST_BANNER.get()) || super.isAlliedTo(entity);
+            }
+        }
+        return super.isAlliedTo(entity);
     }
 
     @Override
